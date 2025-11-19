@@ -55,7 +55,8 @@ de 20 pobles, i el número que hi ha:
 
     SELECT nom_c , COUNT(cod_m) AS "Número de pobles" , Max(poblacio) AS Màxim , Min(poblacio) AS Mínim , Avg(poblacio) AS Mitjana  
       FROM POBLACIONS  
-      GROUP BY nom_c  20;
+      GROUP BY nom_c  20
+      HAVING COUNT(cod_m) > 20;
 
   3) Traure l'altura mitjana, total de població i població mitjana, d'aquelles comarques que tenen una altura mitjana superior a 800 metres.
 
