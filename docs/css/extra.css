@@ -63,22 +63,29 @@ p {
 /* Forzar títulos en negro y negrita para el modo claro */
 [data-md-color-scheme="default"] .md-typeset h1, 
 [data-md-color-scheme="default"] .md-typeset h2, 
-[data-md-color-scheme="default"] .md-typeset h3, 
-[data-md-color-scheme="default"] .md-typeset h4, 
 [data-md-color-scheme="default"] .md-typeset h5, 
 [data-md-color-scheme="default"] .md-typeset h6 {
     color: #000000 !important;
     font-weight: 400 !important;
 }
 
+[data-md-color-scheme="default"] .md-typeset h3, 
+[data-md-color-scheme="default"] .md-typeset h4 {
+    color: #000000 !important;
+    font-weight: bold !important;
+}
+
 /* Forzar negrita para todos los títulos en cualquier modo */
 .md-typeset h1, 
 .md-typeset h2, 
-.md-typeset h3, 
-.md-typeset h4, 
 .md-typeset h5, 
 .md-typeset h6 {
     font-weight: 400 !important;
+}
+
+.md-typeset h3, 
+.md-typeset h4 {
+    font-weight: bold !important;
 }
 
 /* Tarjetas y Admonitions (Avisos) Modernos pero visualmente tranquilos */
