@@ -324,7 +324,7 @@ o de la forma alternativa:
 En ambos casos se ha optado por poner nombre a las tablas (S y C respectivamente)
 por comodidad, para que no quedara tan larga la consulta.
 
-### **:pencil2: Ejercicios {: .ejercicios-header}**
+### **:pencil2: Ejercicios** {: .ejercicios-header }
 
 **Ex_51** Sacar el nombre de los clientes con el número de factura y la fecha
 (individuales, sin agrupar nada) que tiene cada cliente. Saca el resultado ordenado
@@ -464,7 +464,7 @@ LEFT JOIN.
     ORDER BY 1;
 
 
-### **:pencil2: Ejercicios {: .ejercicios-header}**
+### **:pencil2: Ejercicios** {: .ejercicios-header }
 
 **Ex_60** Sacar el código y el nombre de los clientes que no tienen ninguna factura.
 

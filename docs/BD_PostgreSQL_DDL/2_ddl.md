@@ -102,7 +102,7 @@ ejecutar la sentencia.
             población VARCHAR(50) DEFAULT 'Castellón' ,  
             fecha_incorporacion DATE DEFAULT CURRENT_DATE )
 
-### **:pencil2:Ejercicios {: .ejercicios-header}**
+### **:pencil2:Ejercicios** {: .ejercicios-header }
 
 A lo largo de esta tercera parte, en el conjunto de ejercicios de DDL, crearemos
 toda la estructura de la Base de Datos **FACTURA** , pero para no interferir
@@ -501,7 +501,7 @@ empleados, porque no hay otro remedio, y también la de no repetición del campo
             CONSTRAINT check_dates  
             CHECK (EXTRACT(year FROM AGE(fecha_incorporación,fecha_nacimiento) ) >=18 ) )
 
-### **:pencil2: Ejercicios {: .ejercicios-header}**
+### **:pencil2: Ejercicios** {: .ejercicios-header }
 
 ![](factura_rel.png)
 
@@ -643,7 +643,7 @@ Ahora le pondremos el nombre EMP3 en la mesa EMPLEAT3
 
       ALTERAR TABLA EMP3 RENOMBRAR A EMPLEADO3;
 
-### **:pencil2: Ejercicios {: .ejercicios-header}**
+### **:pencil2: Ejercicios** {: .ejercicios-header }
 
 ![](factura_rel.png)
 
@@ -758,7 +758,7 @@ nombre del índice y la tabla en la que está definido.
 
       DROP INDEX nombre_índice ON tabla
 
-### **:pencil2: Ejercicios {: .ejercicios-header}**
+### **:pencil2: Ejercicios** {: .ejercicios-header }
 
 En **factura_local**:
 
@@ -833,7 +833,7 @@ Por ejemplo, para borrar la vista anterior: a borrar una vista
 
       DROP VIEW ESTADISTICA;
 
-### **:pencil2: Ejercicios {: .ejercicios-header}**
+### **:pencil2: Ejercicios** {: .ejercicios-header }
 
 En **factura_local**:
 
@@ -1238,7 +1238,7 @@ los compañeros:
 
       DROP DOMAIN hemi_lato, grados_lato, min_seg;
 
-### **:pencil2: Ejercicios {: .ejercicios-header}**
+### **:pencil2: Ejercicios** {: .ejercicios-header }
 
 En **factura_local**:
 
