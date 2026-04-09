@@ -1,12 +1,12 @@
-# 4 Consultes d'operacions de conjunts
+# 4 Consultas de operaciones de conjuntos
 
-Agruparem en aquest apartat les consultes que tracten conjunts de files per a
-fer operacions d'algebra de conjunts: **unió** , **intersecció** i
-**diferència** de conjunts
+Agruparemos en este apartado las consultas que traten conjuntos de filas para
+realizar operaciones de algebra de conjuntos: **unión** , **intersección** y
+**diferencia** de conjuntos
 
-Totes aquestes consultes ajunten els resultats de dues o més consultes.
+Todas estas consultas juntan los resultados de dos o más consultas.
 
-## 4.1 Unió
+## 4.1 Unión
 
 **<u>Sintaxi</u>**
 
@@ -15,46 +15,45 @@ Totes aquestes consultes ajunten els resultats de dues o més consultes.
     UNION [ALL]  
     [TABLE] consulta2 ...
 
-Cadascuna de les consultes pot ser una taula (posant la paraula **TABLE**
-davant) o el nom d'una consulta ja guardada, encara que el més habitual serà
-posar directament la **sentència SQL**.
+Cada una de las consultas puede ser una tabla (poniendo la palabra **TABLE**)
+delante) o el nombre de una consulta ya guardada, aunque lo más habitual será
+poner directamente la **sentencia SQL**.
 
-Els requisits són que les dues (o més) consultes tornen el mateix nombre de
-camps, i que siguen sinó del mateix tipus, sí de tipus compatibles
+Los requisitos son que las dos (o más) consultas devuelven el mismo número de
+campos, y que sean sino del mismo tipo, sí de tipos compatibles
 
-Igual que en la unió de conjunts, el resultat seran totes les files de les
-dues (o més) consultes individuals, però sense repetir files, és a dir, si de
-les dues consultes s'obtenen files iguals, aquestes només eixiran una vegada.
-L'anterior es pot evitar si posem el predicat ALL, i aleshores sí que eixiran
-les files repetides.
+Al igual que en la unión de conjuntos, el resultado serán todas las filas de las
+dos (o más) consultas individuales, pero sin repetir filas, es decir, si de
+ambas consultas se obtienen filas iguales, éstas sólo saldrán una vez.
+Lo anterior se puede evitar si ponemos el predicado ALL, y entonces sí saldrán
+las filas repetidas.
 
-Els noms dels camps vindran donats per la primera consulta.
+Los nombres de los campos vendrán dados por la primera consulta.
 
-Si volem ordenar per algun camp, ho haurem de posar al final de l'última
-consulta, però referint-se en tot cas als camps de la primera consulta (ho
-podem evitar posant el número d'ordre en el ORDER BY)
+Si queremos ordenar por algún campo, deberemos ponerlo al final de la última
+consulta, pero refiriéndose en todo caso a los campos de la primera consulta (lo
+podemos evitar poniendo el número de orden en el ORDER BY)
 
-**<u>Exemples</u>**
+**<u>Ejemplos</u>**
 
-  1) Volem veure en un únic resultat tant el nom de les comarques com el nom de les poblacions, sempre amb el nom de la província al costat
+  1) Queremos ver en un único resultado tanto el nombre de las comarcas como el nombre de las poblaciones, siempre con el nombre de la provincia al lado
 
-    SELECT nom_c, provincia  
-      FROM COMARQUES  
+    SELECT nombre_c, provincia  
+      FROM COMARCAS  
     UNION  
-    SELECT nom, provincia  
-      FROM COMARQUES INNER JOIN POBLACIONS USING (nom_c)  
-    ORDER BY nom_c;
+    SELECT nombre, provincia  
+      FROM COMARCAS INNER JOIN POBLACIONES USING (nombre_c)  
+    ORDER BY nombre_c;
 
-Com a curiositat, eixiran 575 files, però si posàrem UNION ALL ens eixirien
-576. Això és perquè la comarca de la ciutat de València es diu València i està
-a la província de València. Per tant és una fila que apareixerà tant en la
-primera com en la segona consulta. Si fem UNION no es repetirà, però si fem
-UNION ALL sí que es repetirà.
+**Ex_55** Sacar el número de factura, fecha, código de cliente, total de la
+factura (con el alias IMPORTE) y total de la factura aplicando descuentos
+de artículo (con alias DESCUENTO_1), como en la consulta**Ex_33** , pero sin el
+límite de las 10 líneas de factura. Ordena por número de factura.
 
-## 4.2 Intersecció
+## 4.2 Intersección
 
-És identica a la unió, però posant la paraula **INTERSECT** , i servirà per a
-traure únicament les files que estan en les dues consultes.
+Es idéntica a la unión, pero poniendo la palabra **INTERSECT** , y servirá para
+sacar únicamente las filas que están en ambas consultas.
 
 
 
@@ -64,67 +63,67 @@ traure únicament les files que estan en les dues consultes.
     INTERSECT [ALL]  
     [TABLE] consulta2 ...
 
-Igual que abans, cadascuna de les consultes pot ser una taula (posant la
-paraula **TABLE** davant), i tenim el requisit que les dues (o més) consultes
-tornen el mateix nombre de camps, i de tipus compatibles.
+Al igual que antes, cada una de las consultas puede ser una mesa (poniendo la
+palabra **TABLE** delante), y tenemos el requisito de que las dos (o más) consultas
+devuelven el mismo número de campos, y de tipos compatibles.
 
-En principi no eixiran files repetides, a no ser que posem **ALL**
+En principio no saldrán filas repetidas, a menos que ponemos **ALL**
 
-**Exemple**
+**Ejemplo**
 
-  1) Com que en l'exemple de la unió havíem vist que la fila València València eixia en les 2 consultes, anem a comprovar que apareix en la intersecció:
+  1) Dado que en el ejemplo de la unión habíamos visto que la fila Valencia Valencia salía en las 2 consultas, vamos a comprobar que aparece en la intersección:
 
-    SELECT nom_c, provincia  
-      FROM COMARQUES  
+    SELECT nombre_c, provincia  
+      FROM COMARCAS  
     INTERSECT  
-    SELECT nom, provincia  
-      FROM COMARQUES INNER JOIN POBLACIONS USING (nom_c)  
-    ORDER BY nom_c;
+    SELECT nombre, provincia  
+      FROM COMARCAS INNER JOIN POBLACIONES USING (nombre_c)  
+    ORDER BY nombre_c;
 
-## 4.3 Diferència
+## 4.3 Diferencia
 
-És identica a les anteriors, però posant la paraula **EXCEPT** , i servirà per
-a traure les files que estan en la primera consulta però que no estan en la
-segona.
+Es idéntica a las anteriores, pero poniendo la palabra **EXCEPT** , y servirá para
+a sacar las filas que están en la primera consulta pero que no están en la
+segunda.
 
 **<u>Sintaxi</u>**
 
     [TABLE] consulta1  
-    EXCEPT [ALL]  
+    EXCEPTO [ALL]  
     [TABLE] consulta2 ...
 
-Igual que abans, cadascuna de les consultes pot ser una taula (posant la
-paraula **TABLE** davant), i tenim el requisit que les dues (o més) consultes
-tornen el mateix nombre de camps, i de tipus compatibles.
+Al igual que antes, cada una de las consultas puede ser una mesa (poniendo la
+palabra **TABLE** delante), y tenemos el requisito de que las dos (o más) consultas
+devuelven el mismo número de campos, y de tipos compatibles.
 
-En principi no eixiran files repetides, a no ser que posem **ALL**
+En principio no saldrán filas repetidas, a menos que ponemos **ALL**
 
-**<u>Exemple</u>**
+**<u>Ejemplo</u>**
 
-  1) Aprofitem el mateix exemple d'abans per a comprovar que amb EXCEPT no eixirà la comarca València, ja que hi ha una fila idèntica en la segona consulta:
+  1) Aprovechamos el mismo ejemplo de antes para comprobar que con EXCEPT no saldrá la comarca Valencia, ya que existe una fila idéntica en la segunda consulta:
 
-    SELECT nom_c, provincia  
-      FROM COMARQUES  
-    EXCEPT  
-    SELECT nom, provincia  
-      FROM COMARQUES INNER JOIN POBLACIONS USING (nom_c)  
-    ORDER BY nom_c;
+    SELECT nombre_c, provincia  
+      FROM COMARCAS  
+    EXCEPTO  
+    SELECT nombre, provincia  
+      FROM COMARCAS INNER JOIN POBLACIONES USING (nombre_c)  
+    ORDER BY nombre_c;
 
-## :pencil2: Exercicis
+## :pencil2: Ejercicios
 
-**Ex_75** Traure el nom de tots els clients i venedors implicats en alguna
-venda del primer trimestre de 2015.
+**Ex_75** Sacar el nombre de todos los clientes y vendedores implicados en alguna
+venta del primer trimestre de 2015
 
-**Ex_76a** Traure per mig de sentències d'operacions de conjunts els pobles on
-tenim algun venedor o algun client. No volem resultats repetits, i ho volem
-ordenat pel nom del poble.
+**Ex_76a** Sacar mediante sentencias de operaciones de conjuntos los pueblos donde
+tenemos algún vendedor o algún cliente. No queremos resultados repetidos, y lo queremos
+ordenado por el nombre del pueblo.
 
-**Ex_76b** Modificar l'anterior per a traure els pobles on tenim al mateix
-temps venedors i clients
+**Ex_76b** Modificar lo anterior para sacar los pueblos donde tenemos al mismo
+tiempo vendedores y clientes
 
-**Ex_76c** Modificar l'anterior per a traure els pobles on tenim venedors però
-no tenim clients
+**Ex_76c** Modificar lo anterior para sacar los pueblos donde tenemos vendedores pero
+no tenemos clientes
 
-Llicenciat sota la  [Llicència Creative Commons Reconeixement NoComercial
-SenseObraDerivada 2.5](http://creativecommons.org/licenses/by-nc-nd/2.5/)
+Licenciado bajo la [Licencia Creative Commons Reconocimiento NoComercial
+SinObraDerivada 2.5](http://creativecommons.org/licenses/by-nc-nd/2.5/)
 

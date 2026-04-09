@@ -1,77 +1,73 @@
 
-# 11. Consulta de creació de taules
+# 11. Consulta de creación de tablas
 
 
-A banda de poder consultar informació de una o més d'una taula, la sentència
-SELECT pot servir per a crear una nova taula, amb estructura i dades (les que
-venen de la pròpia sentència SELECT). Això sí, no podrem definir d'aquesta
-manera ni clau principal, ni claus externes, ni cap altra restricció de les
-conegudes.
+Aparte de poder consultar información de una o más de una tabla, la sentencia
+SELECT puede servir para crear una nueva tabla, con estructura y datos (los que
+vienen de la propia sentencia SELECT). Eso sí, no podremos definir de ésta
+modo ni clave principal, ni claves externas, ni ninguna otra restricción de las
+conocidas.
 
-A més, aquesta característica escapa del estàndard ANSI SQL, per la qual cosa
-no li donarem excessiva importància.
+Además, esta característica escapa del estándar ANSI SQL, por lo que
+no le daremos excesiva importancia.
 
 **<u>Sintaxi</u>**
 
-    SELECT <columnes> INTO nova_taula  
+    SELECT <columnes> INTO nueva_tabla  
       FROM <taules>
 
-La sentència pot dur qualsevol clàusula o predicat dels vistos fins ara, i el
-resultat que done aquesta sentència, es guardarà en una nova taula, amb el nom
-especificat.
+La sentencia puede llevar cualquier cláusula o predicado de los vistos hasta ahora, y el
+resultado que dé esta sentencia, se guardará en una nueva mesa, con el nombre
+especificado.
 
-El nom dels camps de la nova taula seran els especificats en l'apartat
-<columnes>. Per tant és especialment recomanable la utilització d'àlies, ja
-que si en posem seran el noms dels camps de la nova taula.
+El nombre de los campos de la nueva tabla serán los especificados en el apartado
+<columnes>. Por tanto es especialmente recomendable la utilización de alias, ya
+que si lo ponemos serán el nombre de los campos de la nueva mesa.
 
-Els tipus de dades dels camps seran els heretats de la consulta SELECT.
+Los tipos de datos de los campos serán los heredados de la consulta SELECT.
 
-En cas d'existir ja una taula amb el nom especificat ens avisarà d'aquest fet,
-donant-nos la possibilitat d'esborrar la taula anterior i crear la nova o
+En caso de existir ya una tabla con el nombre especificado nos avisará de este hecho,
+dándonos la posibilidad de borrar la tabla anterior y crear la nueva o
 cancelar.
 !!! note "Nota"
-    És molt recomanable, com d'altres sentències de manipulació de dades que
-    veurem més endavant, executar primer la sentència sense el <b>INTO</b> , per a
-    no crear la taula encara. Quan estiguem segurs que el resultat és el que
-    desitgem, afegim el INTO, i la taula es crearà a més garanties.
+    Es muy recomendable, como otras sentencias de manipulación de datos que
+    veremos más adelante, ejecutar primero la sentencia sin el <b>INTO</b> , para
+    no crear la mesa todavía. Cuando estemos seguros de que el resultado es el que
+    deseamos, añadimos el INTO, y la mesa se creará a más garantías.
 
 
-**<u>Exemples</u>**
+**<u>Ejemplos</u>**
 
-  1) Crear una còpia de la taula comarques anomenada **COMARQUES_COPIA**.
+  1) Crear una copia de la tabla **estudios** llamada **estudios_copia**.
 
-    SELECT * INTO COMARQUES_COPIA  
-      FROM COMARQUES
+    SELECT * INTO estudios_copia  
+      FROM estudios;
 
-Per a no "embrutar" la Base de Dades, podem esborrar-la després d'haver vist
-la seua creació amb la sentència
+Para no "ensuciar" la Base de Datos, podemos borrarla después de haber visto
+su creación con la sentencia
 
-    DROP TABLE COMARQUES_COPIA
+    DROP TABLE COMARCAS_COPIA
 
-  2) Crear una taula anomenada **RESUM_COMARQUES** que continga el nom de la comarca, el número de pobles, el total de població i l'altura mitjana
+  2) Crear una tabla llamada **RESUM_COMARQUES** que contenga el nombre de la comarca, el número de pueblos, el total de población y la altura media
 
-    SELECT nom_c, COUNT(*) AS num_pobles, SUM(poblacio) AS poblacio , SUM(extensio) AS extensio , AVG(altura) AS altura_mitjana INTO RESUM_COMARQUES  
-      FROM POBLACIONS  
-      GROUP BY nom_c
+    SELECT nombre_c, COUNT(*) AS num_pueblos, SUM(poblacion) AS poblacion , SUM(extension) AS extension , AVG(altura) AS altura_media INTO RESUMEN_COMARCAS  
+      FROM POBLACIONES  
+      GROUP BY nombre_c
 
-Igual que en l'anterior, després d'haver vist la seua creació i contingut,
-podem esborrar-la amb la sentència
+Al igual que en lo anterior, después de haber visto su creación y contenido,
+podemos borrarla con la sentencia
 
-  DROP TABLE RESUM_COMARQUES
+  DROP TABLE RESUMEN_COMARCAS
 
 
-## :pencil2: Exercicis
+## :pencil2: Ejercicios
 
-**Ex_49** Crear una taula anomenada **ARTICLE_999x** , on 999 han de ser les 3
-últimes xifres del DNI, i x la lletra del teu NIF, que siga una còpia de la
-taula ARTICLE, però substituint els valors nuls de **stock** i **stock_min**
-per zeros.
+En la BD **TechQuest**, conectando como usuario **tech_alu**:
 
-**Ex_50** Utilitzar la taula anterior per a traure el stock màxim, el mínim i
-la mitjana de stocks. Observeu que si utilitzàrem la taula ARTICLE, els
-resultats no serien els mateixos (excepte el màxim), sobretot la mitjana, ja
-que els valors nuls no entrarien en els càlculs d'aquesta mitjana.
+**Ex_49** Crear una tabla llamada **PRODUCTO_999x**, donde 999 deben ser las 3 últimas cifras de tu DNI, y x la letra, que sea una copia de la tabla **productos**, pero sustituyendo los valores nulos de **stock** y **stock_min** por ceros utilizando `COALESCE`.
 
-Llicenciat sota la  [Llicència Creative Commons Reconeixement NoComercial
+**Ex_50** Utilizar la tabla anterior para sacar el stock máximo, el mínimo y la media de stocks. Observa que si utilizas la tabla **productos** original, los resultados no serían los mismos (especialmente la media), ya que los valores nulos no entrarían en los cálculos.
+
+Licenciado bajo la [Licencia Creative Commons Reconocimiento NoComercial
 CompartirIgual 3.0](http://creativecommons.org/licenses/by-nc-sa/3.0/)
 

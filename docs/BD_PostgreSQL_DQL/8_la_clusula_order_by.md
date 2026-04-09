@@ -1,119 +1,96 @@
-# 8. La clàusula ORDER BY
+# 8. La cláusula ORDER BY
 
-Ordena les files del resultat respecte l'ordre especificat
+Ordena las filas del resultado respecto al orden especificado
 
 **<u>Sintaxi</u>**
 
     SELECT <columnes>  
       FROM <taules>  
-      ORDER BY camp1 [ASC | DESC] { , camp2 [ASC | DESC] }
+      ORDER BY camp1 [ASC | DESC] { , campo2 [ASC | DESC] }
 
-Ací tenim un exemple:
+Aquí tenemos un ejemplo:
 
-    SELECT nom_c, provincia  
-      FROM COMARQUES  
-      ORDER BY nom_c
+    SELECT nombre, sede  
+      FROM estudios  
+      ORDER BY nombre;
 
-S'ordenaran les files pel camp, en l'ordre marcat: ascendent o descendent (per
-defecte, ascendent). Si hi haguera un segon camp d'ordenació, aquest entraria
-en joc en cas de valors iguals del primer. Aquest segon podrà ser en ordre
-ascendent o descendent, independentment de l'ordre del primer camp.
+Se ordenarán las filas por el campo, en el orden marcado: ascendente o descendente (por defecto, ascendente). Si hubiera un segundo campo de ordenación, éste entraría en juego en caso de valores iguales del primero. Este segundo podrá ser en orden ascendente o descendente, independientemente del orden del primer campo.
 
-    SELECT nom_c, provincia  
-      FROM COMARQUES  
-      ORDER BY provincia DESC, nom_c
+    SELECT nombre, sede  
+      FROM estudios  
+      ORDER BY sede DESC, nombre;
 
-Es podrà ordenar per qualsevol camp de la taula, estiga indexada per aquest
-camp o no. L'avantatge d'estar indexada respecte a un camp és la rapidesa en
-l'ordenació. Així, si tenim una taula gran i ordenem per un determinat camp,
-es perdrà temps en aquesta ordenació. Si contínuament estem ordenant per
-aquest camp, perdrem aquest temps moltes vegades. Aleshores seria convenient
-crear un índex. Però hem de recordar que la creació d'un índex ocupa espai.
-Per tant no és bona solució indexar per tots els camps. Únicament, en tot cas,
-per aquells que més s'ordene. Veurem la creació d'índex en la tercera part
-d'aquest tema.
+Se podrá ordenar por cualquier campo de la tabla, esté indexada por éste
+campo o no. La ventaja de estar indexada respecto a un campo es la rapidez en
+la ordenación. Así, si tenemos una mesa grande y ordenamos por un determinado campo,
+se perderá tiempo en esta ordenación. Si continuamente estamos ordenando por
+este campo, vamos a perder este tiempo muchas veces. Entonces sería conveniente
+crear un índice. Pero debemos recordar que la creación de un índice ocupa espacio.
+Por tanto no es buena solución indexar por todos los campos. Únicamente, en todo caso,
+para aquellos que más se ordenen. Veremos la creación de índice en la tercera parte
+de ese tema.
 
-I es pot especificar en l'ordenació, una expressió que agafe un o més d'un
-camp amb operadors i funcions. Es pot posar un camp o una expressió que no
-estiga en la llista de camps o expressions que es volen visualitzar (al costat
-del SELECT), encara que normalment sí que ho visualitzarem, per a poder
-comprovar que realment està ordenat pel que s'ha especificat. Per exemple, si
-volem ordenar per la densitat d'habitants de les poblacions, que es calcula
-dividint el número d'habitants per l'extensió:
+Y se puede especificar en la ordenación, una expresión que combine uno o más campos con operadores y funciones. Se puede poner un campo o una expresión que no esté en la lista de campos o expresiones que se quieren visualizar (al lado del SELECT), aunque normalmente sí que lo visualizaremos para poder comprobar que realmente está ordenado. Por ejemplo, si queremos ordenar por el precio de los juegos incrementado en un 21% de IVA:
 
-    SELECT nom, poblacio, extensio  
-      FROM POBLACIONS  
-      ORDER BY poblacio/extensio DESC
+    SELECT titulo, precio  
+      FROM juegos  
+      ORDER BY precio * 1.21 DESC;
 
-> Observeu que estem ordenant per un camp (**poblacio / extensio**) que no
-> estem visualitzant, encara que seria molt més il·lustratiu mostrar-lo
+Opcionalmente, si la expresión aparece en la lista de columnas a visualizar, podremos poner simplemente el número de orden de la columna. Así, por ejemplo, podemos hacer lo siguiente:
 
-Opcionalment, en el moment d'especificar el camp o l'expressió per la qual
-volem ordenar, si aquesta apareix en la llista de columnes a visualitzar,
-podrem posar senzillament el número d'ordre de la columna. Així, per exemple,
-podem fer el següent:
+    SELECT titulo, precio, precio * 1.21  
+      FROM juegos  
+      ORDER BY 3 DESC;
 
-    SELECT nom, poblacio, extensio, poblacio/extensio  
-      FROM POBLACIONS  
-      ORDER BY 4 DESC
+> Donde estamos indicando que se ordene de forma descendente por la tercera columna que va a visualizarse, es decir, por el precio con IVA.
 
-> On estem indicant que s'ordene de forma descendent per la quarta columna que
-> va a visualitzar-se, és a dir, per **oblacio / extensio**
+Debemos observar que la cláusula ORDER BY es la última, y que en caso de haber
+cláusula GROUP BY, se intentará ordenar después de haber agrupado. Por tanto en
+caso de que la sentencia contenga un GROUP BY o se haya utilizado alguna función
+de agregado (que implica hacer grupos), sólo podremos poner en el ORDER BY campos que
+estén en el GROUP BY o que forman parte de una función de agregado. El razonamiento
+es lo mismo que el hecho en la cláusula GROUP BY o HAVING y el error en caso de
+no respetar esto sería lo mismo que lo visto en aquel apartado.
 
-Hem d'observar que la clàusula ORDER BY és l'última, i que en cas d'haver
-clàusula GROUP BY, s'intentarà ordenar després d'haver agrupat. Per tant en
-cas de que la sentència continga un GROUP BY o s'haja utilitzat alguna funció
-d'agregat (que implica fer grups), només podrem posar en el ORDER BY camps que
-estiguen en el GROUP BY o que formen part d'una funció d'agregat. El raonament
-és el mateix que el fet en la clàusula GROUP BY o HAVING i l'error en cas de
-no respectar açò seria el matiex que el vist en aquell apartat.
+**<u>Ejemplos</u>**
 
-**<u>Exemples</u>**
-
-  1) Traure tota la informació de les poblacions ordenades pel nom de la població.
+  1) Sacar toda la información de los juegos ordenados por el título de forma alfabética.
 
     SELECT *  
-      FROM POBLACIONS  
-      ORDER BY nom
+      FROM juegos  
+      ORDER BY titulo;
 
-  2) Traure tota la informació de les poblacions, ordenades pel nom de la comarca, i dins d'aquesta per l'altura (de forma descendent).
+  2) Sacar toda la información de los juegos, ordenados por el ID de estudio, y dentro de éste por el precio (de forma descendente).
 
     SELECT *  
-      FROM POBLACIONS  
-      ORDER BY nom_c, altura DESC
+      FROM juegos  
+      ORDER BY id_estudio, precio DESC;
 
-  3) Traure les comarques amb el número de pobles i total d'habitants, d'aquelles que tenen més de 10 pobles, ordenades pel número de pobles, i dins d'aquest pel total de població de forma descendent.
+  3) Sacar los estudios con el número de juegos y el total de la suma de sus precios, para aquellos estudios que tienen más de 2 juegos, ordenados por el número de juegos, y dentro de éste por la suma total de forma descendente.
 
-
-    SELECT nom_c, COUNT(*), SUM(poblacio)  
-      FROM POBLACIONS  
-      GROUP BY nom_c  
-      HAVING COUNT(*) > 10  
-      ORDER BY COUNT(*) , SUM(poblacio) DESC
-
+    SELECT id_estudio, COUNT(*), SUM(precio)  
+      FROM juegos  
+      GROUP BY id_estudio  
+      HAVING COUNT(*) > 2  
+      ORDER BY COUNT(*) , SUM(precio) DESC;
 
 
 
-## :pencil2: Exercicis
 
-**Ex_34** Traure tots els clients ordenats per codi de població, i dins
-d'aquestos per codi postal.
+## :pencil2: Ejercicios
 
-**Ex_35** Traure tots els articles ordenats per la categoria, dins d'aquest pel
-stock, i dins d'aquest per preu (de forma descendent)
+En la BD **TechQuest**, conectando como usuario **tech_alu**:
 
-**Ex_36** Traure els resultats de la consulta **Ex_33** ordenats pel total de la
-factura quan ja s'ha aplicat el descompte, de forma descendent.
+**Ex_34** Sacar a todos los **clientes** ordenados por **población**, y dentro de estos por **código postal**.
 
-**Ex_37** Traure tots els articles ordenats per la diferència entre el stock i
-el stock mínim de forma descendent. Com que en moltes ocasions el stock o el
-stock mínim és nul, hem de considerar en aquestos casos com 0. Per tant hem de
-tornar a utilitzar la funció **COALESCE(stock,0)** (i també per al stock
-mínim).
+**Ex_35** Sacar todos los **productos** ordenados por su **categoría**, dentro de esta por **stock**, y dentro de esta por **precio** (de forma descendente).
 
-**Ex_38** Traure els codis de venedor amb el número de factures venudes en el
-segon semestre de 2015, ordenades per aquest número de forma descendent
+**Ex_36** Sacar los resultados de la consulta **Ex_33** (totales por pedido) ordenados por el total (ya aplicado el descuento) de forma descendente.
 
-Llicenciat sota la  [Llicència Creative Commons Reconeixement NoComercial
+**Ex_37** Sacar todos los **productos** ordenados por la diferencia entre el **stock** y el **stock mínimo** de forma descendente. Considere los valores nulos como 0 mediante `COALESCE(stock, 0)`.
+
+**Ex_38** Sacar los códigos de **empleado** con el número de **pedidos** realizados en el segundo semestre de 2024, ordenados por este número de forma descendente.
+
+Licenciado bajo la [Licencia Creative Commons Reconocimiento NoComercial
 CompartirIgual 3.0](http://creativecommons.org/licenses/by-nc-sa/3.0/)
 

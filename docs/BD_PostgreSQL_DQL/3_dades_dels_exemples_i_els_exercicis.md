@@ -1,31 +1,24 @@
-# 3. Esquemes Factura i Geo
+# **3. Esquemas Steamify y TechQuest**
 
-**Dades dels exemples**{.azul}
+Para que el aprendizaje sea más ameno y cercano al desarrollo de aplicaciones web actual, utilizaremos dos entornos de datos modernos: **Steamify** para los ejemplos de las explicaciones y **TechQuest** para los ejercicios prácticos.
 
-Tots els exemples que es mostraran en aquest tema s'intentaran fer sobre la
-connexió que ja tenim feta, és a dir, al servidor de l'Institut, connectant
-com a usuari **geo** (contresenya **geo**) a la Base de Dades **geo**. És una
-Base de Dades molt senzilleta, amb només 3 taules, cosa que ajudarà a una
-fàcil comprensió de la seua estructura. Aquest és l'esquema en el Model
-Entitat-Relació i en el Model Relacional:
+**Datos de los ejemplos (Steamify)**{.azul}
 
-![](geo.png)
+Los ejemplos de este tema se basan en **Steamify**, una plataforma simplificada de gestión de videojuegos. Es una base de datos sencilla con 3 tablas principales, ideal para comprender los fundamentos del DQL.
 
-**Dades dels  exercicis**{.azul}
+![Esquema de Steamify](image-2.png)
 
-Per als exercicis treballarem sobre una altra Base de Dades més completa que
-ens done més joc a l'hora de fer les sentències SQL. La Base de Dades
-s'anomena **factura** , i s'ha de connectar amb l'usuari **factura** amb
-contrasenya **factura**. Aquesta seria la seua estructura, també en Model
-Entitat-Relació i Model Relacional.
 
-![](factura.png)
+**Datos de los ejercicios (TechQuest)**{.azul}
 
-Recordeu que en el apartat _Dbeaver_ havíem fet les connexions a cadascuna de les 2 Bases
-de Dades anteriors.
+Para los ejercicios trabajaremos con **TechQuest**, un e-commerce de productos tecnológicos y gaming más completo que nos permitirá realizar consultas más avanzadas.
+
+![Esquema de TechQuest](image-4.png)
+
+Puedes encontrar el script completo para montar estas bases de datos en tu entorno local en el archivo [database_setup.sql](database_setup.sql).
 
 
 
-Llicenciat sota la  [Llicència Creative Commons Reconeixement NoComercial
+Licenciado bajo la [Licencia Creative Commons Reconocimiento NoComercial
 CompartirIgual 3.0](http://creativecommons.org/licenses/by-nc-sa/3.0/)
 

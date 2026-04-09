@@ -1,113 +1,102 @@
-# 2. Consulta bàsica
+# **2. Consulta básica**
 
 
-El mínim que s'ha d'indicar en una instrucció SELECT és les columnes que volem
-i la seua procedència, que pot ser una o més d'una taula.
+Lo mínimo que debe indicarse en una instrucción SELECT es las columnas que queremos
+y su procedencia, que puede ser una o más de una mesa.
 
-**<u>Sintaxi</u>**
+**<u>Sintaxis</u>**
 
-    SELECT <columnes>
-      FROM <clàusula>
+    SELECT <columnas>
+      FROM <clausula>
 
-Opcionalment la sentència pot acabar en **punt i coma**. En **psql** és
-obligatori acabar en punt i coma, ja que és la manera que té de saber que
-acaba la instrucció (una instrucció pot ocupar més d'una línia)
+Opcionalmente la sentencia puede terminar en **punto y coma**. En **psql** es
+obligatorio acabar en punto y coma, ya que es la forma que tiene de saber que
+termina la instrucción (una instrucción puede ocupar más de una línea)
 
-I una altra consideració important és que en PostgreSQL els noms dels objectes
-(taules, columnes, ...) poden constar de més d'una paraula. Si el nom només
-consta d'una paraula es pot posar sense més problemes, però si consta de més
-d'una paraula (amb espis en blanc pel mig) o té algun caràcter especial, o
-coincideix amb alguna paraula reservada (per exemple _**any**_), haurà d'anar
-entre **cometes dobles**. Per a estalviar problemes, és una bona pràctica fer
-els noms sempre d'una paraula (si es volen posar dues, unides pel guió baix).
+Y otra consideración importante es que en PostgreSQL los nombres de los objetos
+(mesas, columnas, ...) pueden constar de más de una palabra. Si el nombre sólo
+consta de una palabra se puede poner sin más problemas, pero si consta de más
+de una palabra (con espis en blanco de por medio) o tiene algún carácter especial, o
+coincide con alguna palabra reservada (por ejemplo _**año**_), tendrá que ir
+entre **comillas dobles**. Para ahorrar problemas, es una buena práctica hacer
+los nombres siempre de una palabra (si se quieren poner dos, unidas por el guión bajo).
 
-En **<columnes>** podrem posar (separades per **comes**):
+En **&lt;columnas&gt;** podremos poner (separadas por **comas**):
 
-  * **noms de les columnes** que volem; si hi ha confusió entre noms de camps de distintes taules, haurem de posar **Taula.columna**.
+  * **nombres de las columnas** que queremos; si hay confusión entre nombres de campos de distintas tablas, deberemos poner **Tabla.columna**.
 
-  * `*` : indica totes les columnes.
+  * `*` : indica todas las columnas.
 
-  * **Taula.*** : indica totes les columnes de la taula.
+  * **Tabla.*** : indica todas las columnas de la tabla.
 
-  * **Funcions** (veure apartat  _Operadors i Funcions de Postgres_)
+  * **Funciones** (ver apartado _Operadores y Funciones de Postgres_)
 
-  * **Constants** : son valors que posem directament. Els tipus de constants són:
+  * **Constantes** : son valores que ponemos directamente. Los tipos de constantes son:
 
-    * **Numèriques** : es posen tal qual, amb punt decimal (no pot anar coma decimal, perquè serveix per a separar les columnes)
-    * **Alfaumèriques** : es posen entre **cometes simples**
-    * Per a altres tipus (com per exemple data-hora), posem la constant entre cometes simples, i PostgreSQL farà la conversió
-  * **Expressions** que utilitzen operadors per a combinar columnes, funcions, constants numèriques o alfanumèriques, ...
+    * **Numéricas** : se ponen tal cual, con punto decimal (no puede ir como decimal, porque sirve para separar las columnas)
+    * **Alfauméricas** : se ponen entre **comillas simples**
+    * Para otros tipos (como por ejemplo fecha-hora), ponemos la constante entre comillas simples, y PostgreSQL hará la conversión
+  * **Expresiones** que utilizan operadores para combinar columnas, funciones, constantes numéricas o alfanuméricas, ...
 
-En la **<clàusula>** del **FROM** posarem la taula o les taules (separades
-per comes) d'on venen les dades.
+En la **&lt;clausula&gt;** del **FROM** pondremos la mesa o las tablas (separadas
+por comas) de dónde vienen los datos.
 
-Així el següent exemple trau tota la informació de la taula COMARQUES, és a
-dir totes les files i totes les columnes:
+Así el siguiente ejemplo saca toda la información de la tabla **estudios**, es decir todas las filas y todas las columnas:
 
-    SELECT * FROM COMARQUES;
+    SELECT * FROM estudios;
 
-Mentre que la següent només trau el nom:
+Mientras que la siguiente sólo saca el nombre:
 
-    SELECT nom_c FROM COMARQUES;
+    SELECT nombre FROM estudios;
 
-En el següent exemple es trau el nom de cada població, els habitants,
-l'extensió i la densitat de població (habitants partit per extensió):
+En el siguiente ejemplo se saca el título de cada juego y su precio:
 
-    SELECT nom , poblacio , extensio , poblacio/extensio FROM POBLACIONS;
+    SELECT titulo, precio FROM juegos;
 
-I en aquest traem el nom de cada poble, l'altura i la mitat de la seua altura
-(cosa un poc absurda però que serveix per a remarcar que si posem una constant
-numèrica, hem de posar el **punt decimal** , no la coma decimal, ja que la
-coma serveix per a separar els camps) :
+Y en éste sacamos el título de cada juego, su precio y el precio con un descuento del 50% (multiplicado por 0.5):
 
-    SELECT nom , altura , altura * 0.5 FROM POBLACIONS;
+    SELECT titulo, precio, precio * 0.5 FROM juegos;
 
-**<u>Exemples</u>**
+Ejemplos adicionales:
 
-  1) Traure tota la informació de la taula POBLACIONS.
+  1) Sacar toda la información de la tabla **juegos**.
 
-    SELECT * FROM POBLACIONS;
+    SELECT * FROM juegos;
 
-  2) Traure el nom i l'altura de totes les poblacions.
+  2) Sacar el título y el precio de todos los juegos.
 
-    SELECT nom, altura  
-      FROM POBLACIONS;
+    SELECT titulo, precio 
+      FROM juegos;
 
-  3) Traure el nom de les poblacions, el número d'habitants, i aquest número incrementat en un 5%.
+  3) Sacar el título de los juegos, su precio, y ese precio incrementado en un 5% por impuestos.
 
-    SELECT nom, poblacio, poblacio * 1.05  
-      FROM POBLACIONS;
+    SELECT titulo, precio, precio * 1.05 
+      FROM juegos;
 
-Observa com hem d'utilitzar el punt decimal i no la coma decimal, ja que la
-coma serveix per a separar els camps de la consulta SQL
+Observa cómo debemos utilizar el punto decimal y no la coma decimal, ya que la
+coma sirve para separar los campos de la consulta SQL.
 
-  4) Traure nom, latitud i els graus de la latitud de totes les poblacions. Per a traure els graus de la latitud traurem els caràcters de l'esquerra, fins el primer el caràcter º.
+  4) Sacar el título y la primera palabra del título de todos los juegos. Para sacar la primera palabra buscaremos la posición del primer espacio en blanco.
 
-    SELECT nom, latitud, SUBSTR(latitud,1,STRPOS(latitud,'º')-1)  
-      FROM POBLACIONS;
+    SELECT titulo, SUBSTR(titulo, 1, STRPOS(titulo, ' ') - 1) 
+      FROM juegos;
 
-## :pencil2: Exercicis
+## **:pencil2: Ejercicios**
 
-En la BD **factura** , connectant com a usuari **factura_alu** :
+En la BD **TechQuest**, conectando como usuario **tech_alu**:
 
-> **Ex_1** Traure tota la informació dels pobles.
+> **Ex_1** Sacar toda la información de los **productos**.
 >
-> **Ex_2** Traure el codi postal, el nom i l'adreça, per aquest ordre, de tots
-> els venedors.
+> **Ex_2** Sacar el código de empleado, el nombre y el puesto, por este orden, de todos los **empleados**.
 
-> **Ex_3** Traure el codi d'article, la descripció, preu i preu incrementat en
-> un 5%, de tots els articles.
+> **Ex_3** Sacar el código de producto, el nombre, la marca, el precio y el precio incrementado en un 5% de todos los **productos**.
 
-> **Ex_4** Traure la informació dels clients amb el següent format (ha d'anar
-> tot en una columna):
-
-> > **Damborenea Corbato, Alicia. CALLE MADRID, 83 (12425)**
+> **Ex_4** Sacar la información de los **clientes** con el siguiente formato (debe ir todo en una columna):
 >
+> > **Pérez, Juan. Calle Mayor 10 (28001)**
+>
+> Fíjese que está todo en una columna y, por tanto, tendrá que concatenar de la forma adecuada. Fíjese también que en el nombre solo las iniciales están en mayúsculas.
 
->> Fixeu-vos que està tot en una columna, i per tant haureu de concatenar de
-la forma adequada. Fixeu-vos també que en en el nom només les inicials estan
-en majúscules
-
-Llicenciat sota la  [Llicència Creative Commons Reconeixement NoComercial
+Licenciado bajo la [Licencia Creative Commons Reconocimiento NoComercial
 CompartirIgual 3.0](http://creativecommons.org/licenses/by-nc-sa/3.0/)
 

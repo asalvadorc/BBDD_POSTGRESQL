@@ -1,135 +1,135 @@
-# 2 DBeaver
+# 11. Consulta de creación de tablas
 
-## 2.1 Instal·lació i configuració
+## 2.1 Instalación y configuración
 
-Com ja s'ha comentat, en aquest tema utilitzarem el Sistema Gestor de Bases de
-Dades **PostgreSQL**. Aquest SGBD utilitza l'arquitectura **client-servidor**.
-Això significa que hi ha un servidor central amb el PostgreSQL instal·lat, i
-hi haurà molts clients que es connectaran a aquest servidor. Es pot fer des de
-la mateixa màquina on està instal·lat el servidor, o des d'una altra.
+Como ya se ha comentado, en este tema utilizaremos el Sistema Gestor de Bases de
+Datos **PostgreSQL**. Este SGBD utiliza la arquitectura **cliente-servidor**.
+Esto significa que existe un servidor central con el PostgreSQL instalado, y
+habrá muchos clientes que se conectarán a ese servidor. Se puede hacer desde
+la misma máquina en la que está instalado el servidor, o desde otra.
 
-En el nostre cas, el servidor ja està en marxa i funcionant. Podrem accedir a
-ell tant des de dins de l'Institut com des de fora.
+En nuestro caso, el servidor está ya en marcha y funcionando. Podremos acceder a
+él tanto desde dentro del Instituto como desde fuera.
 
-A nosaltres, per a poder connectar amb el servidor PostgreSQL ens fa falta el
-**client de PostgreSQL**.
+A nosotros, para poder conectar con el servidor PostgreSQL nos hace falta el
+**cliente de PostgreSQL**.
 
-Instal·larem **DBeaver** , un programa que està pegant molt fort i ens permet
-accedir a qualsevol Sistema Gestor de Bases de Dades molt còmodament.
+Instalaremos **DBeaver** , un programa que está pegando muy fuerte y nos permite
+acceder a cualquier Sistema Gestor de Bases de Datos muy cómodamente.
 
-En els ordinadors de l'Institut ja el tenim instal·lat. En casa us l'haureu
-d'instal·lar però la seua instal·lació no ofereix cap problema.
+En los ordenadores del Institut ya lo tenemos instalado. En casa se lo habrá
+de instalar pero su instalación no ofrece ningún problema.
 
-Haureu d'anar a la pàgina de DBeaver, concretament a la de Downloads:
+Deberá ir a la página de DBeaver, concretamente a la de Downloads:
 <https://dbeaver.io/download/>
 
-Triarem la versió **Comunity Edition** , amb ella tindrem de sobres i és
-totalment lliure. Com veieu es pot instal·lar sense problemes en Windows, Mac
-i/o Linux
+Escogeremos la versión **Comunity Edition** , con ella tendremos de sobra y es
+totalmente libre. Como ve se puede instalar sin problemas en Windows, Mac
+y/o Linux
 
 ![](T6_1_3_1.png)
 
-La versió Enterprise Edition també ens permetria accedir a moltíssimes Bases
-de Dades NoSQL. Com veieu molt interessant.
+La versión Enterprise Edition también nos permitiría acceder a muchísimas Bases
+de Datos NoSQL. Cómo ve muy interesante.
 
-Com hem dit amb la versió Comunity Edition tindrem més que suficient.
+Como hemos dicho con la versión Comunity Edition, tendremos más que suficiente.
 
-Tant en Linux com en Windows tenim la possibilitat de baixar-nos un fitxer
-comprimit (zip o tar.gz respectivament) que només haurem de descomprimir i
-buscar l'executable. També tenim la possibilitat de baixar-nos l'instal·lador,
-que en Windows seria un executable i en Linux un paquet. Però la primera opció
-del fitxer comprimit ens anirà bé.
+Tanto en Linux como en Windows tenemos la posibilidad de descargarnos un archivo
+comprimido (zip o tar.gz respectivamente) que sólo deberemos descomprimir y
+buscar el ejecutable. También tenemos la posibilidad de descargarnos el instalador,
+que en Windows sería un ejecutable y en Linux un paquete. Pero la primera opción
+del archivo comprimido nos irá bien.
 
-La versió en el moment de fer aquestos apunts és la 21.2.4
+La versión en el momento de realizar estos apuntes es la 21.2.4
 
-Una vegada feta la instal·lació haurem de fer la connexió amb el SGBD que en
-el nostre cas serà PostgreSQL. Però connectar a qualsevol altre SGBD seria
-exactament igual.
+Una vez hecha la instalación deberemos realizar la conexión con el SGBD que en
+nuestro caso será PostgreSQL. Pero conectar a cualquier otro SGBD sería
+exactamente igual.
 
-La primera vegada que arranquem el programa, segurament ens demanarà per fer
-la primera connexió. Arribarem a la mateixa finestra cada vegada que anem a
-fer una nova connexió.
+La primera vez que arranquemos el programa, seguramente nos pedirá por hacer
+la primera conexión. Llegaremos a la misma ventana cada vez que vayamos a
+hacer una nueva conexión.
 
-**Primera connexió a PostgreSQL: geo**{.azul}
+**Primera conexión a PostgreSQL: geo**{.azul}
 
-Especificarem que volem connectar a PostgreSQL i a continuació donarem les
-dades de connexió, que són aquestes:
+Especificaremos que queremos conectar a PostgreSQL y a continuación daremos las
+datos de conexión, que son estas:
 
   * Servidor (**Host**): **89.36.214.106**
-  * Base de Dades (**Database**): **geo**
-  * Usuari (**Username**): **geo**
-  * Contrasenya (**Password**): **geo**
+  * Base de Datos (**Database**): **geo**
+  * Usuario (**Username**): **geo**
+  * Contraseña (**Password**): **geo**
 
-En aquesta Base de Dades tindrem unes taules que ens serviran per a fer els
-exercicis de SQL. Comentarem la seua estructura més endavant.
+En esta Base de Datos tendremos unas tablas que nos servirán para hacer
+ejercicios de SQL. Comentaremos su estructura más adelante.
 
-Aquestes són les finestres on especificaríem l'anterior:
+Éstas son las ventanas donde especificaríamos la anterior:
 
 ![](T6_1_3_2.png) | ![](T6_1_3_3.png)  
 ---|---  
   
-**Segona connexió a PostgreSQL: factura**{.azul}
+**Segunda conexión a PostgreSQL: factura**{.azul}
 
-Per als exercicis treballarem sobre una altra Base de Dades més completa que
-ens done més joc a l'hora de fer les sentències SQL. La Base de Dades
-s'anomena factura, i s'ha de connectar amb l'usuari factura amb contrasenya
-factura. Comentarem la seua estructura més endavant. Aquestes són les dades de
-connexió:
+Para los ejercicios trabajaremos sobre otra Base de Datos más completa que
+nos dé más juego a la hora de realizar las sentencias SQL. La Base de Datos
+se llama factura, y debe conectarse con el usuario factura con contraseña
+factura. Comentaremos su estructura más adelante. Estos son los datos de
+conexión:
 
   * Servidor (**Host**): **89.36.214.106**
-  * Base de Dades (**Database**): **factura**
-  * Usuari (**Username**): **factura_alu**
-  * Contrasenya (**Password**): **factura_alu**
+  * Base de Datos (**Database**): **factura**
+  * Usuario (**Username**): **factura_alu**
+  * Contraseña (**Password**): **factura_alu**
 
-Aquestes són les pantalles on faríem la connexió:
+Éstas son las pantallas donde haríamos la conexión:
 
 ![](T6_1_3_2.png) | ![](T6_1_3_4.png) 
 ---|---  
 
 <!--
-**<u>Exemple de connexió a Access: Empresa.accdb</u>**
+**<u>Ejemplo de conexión a Access: Empresa.accdb</u>**
 
-Únicament a mode il·lustratiu anem a mostrar una altra connexió diferent a les
-de PostgreSQL. Com que de moment només havíem treballat amb **Access** , anem
-a intentar connectar amb la Base de Dades **Empresa.accdb** feta en el tema
+Únicamente a modo ilustrativo vamos a mostrar otra conexión diferente a las
+de PostgreSQL. Como de momento sólo habíamos trabajado con **Access**, vamos
+a intentar conectar con la Base de Datos **Empresa.accdb** hecha en el tema
 anterior.
 
-La connexió l'haurem de fer a **MS Access (UCanAccess)**. Després només haurem
-de navegar per trobar la Base de Dades **Empresa.accdb**
+La conexión deberemos realizarla en **MS Access (UCanAccess)**. Después sólo habremos
+de navegar para encontrar la Base de Datos **Empresa.accdb**
 
-Ací presentem les pantalles per a fer la connexió:
+Aquí presentamos las pantallas para realizar la conexión:
 
 ![](T6_1_1_4.png) | ![](T6_1_1_5.png)  
 ---|---  
 -->  
 
-## 2.2 Utilització
+## 2.2 Utilización
 
-Una vegada feta la connexió, **DBeaver** ens permetrà navegar per les taules i
-altres objectes de la Base de Dades, inspeccionar les taules, i el més
-important per a nosaltres, executar sentències SQL de forma còmoda.
+Una vez hecha la conexión, **DBeaver** nos permitirá navegar por las tablas y
+otros objetos de la Base de Datos, inspeccionar las tablas, y lo más
+importante para nosotros, ejecutar sentencias SQL de forma cómoda.
 
-En la següent imatge es presenten algunes de les seues parts i
-caracteristiques. En ella s'ha fet doble clic sobre una taula, COMARQUES, per
-veure les seues característiques:
+En la siguiente imagen se presentan algunas de sus partes y
+características. En ella se ha hecho doble clic sobre una mesa, COMARCAS, por
+ver sus características:
 
 ![](T6_1_4_1.png)
 
-També podem veure les dades, i fins i tot afegir noves files, esborrar o
-modificar les existents. Es pot ordenar les files i fer filtres:
+También podemos ver los datos, e incluso añadir nuevas filas, borrar o
+modificar las existentes. Se puede ordenar las filas y realizar filtros:
 
 ![](T6_1_4_2.png)
 
-I també tindrem la possibilitat d'executar consultes SQL (en la primera imatge
-es mostra com arribar). En la finestra de sentències SQL podrem editar la
-consulta de forma còmoda (ens dóna molta ajuda per a no cometre errors
-sintàctics) i també ens mostra el resultat. Podem modificar quantes vegades
-vulguem. i des del menu **File** podrem guardar la consulta, cosa que farem
-per a tots els exercicis del tema:
+Y también tendremos la posibilidad de ejecutar consultas SQL (en la primera imagen
+se muestra cómo llegar). En la ventana de sentencias SQL podremos editar la
+consulta de forma cómoda (nos da mucha ayuda para no cometer errores
+sintácticos) y también nos muestra el resultado. Podemos modificar cuántas veces
+queramos. y desde el menú **File** podremos guardar la consulta, lo que haremos
+para todos los ejercicios del tema:
 
 ![](T6_1_4_3.png)
 
 
-Llicenciat sota la  [Llicència Creative Commons Reconeixement NoComercial
+Licenciado bajo la [Licencia Creative Commons Reconocimiento NoComercial
 CompartirIgual 3.0](http://creativecommons.org/licenses/by-nc-sa/3.0/)
 

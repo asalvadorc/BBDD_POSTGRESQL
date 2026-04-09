@@ -1,6 +1,6 @@
-# 6. La clàusula GROUP BY
+# 6. La cláusula GROUP BY
 
-Agrupa totes les files amb valors iguals d'una o d'unes columnes
+Agrupa todas las filas con valores iguales de una o unas columnas
 
 **<u>Sintaxi</u>**
 
@@ -8,125 +8,97 @@ Agrupa totes les files amb valors iguals d'una o d'unes columnes
       FROM <taules>  
       GROUP BY <columnes>
 
-Per cada fila amb valors iguals de les columnes de la clàusula **GROUP BY** ,
-en trau només una, és a dir, les agrupa.
+Por cada fila con valores iguales de las columnas de la cláusula **GROUP BY** ,
+saca sólo una, es decir, las agrupa.
 
-Les _**funcions d'agregat**_ agafen tot el seu sentit i potència combinades
-amb el **GROUP BY** : tornaran un valor per cada grup. Així, per exemple,
-aquesta sentència traurà quantes poblacions hi ha en cada comarca:
+Las **funciones de agregado** cogen todo su sentido y potencia combinadas con **GROUP BY**: devolverán un valor por cada grupo. Así, por ejemplo, esta sentencia sacará cuántos juegos hay en cada estudio:
 
-    SELECT COUNT(*)  
-      FROM POBLACIONS  
-      GROUP BY nom_c
+    SELECT id_estudio, COUNT(*)  
+      FROM juegos  
+      GROUP BY id_estudio;
 
-> Si volem excloure files per a que no entren en les agrupacions, ho farem per
-> mig de la clàusula **WHERE**. En aquest exemple ens aprofitem del codi de
-> municipi, que en el cas dels municipis de la província de Castelló és 12000
-> i pico.
+> Si queremos excluir filas para que no entren en las agrupaciones, lo haremos por medio de la cláusula **WHERE**. Por ejemplo, contar solo los juegos con un precio superior a 30 € por cada estudio:
 
-    SELECT COUNT(*)  
-      FROM POBLACIONS  
-      WHERE cod_m >= 12000 and cod_m < 13000  
-      GROUP BY nom_c
+    SELECT id_estudio, COUNT(*)  
+      FROM juegos  
+      WHERE precio > 30  
+      GROUP BY id_estudio;
 
-Quan tenim agrupacions de files, bé perquè utilitzem la clàusula GROUP BY, bé
-perquè entre les columnes que es trien en el SELECT hi ha alguna funció
-d'agregat, o les dues coses a l'hora, es poden cometre errors amb una relativa
-facilitat. Quan hi ha una agrupació **totes les columnes que seleccionem amb
-el SELECT hauran d'estar en el GROUP BY, o bé estar dins d'una funció
-d'agregat**. En cas contrari ens donarà error. Per exemple, aquesta consulta
-funciona bé, i de fet és millor consulta que les d'abans, ja que ens diu la
-comarca i el numero de pobles que té cadascuna:
+Cuando tenemos agrupaciones de filas, bien porque utilizamos la cláusula GROUP BY, bien porque entre las columnas que se eligen en el SELECT hay alguna función de agregado, o ambas cosas a la vez, se pueden cometer errores con una relativa facilidad. Cuando hay una agrupación **todas las columnas que seleccionamos con el SELECT tendrán que estar en el GROUP BY, o bien estar dentro de una función de agregado**. De lo contrario nos dará error.
 
-    SELECT nom_c, COUNT(*)  
-      FROM POBLACIONS  
-      GROUP BY nom_c
+Por ejemplo, esta consulta funciona bien, puesto que nos dice el estudio y el número de juegos que tiene cada uno:
 
-Però aquesta no:
+    SELECT id_estudio, COUNT(*)  
+      FROM juegos  
+      GROUP BY id_estudio;
 
-    SELECT nom_c, COUNT(*), cod_m  
-      FROM POBLACIONS  
-      GROUP BY nom_c
+Pero ésta no:
 
-És sintàcticament incorrecta, i a banda no té sentit: si agrupem tots els
-pobles de la mateixa comarca ¿com hem de poder traure després el codi del
-municipi de cada poble?.
+    SELECT id_estudio, COUNT(*), titulo  
+      FROM juegos  
+      GROUP BY id_estudio;
 
-Com és relativament fàcil cometre aquest error, haurem d'identificar aquest
-error, per a poder solucionar-lo.
+Es sintácticamente incorrecta: si agrupamos todos los juegos del mismo estudio, ¿cómo podemos sacar el título individual de cada juego en la misma fila?
 
-Per exemple, aquesta consulta ens dóna la població més alta de cada comarca:
+Por ejemplo, esta consulta nos da el precio del juego más caro de cada estudio:
 
-    SELECT nom_c, MAX(altura)  
-      FROM POBLACIONS  
-      GROUP BY nom_c
+    SELECT id_estudio, MAX(precio)  
+      FROM juegos  
+      GROUP BY id_estudio;
 
-Però si intentàrem traure també el nom de la població més alta de cada
-comarca:
+Pero si intentamos sacar también el título del juego más caro de cada estudio:
 
-    SELECT nom_c, MAX(altura), nom  
-      FROM POBLACIONS  
-      GROUP BY nom_c
+    SELECT id_estudio, MAX(precio), titulo  
+      FROM juegos  
+      GROUP BY id_estudio;
 
-ens donaria el següent error:
+Nos daría un error de sintaxis porque `titulo` no está en la cláusula GROUP BY ni en una función de agregado.
 
-![](T6_1_13_1.png)
+**<u>Ejemplos</u>**
 
-Hem d'aprendre a identificar aquest error, i solucionar-lo. En aquest cas el
-solucionarem llevant el camp **Nom**. La sentència per a poder traure el nom
-de la població més alta de cada comarca és complicada, i encara no podem fer-
-la.
+  1) Contar el número de juegos de cada género.
 
-**<u>Exemples</u>**
+    SELECT id_genero, COUNT(*)  
+      FROM juegos  
+      GROUP BY id_genero;
 
-  1) Comptar el nombre d'instituts de cada població.
+  2) Contar el número de estudios en cada sede (país/ciudad).
 
-    SELECT cod_m, COUNT(*)  
-      FROM INSTITUTS  
-      GROUP BY cod_m
+    SELECT sede, COUNT(*)  
+      FROM estudios  
+      GROUP BY sede;
 
-  2) Comptar el nombre de comarques de cada província.
+  3) Calcular el precio máximo, mínimo y medio de los juegos de cada estudio.
 
-    SELECT provincia, COUNT(*)  
-      FROM COMARQUES  
-      GROUP BY provincia
+    SELECT id_estudio, MAX(precio), MIN(precio), AVG(precio)  
+      FROM juegos  
+      GROUP BY id_estudio;
 
-  3) Calcular l'altura màxima, mínima i l'altura mitjana de cada comarca.
+  4) Agrupar por múltiples campos: Contar productos por marca y categoría.
 
-    SELECT nom_c, MAX(altura), MIN(altura), AVG(altura)  
-      FROM POBLACIONS  
-      GROUP BY nom_c
-
-  4) Comptar el nombre d'instituts de cada població i cada codi postal.
-
-    SELECT cod_m, codpostal, COUNT(*)  
-      FROM INSTITUTS  
-      GROUP BY cod_m, codpostal
+    SELECT marca, id_categoria, COUNT(*)  
+      FROM productos  
+      GROUP BY marca, id_categoria;
 
 
-## :pencil2: Exercicis
+## :pencil2: Ejercicios
 
-**Ex_21** Comptar el número de pobles de cada província (és suficient traure el
-codi de la província i el número de pobles).
+En la BD **TechQuest**, conectando como usuario **tech_alu**:
 
-**Ex_22** Comptar el nombre de clients en cada poble i codi postal.
+**Ex_21** Contar el número de **clientes** de cada **provincia**.
 
-**Ex_23** Comptar el número de factures de cada venedor a cada client.
+**Ex_22** Contar el número de **clientes** en cada **población** y **código postal**.
 
-**Ex_24** Comptar el número de factures de cada trimestre. Per a poder traure
-el trimestre i agrupar per ell (ens val el número de trimestre, que va del 1
-al 4), podem utilitzar la funció **TO_CHAR(data,'Q')**.
+**Ex_23** Contar el número de **pedidos** de cada **empleado** a cada **cliente**.
 
-**Ex_25** Calcular quantes vegades s'ha venut un article, la suma d'unitats
-venudes, la quantitat màxima i la quantitat mínima.
+**Ex_24** Contar el número de **pedidos** de cada trimestre. Para extraer el trimestre, podemos utilizar la función `TO_CHAR(fecha, 'Q')`.
 
-**Ex_26** Comptar el número d'articles de cada categoria i el preu mitjà.
+**Ex_25** Calcular cuántas veces se ha vendido cada **producto** (en cuántas líneas aparece), la suma de unidades vendidas, la cantidad máxima y la cantidad mínima en un mismo pedido. (Utilice la tabla **lineas_pedido**).
 
-**Ex_27** Calcular el total de cada factura, sense aplicar descomptes ni IVA.
-Només ens farà falta la taula **LINIES_FAC** , i consistirà en agrupar per
-cada **num_f** per a calcular la suma del **preu** multiplicat per la
-**quantitat**.
+**Ex_26** Contar el número de **productos** de cada **categoría** y su precio medio.
 
-Llicenciat sota la  [Llicència Creative Commons Reconeixement NoComercial
+**Ex_27** Calcular el total de cada **pedido**, sin aplicar descuentos ni IVA. Solo hace falta la tabla **lineas_pedido**, sumando el resultado de multiplicar **precio_unitario** por **cantidad** agrupando por **id_pedido**.
+
+Licenciado bajo la [Licencia Creative Commons Reconocimiento NoComercial
 CompartirIgual 3.0](http://creativecommons.org/licenses/by-nc-sa/3.0/)
 

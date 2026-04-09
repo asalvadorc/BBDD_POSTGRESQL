@@ -1,16 +1,18 @@
-# 1. La consulta SELECT
+# **1. La consulta SELECT**
 
-Com el mateix nom indica SQL (_Structured Query Language_), la consulta o
-interrogació de la Base de Dades és l'ànima del SQL. I la instrucció que ens
-ho permet és **SELECT**.
+![Resumen visual de las partes de la instrucción SELECT](sql_select_summary.png)
 
-És una instrucció molt flexible i de molta potència, que permet consultar
-dades d'una o més taules, filtrar per files i/o columnes, ordenar el resultat,
-agrupar les dades (comptant o sumant alguna columna), ... Fins i tot permet
-crear taules noves que serien el resultat d'una consulta d'altres taules.
+Como el mismo nombre indica SQL (_Structured Query Language_), la consulta o
+interrogación de la Base de Datos es el alma de SQL. Y la instrucción que nos
+lo permite es **SELECT**.
 
-Veurem a continuació la sintaxi general de la instrucció, i posteriorment
-cadascuna de les clàusules:
+Es una instrucción muy flexible y de mucha potencia, que permite consultar
+datos de una o más tablas, filtrar por filas y/o columnas, ordenar el resultado,
+agrupar los datos (contando o sumando alguna columna), ... Incluso permite
+crear tablas nuevas que serían el resultado de una consulta de otras tablas.
+
+Veremos a continuación la sintaxis general de la instrucción, y posteriormente
+cada una de las cláusulas:
 
 **<u>Sintaxi</u>**
 
@@ -21,23 +23,23 @@ cadascuna de les clàusules:
     [ GROUP BY <clàusula> ]  
     [ HAVING <clàusula> ]  
     [ ORDER BY <clàusula> ]  
-    [ LIMIT num1 OFFSET num2 ]
+    [ LIMITE num1 OFFSET num2 ]
 
-Com veieu, les úniques clàusules obligatòries són la del **SELECT** (on es diu les columnes que volem que isquen com a resultat) i la del **FROM** (on es diu d'on venen les dades).
+Como veis, las únicas cláusulas obligatorias son la del **SELECT** (donde se llama las columnas que queremos que salgan como resultado) y la del **FROM** (donde se dice de dónde vienen los datos).
 
 !!! note "Nota"
-    En PostgreSQL no es distingeix entre majúscules i minúscules. Millor dit,
-    PostgreSQL passa de majúscules a minúscules tots els noms de taula o de camp o
-    del que siga, excepte si van entre cometes dobles, que aleshores es respecten
-    mayúscules i minúscules. Com a qüestió d'estil, jo no pose mai entre cometes els
-    noms de taules i camps. I per a una millor lectura, intentaré posar sempre els
-    noms de taula en majúscules, i els noms de camp en minúscules. També posaré en
-    majúscules les clàusules de sentències SQL (SELECT , FROM , WHERE , ...). Però
-    recordeu que és per a una millor lectura. Podria anar tot en minúscules
-    perfectament.
+    En PostgreSQL no se distingue entre mayúsculas y minúsculas. Mejor dicho,
+    PostgreSQL pasa de mayúsculas a minúsculas todos los nombres de mesa o de campo o
+    de lo que sea, salvo si van entre comillas dobles, que entonces se respetan
+    mayúsculas y minúsculas. Como cuestión de estilo, yo nunca pongo entre comillas los
+    nombres de tablas y campos. Y para una mejor lectura, intentaré poner siempre a los
+    nombres de mesa en mayúsculas, y los nombres de campo en minúsculas. También pondré en
+    mayúsculas las cláusulas de sentencias SQL (SELECT , FROM , WHERE , ...). Pero
+    recuerde que es para una mejor lectura. Podría ir todo en minúsculas
+    perfectamente.
 
 
 
-Llicenciat sota la  [Llicència Creative Commons Reconeixement NoComercial
+Licenciado bajo la [Licencia Creative Commons Reconocimiento NoComercial
 CompartirIgual 3.0](http://creativecommons.org/licenses/by-nc-sa/3.0/)
 

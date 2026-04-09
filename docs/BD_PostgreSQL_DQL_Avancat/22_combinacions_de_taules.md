@@ -1,500 +1,494 @@
-# 2 Combinacions de taules
+# 2 Combinaciones de tablas
 
-Vam veure en la sentència bàsica que en la clàusula FROM posàvem la taula **o
-taules** d'on s'agafarien les dades, però en tots els exemples posteriors
-només entrava en joc una única taula.
+Vimos en la sentencia básica que en la cláusula FROM poníamos la tabla **o
+tablas** de dónde se tomarían los datos, pero en todos los ejemplos posteriores
+sólo entraba en juego una única mesa.
 
-És el moment d'estudiar les diferents possibilitats que tindrem quan posem més
-d'una taula.
+Es el momento de estudiar las diferentes posibilidades que tendremos cuando pongamos más
+de una mesa.
 
-  * La primera és el **producte cartesià** , que no utilitzarem mai, però hem de saber en què consisteix per poder evitar-lo.
+  * La primera es el **producto cartesiano** , que nunca utilizaremos, pero debemos saber en qué consiste para poder evitarlo.
   
 
-  * La segona serà la més utilitzada, la **combinació** (que de vegades anomenarem **reunió**).
+  * La segunda será la más utilizada, la **combinación** (que a veces llamaremos **reunión**).
   
 
-  * La tercera és una variant de l'anterior, la **combinació externa** , molt útil en alguns casos.
+  * La tercera es una variante de la anterior, la **combinación externa** , muy útil en algunos casos.
 
-## 2.1 Producte cartesià
+## 2.1 Producto cartesiano
 
-La manera més senzilla és posar les taules separades per comes, però
-segurament el resultat no és el que esperàvem.
+La manera más sencilla es poner las tablas separadas por comas, pero
+seguramente el resultado no es lo que esperábamos.
 
-Per exemple podem fer la següent sentència:
+Por ejemplo podemos hacer la siguiente sentencia:
 
 
-    SELECT COMARQUES.nom_c, nom  
-      FROM COMARQUES,POBLACIONS;
+    SELECT COMARCAS.nombre_c, nombre  
+      FROM COMARCAS, POBLACIONES;
 
 
 
 !!! note "Nota"
-    Observeu que hem posat el nom de la taula davant del camp <b>nom_c</b> , perquè
-    les dues taules tenen un camp amb aquest nom. Aquesta operació s'anomena
-    <b>qualificació</b>. Si no qualificàrem amb el nom de la taula davant, hi
-    hauria ambigüitat, no sabria a quin camp es refereix, si el d'una taula o el
-    de l'altra. Quan els noms dels camps són diferents i per tant no
-    coincideixen en les dues taules, no cal qualificar el camp (com per exemple
-    amb el camp <b>nom</b>)
+    Observe que hemos puesto el nombre de la tabla delante del campo <b>nombre_c</b> , porque
+    las dos tablas tienen un campo con ese nombre. Esta operación se llama
+    <b>calificación</b>. Si no calificamos con el nombre de la tabla delante, allí
+    habría ambigüedad, no sabría a qué campo se refiere, si el de una mesa o el
+    por otro. Cuando los nombres de los campos son diferentes y por tanto no
+    coinciden en las dos tablas, no es necesario calificar el campo (como por ejemplo
+    con el campo <b>nombre</b>)
 
 
-Si executem la sentència, veurem que tindrem un nombre de files inesperadament
-alt, **18.428 files !!!** I si analitzem les files veurem el perquè: s'ha
-combinat cada comarca amb tots els pobles (siguen de la comarca o no).
+Si ejecutamos la sentencia, veremos que tendremos un número de filas inesperadamente
+alt, **18.428 filas !!!** Y si analizamos las filas veremos el porqué: se ha
+combinado cada comarca con todos los pueblos (sean de la comarca o no).
 
 ![](T6_II_2_1_1.png)
 
-Aquesta operació s'anomena **PRODUCTE CARTESIÀ** (_**cross join**_), i es
-caracteritza en què cadascuna de les files d'una taula es combina amb totes
-les files de l'altra taula. El nombre de files resultant serà, doncs, el
-resultat de multiplicar el nombre de files d'una taula pel nombre de files de
-l'altra taula (en el nostre cas 34 x 542 = 18428).
+Esta operación se llama **PRODUCTO CARTESIANO** (_**cross join**_), y se
+caracteriza en que cada una de las filas de una tabla se combina con todas
+las filas de la otra mesa. El número de filas resultante será, pues, el
+resultado de multiplicar el número de filas de una tabla por el número de filas de
+otra tabla (en nuestro caso 34 x 542 = 18428).
 
-Rarament voldrem fer un producte cartesià. El més normal serà combinar una
-miqueta millor les taules. En el nostre exemple segurament ens interessarà
-molt més combinar _cada comarca amb les seues poblacions_.
+Raramente querremos realizar un producto cartesiano. Lo normal será combinar una
+poquito mejor las tablas. En nuestro ejemplo seguramente nos interesará
+mucho más combinar _cada comarca con sus poblaciones_.
 
-## 2.2 Combinació interna
+## 2.2 Combinación interna
 
 
-**Combinació de dues taules: Sintaxi**{.azul}
+**Combinación de dos tablas: Sintaxis**{.azul}
 
-Normalment el producte cartesià no ens interessarà. Més bé voldrem combinar
-les taules de manera que dos camps, un camp de cada taula, coincidesquen. I el
-més habitual, si tenim la Base de Dades ben dissenyada, serà que els camps
-coincidents siguen una clau externa amb la clau principal a la qual apunta.
-Així, en l'exemple que utilitzàvem en el punt anterior, el que sí que ens serà
-útil és combinar cada comarca amb les seues poblacions. I justament tenim un
-camp en la taula POBLACIONS, **nom_c** , que és clau externa i apunta a la
-clau principal de **COMARQUES**.
+Normalmente el producto cartesiano no nos va a interesar. Más bien querremos combinar
+las tablas de forma que dos campos, un campo de cada mesa, coincidan. Y el
+más habitual, si tenemos la Base de Datos bien diseñada, será que los campos
+coincidentes sean una clave externa con la clave principal a la que apunta.
+Así, en el ejemplo que utilizábamos en el punto anterior, lo que sí que nos será
+útil es combinar cada comarca con sus poblaciones. Y justamente tenemos un
+campo en la tabla POBLACIONES, **nombre_c** , que es clave externa y apunta a la
+clave principal de **COMARCAS**.
 
-Aquesta operació l'anomenarem **COMBINACIÓ INTERNA** o senzillament
-**COMBINACIÓ** , i de vegades també es diu **REUNIÓ**. La seua sintaxi és la
-següent:
-
-    SELECT ...  
-      FROM taula1 INNER JOIN taula2 ON _condició_
-
-La condició de la reunió consistirà en comparar un camp de cada taula.
-Els dos camps hauran de ser del mateix tipus, però no caldrà que tinguen el
-mateix nom. Les files que eixiran al resultat seran les que acompliran la
-condició.
-
-Encara que els operadors que es poden utilitzar són tots els de comparació, en
-la pràctica SEMPRE utilitzarem el d'igualar. Per tant podem refinar millor la
-combinació de 2 taules
+Esta operación la llamaremos **COMBINACIÓN INTERNA** o sencillamente
+**COMBINACIÓN** , ya veces también se llama **REUNIÓN**. Su sintaxis es la
+siguiente:
 
     SELECT ...  
-      FROM taula1 INNER JOIN taula2 ON taula1.camp1 = taula2.camp2
+      FROM mesa1 INNER JOIN mesa2 DONDE _condición_
 
-L'exemple de les comarques i les seues poblacions quedarà així
+La condición de la reunión consistirá en comparar un campo de cada mesa.
+Ambos campos tendrán que ser del mismo tipo, pero no será necesario que tengan el
+mismo nombre. Las filas que saldrán al resultado serán las que cumplan la
+condición.
 
-    SELECT COMARQUES.nom_c, POBLACIONS.nom  
-      FROM COMARQUES INNER JOIN POBLACIONS ON COMARQUES.nom_c = POBLACIONS.nom_c
+Aunque los operadores que se pueden utilizar son todos los de comparación, en
+la práctica SIEMPRE utilizaremos el de igualar. Por tanto podemos refinar mejor la
+combinación de 2 tablas
 
-I aquest seria el resultat
+    SELECT ...  
+      FROM mesa1 INNER JOIN mesa2 DONDE mesa1.campo1 = mesa2.campo2
+
+El ejemplo de las comarcas y sus poblaciones quedará así
+
+    SELECT COMARCAS.nombre_c, POBLACIONES.nombre  
+      FROM COMARCAS INNER JOIN POBLACIONES DONDE COMARCAS.nombre_c = POBLACIONES.nombre_c
+
+Y éste sería el resultado
 
 ![](T6_II_2_2_1.png)
 
-que com veiem torna 542 files (tantes com pobles)
+que como vemos vuelve 542 filas (tantas como pueblos)
 
-Alternativament, podríem posar la mateixa reunió d'una altra forma:
+Alternativamente, podríamos poner la misma reunión de otra forma:
 
-    SELECT COMARQUES.nom_c, POBLACIONS.nom  
-      FROM COMARQUES,POBLACIONS  
-      WHERE COMARQUES.nom_c = POBLACIONS.nom_c
+    SELECT COMARCAS.nombre_c, POBLACIONES.nombre  
+      FROM COMARCAS, POBLACIONES  
+      WHERE COMARCAS.nombre_c = POBLACIONES.nombre_c
 
-on estrictament el que estem fent és, del producte cartesià de les 2 taules,
-seleccionar únicament quan coincideix el **nom_c** (és a dir la comarca amb
-les seues poblacions), i per tant el resultat seria el mateix. Potser fóra més
-eficient utilitzar la primera manera, però de vegades la comoditat ens farà
-utilitzar la segona (sobretot quan s'hagen de combinar moltes taules).
+donde estrictamente lo que estamos haciendo es, del producto cartesiano de las 2 tablas,
+seleccionar únicamente cuando coincide el **nombre_c** (es decir la comarca con
+sus poblaciones), y por tanto el resultado sería el mismo. Quizá fuera más
+eficiente utilizar el primer modo, pero a veces la comodidad nos hará
+utilizar la segunda (sobre todo cuando se vayan a combinar muchas tablas).
 
-Les dues maneres de posar la conbinació de dues taules són les més habituals,
-i que funcionen en qualsevol Sistema Gestor de Bases de Dades.
+Las dos formas de poner la conbinación de dos tablas son las más habituales,
+y que funcionan en cualquier Sistema Gestor de Bases de Datos.
 
-Tanmateix en PostgreSQL (i en altres SGBD com Oracle) hi ha més maneres de fer
-una combinació. No les veurem tan a fons perquè les anteriors ens basten i
-sobren:
+Sin embargo en PostgreSQL (y en otros SGBD como Oracle) hay más formas de hacer
+una combinación. No las veremos tan a fondo porque las anteriores nos bastan y
+sobran:
 
-  * **INNER JOIN amb USING** : En el cas que els camps a reunir de les dues taules es diguen exactament igual, podem substituir la condició posada en **ON** per l'expressió **USING** , amb el camp de la reunió entre parèntesis
+  * **INNER JOIN con USING** : En caso de que los campos a reunir de las dos tablas se digan exactamente igual, podemos sustituir la condición puesta en **ON** por la expresión **USING** , con el campo de la reunión entre paréntesis
 
-    SELECT COMARQUES.nom_c, POBLACIONS.nom  
-      FROM COMARQUES INNER JOIN POBLACIONS USING (nom_c)
+    SELECT COMARCAS.nombre_c, POBLACIONES.nombre  
+      FROM COMARCAS INNER JOIN POBLACIONES USING (nombre_c)
 
-  * **NATURAL JOIN** : També per al cas anterior, en què el camp en les dues taules es diu igual, podem fer-lo de forma encara més abreviada. Farà una reunió, igualant tots els camps que es diguen igual de les dues taules. Hem d'anar en compte, per si de cas hi ha algun altre camp en les dues taules que es diga igual.
+  * **NATURAL JOIN** : También para el caso anterior, en el que el campo en las dos tablas se llama igual, podemos hacerlo de forma aún más abreviada. Hará una reunión, igualando todos los campos que se llamen igual de las dos tablas. Debemos tener cuidado, por si hay algún otro campo en las dos tablas que se diga igual.
 
-    SELECT COMARQUES.nom_c, POBLACIONS.nom  
-      FROM COMARQUES NATURAL JOIN POBLACIONS
+    SELECT COMARCAS.nombre_c, POBLACIONES.nombre  
+      FROM COMARCAS NATURAL JOIN POBLACIONES
 
-**<u>Exemples</u>**
+**<u>Ejemplos</u>**
 
-  1) **Traure el noms de les Poblacions i els noms dels Instituts que hi ha en elles.**
+  1) **Sacar los nombres de las Poblaciones y los nombres de los Institutos que hay en ellas.**
 
-Haurem de combinar les taules per la clau externa d'INSTITUTS a POBLACIONS (és
-a dir la que apunta de cod_m en INSTITUTS fins a la clau principal de
-COMARQUES, que és justament cod_m).
+Deberemos combinar las tablas por la clave externa de INSTITUTOS a POBLACIONES (es
+a decir la que apunta de cod_m en INSTITUTOS hasta la clave principal de
+COMARCAS, que es justamente cod_m).
 
-    SELECT POBLACIONS.nom,INSTITUTS.nom  
-      FROM POBLACIONS INNER JOIN INSTITUTS ON POBLACIONS.cod_m=INSTITUTS.cod_m;
+    SELECT POBLACIONES.nombre,INSTITUTOS.nombre  
+      FROM POBLACIONES INNER JOIN INSTITUTOS DONDE POBLACIONES.cod_m=INSTITUTS.cod_m;
 
-Utilitzant l'altra sintaxi, que posem la condició en el **WHERE** , ens
-quedaria:
+Utilizando la otra sintaxis, que ponemos la condición en el **WHERE** , nos
+quedaría:
 
-    SELECT POBLACIONS.nom,INSTITUTS.nom  
-      FROM POBLACIONS , INSTITUTS  
-      WHERE POBLACIONS.cod_m=INSTITUTS.cod_m;
+    SELECT POBLACIONES.nombre,INSTITUTOS.nombre  
+      FROM POBLACIONES, INSTITUTOS  
+      WHERE POBLACIONS.cod_m=INSTITUTOS.cod_m;
 
-Com en aquest cas el camp que hem d'igualar té el mateix nom en les dues
-taules, utilitzant la sintaxi del **USING** ens quedari més fàcil:
+Como en este caso el campo que debemos igualar tiene el mismo nombre en las dos
+tablas, utilizando la sintaxis del **USING** nos quedará más fácil:
 
-    SELECT POBLACIONS.nom,INSTITUTS.nom  
-      FROM POBLACIONS INNER JOIN INSTITUTS USING(cod_m);
+    SELECT POBLACIONES.nombre,INSTITUTOS.nombre  
+      FROM POBLACIONES INNER JOIN INSTITUTOS USING(cod_m);
 
-En canvi, hem d'anar amb molt de compte amb la sintaxi del **NATURAL JOIN** ,
-perquè itentarà igualar tots els camps que es diuen igual, i en aquest cas
-tenim dos camps coincidents: cod_m i nom. cod_m és el que volem, però nom ens
-fastidiarà, i evidentment no coincideix mai el nom de l'Institut i el de la
-població, i per tant no tornarà cap fila.
+En cambio, debemos ir con mucho cuidado con la sintaxis del **NATURAL JOIN** ,
+porque intentará igualar todos los campos que se llaman igual, y en este caso
+tenemos dos campos coincidentes: cod_m y nombre. cod_m es lo que queremos, pero nombre nos
+fastidiará, y evidentemente no coincide nunca el nombre del Instituto y el de la
+población, y por tanto no volverá ninguna fila.
 
-      SELECT POBLACIONS.nom,INSTITUTS.nom  
-        FROM POBLACIONS NATURAL JOIN INSTITUTS;
+      SELECT POBLACIONES.nombre,INSTITUTOS.nombre  
+        FROM POBLACIONES NATURAL JOIN INSTITUTOS;
 
-  2) **Traure els noms de les comarques i la província, amb el nombre de poblacions que té cada comarca.**
+  2) **Sacar los nombres de las comarcas y la provincia, con el número de poblaciones que tiene cada comarca.**
 
-Ens fan falta dues taules, COMARQUES per a poder traure el nom de la comarca i
-la província, i POBLACIONS per a poder comptar els pobles de cada comarca. Les
-haurem de combinar, agrupar per comarca (i província també, perquè volem que
-aparega el nom de la província) i comptar les poblacions. A l'hora de comptar
-podem comptar files (COUNT(*)), però potser siga millor comptar algun camp de
-la taula POBLACIONS, per exemple cod_m, que és la clau principal (recordem que
-els valors nuls no es comptaran, i cod_m per ser clau principal no pot ser
-nul).
+**Ex_69** Sacar los pueblos donde tenemos clientes pero no tenemos vendedores. Debe ser
+mediante subconsultas (en plural). Ordene por código del pueblo.
 
-    SELECT COMARQUES.nom_c, provincia, COUNT(cod_m) AS Quants  
-      FROM COMARQUES INNER JOIN POBLACIONS ON COMARQUES.nom_c=POBLACIONS.nom_c  
-      GROUP BY COMARQUES.nom_c, provincia;
+    SELECT COMARCAS.nombre_c, provincia, COUNT(cod_m) AS Quants  
+      FROM COMARCAS INNER JOIN POBLACIONES DONDE COMARCAS.nombre_c=POBLACIONES.nombre_c  
+      GROUP BY COMARQUES.nombre_c, provincia;
 
 
-**Tres o més taules**{.azul}
+**Tres o más tablas**{.azul}
 
-Si tenim més de 2 taules, haurem de procedir de la mateixa manera, ja que si
-deixem de combinar alguna taula, tindrem el producte cartesià. Com en la
-immensa majoria de casos, la reunió la farem per les claus externes que tenim
-definides. Únicament haurem de cuidar els parèntesis, per a marcar primer una
-condició de combinació i després l'altra. En un exemple ho veurem perfectament
-il·lustrat.
+Si tenemos más de 2 tablas, deberemos proceder de la misma manera, ya que si
+dejamos de combinar alguna mesa, tendremos el producto cartesiano. Como en la
+inmensa mayoría de casos, la reunión la haremos por las claves externas que tenemos
+definidas. Únicamente deberemos cuidar los paréntesis, para marcar primero una
+condición de combinación y después la otra. En un ejemplo lo veremos perfectamente
+ilustrado.
 
-Intentem traure el nom d'una comarca i la província, el nom dels seus pobles i
-el nom dels instituts d'aquestos pobles. Ens fan falta les taules COMARQUES
-(pera poder traure el nom de la comarca i província), POBLACIONS (per a traure
-el nom de la població) i INSTITUTS (per al nom d'aquestos). Ordenarem per nom
-de comarca, i dins d'aquest per població, per a una millor lectura del
-resultat
+Intentamos sacar el nombre de una comarca y la provincia, el nombre de sus pueblos y
+el nombre de los institutos de esos pueblos. Nos hacen falta las tablas COMARCAS
+(para poder sacar el nombre de la comarca y provincia), POBLACIONES (para sacar
+el nombre de la población) e INSTITUTOS (para el nombre de éstos). Ordenaremos por nombre
+de comarca, y dentro de éste por población, para una mejor lectura del
+resultado
 
-    SELECT COMARQUES.nom_c, provincia, POBLACIONS.nom, INSTITUTS.nom  
-      FROM (COMARQUES INNER JOIN POBLACIONS ON COMARQUES.nom_c=POBLACIONS.nom_c)  
-      INNER JOIN INSTITUTS ON POBLACIONS.cod_m=INSTITUTS.cod_m  
+    SELECT COMARCAS.nombre_c, provincia, POBLACIONES.nombre, INSTITUTOS.nombre  
+      FROM (COMARCAS INNER JOIN POBLACIONES DONDE COMARCAS.nombre_c=POBLACIONES.nombre_c)  
+      INNER JOIN INSTITUTOS DONDE POBLACIONES.cod_m=INSTITUTOS.cod_m  
       ORDER BY 1,3;
 
-Podríem posar la consulta de la forma alternativa, en què les condicions de
-reunió van en el WHERE. Òbviament aquestes condicions han d'anar unides per
-l'operador AND.
+Podríamos poner la consulta de la forma alternativa, en la que las condiciones de
+reunión van en el WHERE. Obviamente estas condiciones deben ir unidas por
+el operador AND.
 
-    SELECT COMARQUES.nom_c, provincia, POBLACIONS.nom, INSTITUTS.nom  
-      FROM COMARQUES , POBLACIONS , INSTITUTS  
-      WHERE COMARQUES.nom_c=POBLACIONS.nom_c AND POBLACIONS.cod_m=INSTITUTS.cod_m  
+    SELECT COMARCAS.nombre_c, provincia, POBLACIONES.nombre, INSTITUTOS.nombre  
+      FROM COMARCAS, POBLACIONES, INSTITUTOS  
+      WHERE COMARCAS.nombre_c=POBLACIONES.nombre_c AND POBLACIONES.cod_m=INSTITUTOS.cod_m  
       ORDER BY 1,3;
 
-Anem a plantejar un altre exemple. Es tracta de traure el nom i la província
-de les comarques, amb el número d'Instituts que hi ha en elles. En principi
-podríem pensar que les úniques taules que ens fan falta són COMARQUES (per a
-traure el nom i província de la comarca) i INSTITUTS (per a poder comptar els
-INSTITUTS). Si intentem fer aquesta consulta, **NO** obtindrem el resultat
-desitjat.
+Vamos a plantear otro ejemplo. Se trata de sacar el nombre y la provincia
+de las comarcas, con el número de Institutos que existen en ellas. En principio
+podríamos pensar que las únicas tablas que nos hacen falta son COMARCAS (para
+sacar el nombre y provincia de la comarca) e INSTITUTOS (para poder contar los
+INSTITUTOS). Si intentamos hacer esta consulta, **NO** obtendremos el resultado
+deseado.
 
 
 !!! warning ""
-    **SELECT nom_c, provincia, COUNT(codi)**{.rojo}  
-    **FROM COMARQUES , INSTITUTS**{.rojo}  
-    **GROUP BY nom_c, provincia**{.rojo}  
+    **SELECT nombre_c, provincia, COUNT(código)**{.rojo}  
+    **FROM COMARQUES , INSTITUTOS**{.rojo}  
+    **GROUP BY nombre_c, provincia**{.rojo}  
 
 
-Evidentment hi haurà un producte cartesià, ja que no hem combinat les taules,
-i ens eixirà per a cada comarca 375 instituts, que és el número total
-d'instituts, ja que s'ha combinat cada comarca amb tots els instituts.
+Evidentemente habrá un producto cartesiano, ya que no hemos combinado las tablas,
+y nos saldrá para cada comarca 375 institutos, que es el número total
+de institutos, puesto que se ha combinado cada comarca con todos los institutos.
 
-Però aleshores, per quin camp combinem? Si intentem unir les claus principals,
-**nom_c** amb **codi** (el codi d'Institut) no poden combinar bé per raons
-evidents. Ens hem de fixar en el disseny de la Base de Dades. Observarem que
-el problema és que no hi ha una clau externa entre INSTITUTS i COMARQUES. Però
-també ens dóna la solució: **haurem de posar també la taula POBLACIONS**
-encara que no vulguem visualitzar cap camp d'aquesta taula, ja que si estan
-relacionades les taules INSTITUTS i COMARQUES és a través d'aquesta taula. Per
-tant la consulta correcta serà:
+Pero entonces, ¿por qué campo combinamos? Si intentamos unir las claves principales,
+**nombre_c** con **código** (el código de Instituto) no pueden combinar bien por razones
+evidentes. Debemos fijarnos en el diseño de la Base de Datos. Observaremos que
+el problema es que no existe una clave externa entre INSTITUTOS y COMARCAS. Pero
+también nos da la solución: **deberemos poner también la mesa POBLACIONES**
+aunque no queramos visualizar ningún campo de esta tabla, ya que si están
+relacionadas las tablas INSTITUTOS y COMARCAS es a través de esta tabla. Por
+tanto la consulta correcta será:
 
-    SELECT COMARQUES.nom_c, provincia, COUNT(codi)  
-      FROM (COMARQUES INNER JOIN POBLACIONS ON COMARQUES.nom_c=POBLACIONS.nom_c)  
-      INNER JOIN INSTITUTS ON POBLACIONS.cod_m=INSTITUTS.cod_m  
-      GROUP BY COMARQUES.nom_c, provincia
+    SELECT COMARCAS.nombre_c, provincia, COUNT(código)  
+      FROM (COMARCAS INNER JOIN POBLACIONES DONDE COMARCAS.nombre_c=POBLACIONES.nombre_c)  
+      INNER JOIN INSTITUTOS DONDE POBLACIONES.cod_m=INSTITUTOS.cod_m  
+      GROUP BY COMARQUES.nombre_c, provincia
 
-La forma alternativa sembla més curta. Està clar que si són 3 taules, hauran
-d'haver 2 condicions de combinació unides per AND.
+La forma alternativa parece más corta. Está claro que si son 3 tablas, habrán
+de haber 2 condiciones de combinación unidas por AND.
 
-    SELECT COMARQUES.nom_c, provincia, COUNT(codi)  
-      FROM COMARQUES , POBLACIONS , INSTITUTS  
-      WHERE COMARQUES.nom_c=POBLACIONS.nom_c AND POBLACIONS.cod_m=INSTITUTS.cod_m  
-      GROUP BY COMARQUES.nom_c, provincia;
+    SELECT COMARCAS.nombre_c, provincia, COUNT(código)  
+      FROM COMARCAS, POBLACIONES, INSTITUTOS  
+      WHERE COMARCAS.nombre_c=POBLACIONES.nombre_c AND POBLACIONES.cod_m=INSTITUTOS.cod_m  
+      GROUP BY COMARQUES.nombre_c, provincia;
 
-De forma general, si tenim _**n**_ taules en una consulta, ens faran falta
-_**n-1**_ condicions de combinació unides per AND. Per exemple, si en una
-consulta entren 5 taules, per a no tenir cap producte cartesià ens faran falta
-4 condicions unides per AND.
+De forma general, si tenemos _**n**_ tablas en una consulta, nos harán falta
+_**n-1**_ condiciones de combinación unidas por AND. Por ejemplo, si en una
+consulta entran 5 mesas, para no tener ningún producto cartesiano nos harán falta
+4 condiciones unidas por AND.
 
-**Una taula més d'una vegada**{.azul}
+**Una mesa más de una vez**{.azul}
 
-Anem a plantejar un altre exemple interessant: traure el nom de les
-poblacions, amb el nom de la capital de comarca. Lamentablement amb les dades
-que tenim en la Base de Dades d'exemple no podrem provar-lo, així que anem a
-fer una suposició, una Base de Dades lleugerament modificada per a il·lustrar
-aquest exemple.
+Vamos a plantear otro ejemplo interesante: sacar el nombre de las
+poblaciones, con el nombre de la capital comarcal. Lamentablemente con los datos
+que tenemos en la Base de Datos de ejemplo no podremos probarlo, así que vamos a
+hacer una suposición, una Base de Datos ligeramente modificada para ilustrar
+este ejemplo.
 
-Suposem que la nostra taula de POBLACIONS fóra lleugerament diferent, i que
-incorporara un camp nou amb el codi del municipi que és capital de comarca de
-la població:
+Supongamos que nuestra mesa de POBLACIONES fuera ligeramente diferente, y que
+incorporará un nuevo campo con el código del municipio que es capital de comarca de
+la población:
 
-    POBLACIONS  
+    POBLACIONES  
     (  
-    cod_m numeric(5,0) CONSTRAINT cp_pobl PRIMARY KEY,  
-    nom character varying(50) NOT NULL,  
-    poblacio numeric(6,0),  
-    extensio numeric(6,2),  
-    altura numeric(4,0),  
+    cod_m numerico(5,0) CONSTRAINT cp_pobl PRIMARY KEY,  
+    nombre character varying(50) NOT NULL,  
+    población numérica(6,0),  
+    extensión numérica(6,2),  
+    altura numérico(4,0),  
     longitud character varying(50),  
     latitud character varying(50),  
-    llengua character(1),  
-    nom_c character varying(50),  
-    ***cod_capital numeric(5,0) CONSTRAINT ce_capital REFERENCES POBLACIONS(cod_m)  
+    lengua character(1),  
+    nombre_c character varying(50),  
+    ***cod_capital numerico(5,0) CONSTRAINT ce_capital REFERENCIAS POBLACIONES(cod_m)  
     )
 
-Per a poder traure al mateix temps el nom de les poblacions i el nom de la
-seua capital de comarca no tenim prou amb posar la taula POBLACIONS una
-vegada: només trauríem el nom de la població i ens quedaríem amb el codi de
-municipi de la capital. La solució serà reunir-la amb la taula POBLACIONS,
-posant-la una segona vegada per a tenir dues instàncies de la taula, una
-instància per al població normal i una altra per a la capital. Però com
-distingirem entre les dues instàncies? Doncs posant un nom a cadascuna. En
-general podem posar un nom en la sentència a qualsevol taula que aparega,
-posant aquest nom a continuació de la taula (opcionalment podríem posar AS
-enmig):
+Para poder sacar al mismo tiempo el nombre de las poblaciones y el nombre de la
+su capital de comarca no tenemos suficiente con poner la mesa POBLACIONES una
+vez: sólo sacaríamos el nombre de la población y nos quedaríamos con el código de
+municipio de la capital. La solución será reunirla con la mesa POBLACIONES,
+poniéndola una segunda vez para tener dos instancias de la mesa, una
+instancia para la población normal y otra para la capital. Pero cómo
+¿distinguiremos entre las dos instancias? Pues poniendo un nombre en cada una. En
+general podemos poner un nombre en la sentencia en cualquier mesa que aparezca,
+poniendo este nombre a continuación de la mesa (opcionalmente podríamos poner AS
+en medio):
 
     SELECT ...  
-      FROM taula T
+      FROM mesa T
 
-En la resta de la consulta haurem d'utilitzar aquest nom. L'exemple quedarà de
-la següent manera:
+En el resto de la consulta deberemos utilizar este nombre. El ejemplo quedará de
+la siguiente manera:
 
-    SELECT P1.nom AS "Nom població" , P2.nom as "Nom capital"  
-      FROM POBLACIONS P1 INNER JOIN POBLACIONS P2 ON P1.cod_capital=P2.cod_m
+    SELECT P1.nombre AS "Nombre población" , P2.nombre as "Nombre capital"  
+      FROM POBLACIONES P1 INNER JOIN POBLACIONES P2 DONDE P1.cod_capital=P2.cod_m
 
 o de la forma alternativa:
   
-    SELECT P1.nom AS "Nom població" , P2.nom as "Nom capital"  
-      FROM POBLACIONS P1, POBLACIONS P2  
+    SELECT P1.nombre AS "Nombre población" , P2.nombre as "Nombre capital"  
+      FROM POBLACIONES P1, POBLACIONES P2  
       WHERE P1.cod_capital=P2.cod_m
 
 !!! note "Nota"
-    Recordeu que aquestes instruccions no les podem provar, perquè no tenim el
-    camp <b>cod_capital</b>.
+    Recuerde que estas instrucciones no las podemos probar, porque no tenemos el
+    campo <b>cod_capital</b>.
 
-**Clau externa formada per més d'un camp**{.azul}
+**Clave externa formada por más de un campo**{.azul}
 
-Per últim anem a considerar el cas que la clau externa estiga formada per més
-d'un camp. Ho basarem en l'exemple dels **Bancs** , on la taula COMPTE CORRENT
-depèn en identificació de SUCURSAL. Com la clau principal de SUCURSAL està
-formada per 2 camps, la clau externa de COMPTE CORRENT, que apunta a la
-primera també estarà formada per 2 camps. Si volem traure el número de compte
-corrent, el nom de la sucursal d'on és el compte, i el saldo, ens faran falta
-les dues taules. Aquesta seria la manera de combinar-les:
+Por último vamos a considerar el caso de que la clave externa esté formada por más
+de un campo. Lo basaremos en el ejemplo de los **Bancos** , donde la mesa CUENTA CORRIENTE
+depende en identificación de SUCURSAL. Cómo la clave principal de SUCURSAL está
+formada por 2 campos, la clave externa de CUENTA CORRIENTE, que apunta a la
+primera también estará formada por 2 campos. Si queremos sacar el número de cuenta
+corriente, el nombre de la sucursal de dónde está la cuenta, y el saldo, nos harán falta
+ambas tablas. Ésta sería la manera de combinarlas:
 
-    SELECT C.n_ent , C.n_suc , n_cc , S.nom , C.saldo  
-      FROM SUCURSAL S INNER JOIN COMPTE_CORRENT C ON S.n_ent=C.n_ent AND
-      S.n_suc=C.n_suc
+    SELECT C.n_ent , C.n_jugo , n_cc , S.nombre , C.saldo  
+      FROM SUCURSAL S INNER JOIN CUENTA_CORRENT C DONDE S.n_ent=C.n_ent AND
+      S.n_jugo=C.n_jugo
 
 o de la forma alternativa:
 
-    SELECT C.n_ent , C.n_suc , n_cc , S.nom , C.saldo  
-      FROM SUCURSAL S, COMPTE_CORRENT C  
+    SELECT C.n_ent , C.n_jugo , n_cc , S.nombre , C.saldo  
+      FROM SUCURSAL S, CUENTA_CORRIENTE C  
       WHERE S.n_ent=C.n_ent AND S.n_suc=C.n_suc
 
-En ambdós casos s'ha optat per posar nom a les taules (S i C respectivament)
-per comoditat, per a que no quedara tan llarga la consulta.
+En ambos casos se ha optado por poner nombre a las tablas (S y C respectivamente)
+por comodidad, para que no quedara tan larga la consulta.
 
-### :pencil2: Exercicis
+### :pencil2: Ejercicios
 
-**Ex_51** Traure el nom dels clients amb el número de factura i la data
-(individuals, sense agrupar res) que té cada client. Trau el resultat ordenat
-per client, i dins d'aquest per data de la factura
+**Ex_51** Sacar el nombre de los clientes con el número de factura y la fecha
+(individuales, sin agrupar nada) que tiene cada cliente. Saca el resultado ordenado
+por cliente, y dentro de éste por fecha de la factura
 
-**Ex_52** Traure el nom del soci, amb el codi i la descripció de cada
-article que ha demanat. Ordena per nom del soci i codi de l'article.
+**Ex_52** Sacar el nombre del socio, con el código y la descripción de cada
+artículo que ha pedido. Ordena por nombre del socio y código del artículo.
 
-**Ex_53** Modificar l'anterior per a que no es repetesquen els resultats.
+**Ex_53** Modificar lo anterior para que no se repitan los resultados.
 
-**Ex_54** Traure el nom dels clients amb la quantitat de factures que
-tenen, ordenades per aquest número de major a menor
+**Ex_54** Sacar el nombre de los clientes con la cantidad de facturas que
+tienen, ordenadas por este número de mayor a menor
 
-**Ex_55** Traure el número de factura, data, codi de client, total de la
-factura (amb l'àlies IMPORT) i total de la factura aplicant descomptes
-d'article (amb àlies DESCOMPTE_1), com en la consulta **Ex_33** , però sense el
-límit de les 10 línies de factura. Ordena per número de factura.
+**Ex_55** Sacar el número de factura, fecha, código de cliente, total de la
+factura (con el alias IMPORTE) y total de la factura aplicando descuentos
+de artículo (con sobrenombre DESCUENTO_1), como en la consulta **Ex_33** , pero sin el
+límite de las 10 líneas de factura. Ordena por número de factura.
 
-**Ex_56** Modificar l'anterior per a aplicar també el descompte de la
-factura (amb l'àlies DESCOMPTE_2)
+**Ex_56** Modificar lo anterior para aplicar también el descuento de la
+factura (con el sobrenombre DESCUENTO_2)
 
-**Ex_57** Traure el codi i nom d'aquells venedors que supervisen algú
-(consten com a cap). Traure també el número de supervisats de cadascun
-d'aquestos supervisors.
+**Ex_57** Sacar el código y nombre de aquellos vendedores que supervisan a alguien
+(consten como cabeza). Sacar también el número de supervisados de cada uno
+de estos supervisores.
 
-**Ex_58** Traure el codi i descripció dels articles juntament amb el
-número de vegades que s'ha venut, el total d'unitats venudes i la mitjana
-d'unitats venudes per factura.
+**Ex_58** Sacar el código y descripción de los artículos junto con el
+número de veces que se ha vendido, el total de unidades vendidas y la media
+de unidades vendidas por factura.
 
-**Ex_59** Traure el codi i la descripció de les categories, amb la
-quantitat d'articles venuts de cada categoria, d'aquelles categories de les
-quals se n'han venut més de 100 unitats. Ordenar per aquest número de forma
-decendent.
+**Ex_59** Sacar el código y la descripción de las categorías, con la
+cantidad de artículos vendidos de cada categoría, de aquellas categorías de las
+que se han vendido más de 100 unidades. Ordenar por este número de forma
+descendiente.
 
-## 2.3 Combinació externa
+## 2.3 Combinación externa
 
-En ocasions ens interessarà fer una combinació diferent. Com quasi sempre ens
-basarem en un exemple. Quan en un exemple del punt anterior traíem els nom de
-les poblacions amb el nom dels instituts, no podien eixir les poblacions que
-no tenen instituts. Ara ens plantejarem la possibilitat de traure totes les
-poblacions, fins i tot aquelles que no tenen instituts, però d'aquelles que sí
-que en tinguen traure també el nom dels instituts. Aquesta operació s'anomena
-**COMBINACIÓ EXTERNA**.
+En ocasiones nos interesará realizar una combinación diferente. Como casi siempre nos
+basaremos en un ejemplo. Cuando en un ejemplo del punto anterior sacamos los nombre de
+las poblaciones con el nombre de los institutos, no podían salir las poblaciones que
+carecen de institutos. Ahora nos plantearemos la posibilidad de sacar todas las
+poblaciones, incluso aquellas que no tienen institutos, pero de aquellas que sí
+que tengan sacar también el nombre de los institutos. Esta operación se llama
+**COMBINACIÓN EXTERNA**.
 
 **<u>Sintaxi</u>**
 
-Tindrem dues possibilitats: traure totes les de l'esquerra o traure totes les
-de la dreta.
+Tendremos dos posibilidades: sacar todas las de la izquierda o sacar todas las de la izquierda
+de la derecha.
 
-Per a traure TOTES les files de la taula de l'esquerra, i aquelles que
-estiguen relacionades de la de la dreta:
-
-    SELECT ...  
-    FROM taula1 LEFT [OUTER] JOIN taula2 ON _condició_
-
-Així traurem TOTES les files de taula1, i aquelles que estiguen relacionades
-de taula2.
-
-Per a fer-ho al revès, és a dir, totes les files de la taula de la dreta i
-aquelles files que estiguen relacionades de l'esquerra:
+Para sacar TODAS las filas de la mesa de la izquierda, y aquellas que
+estén relacionadas de la de la derecha:
 
     SELECT ...  
-    FROM taula1 RIGHT [OUTER] JOIN taula2 ON _condició_
+    FROM mesa1 LEFT [OUTER] JOIN mesa2 DONDE _condición_
 
-D'aquesta manera traurem TOTES les files de taula2, i aquelles que estiguen
-relacionades de taula1.
+Así sacaremos TODAS las filas de tabla1, y aquellas que estén relacionadas
+de mesa2.
 
-En el nostre exemple:
+Para hacerlo al revés, es decir, todas las filas de la mesa de la derecha y
+aquellas filas que estén relacionadas de la izquierda:
 
-    SELECT POBLACIONS.nom,INSTITUTS.nom  
-    FROM POBLACIONS LEFT JOIN INSTITUTS ON POBLACIONS.cod_m=INSTITUTS.cod_m  
+    SELECT ...  
+    FROM mesa1 RIGHT [OUTER] JOIN mesa2 DONDE _condición_
+
+De esta manera sacaremos TODAS las filas de tabla2, y aquellas que estén
+relacionadas de tabla1.
+
+En nuestro ejemplo:
+
+    SELECT POBLACIONES.nombre,INSTITUTOS.nombre  
+    FROM POBLACIONES LEFT JOIN INSTITUTOS DONDE POBLACIONES.cod_m=INSTITUTS.cod_m  
     ORDER BY 1
 
-on hem ordenat pel nom de la població per a una millor lectura, i ens donarà
-el següent resultat:
+donde hemos ordenado por el nombre de la población para una mejor lectura, y nos dará
+el siguiente resultado:
 
 ![](T6_II_2_3_1.png)
 
-Podem observar que ens trau fins i tot els pobles que no tenen instituts, i
-que en el camp nom de l'institut tenen el valor NULL.
+Podemos observar que nos saca incluso a los pueblos que no tienen institutos, y
+que en el campo nombre del instituto tienen el valor NULL.
 
-Fem una variant interessant. Anem a traure els pobles amb el nombre
-d'instituts que té cadascun. Ens farà falta la taula POBLACIONS per a poder
-traure el nom de la població i la taula INSTITUTS per a traure el nombre
-d'instituts, i agruparem pel nom de la població. Les dues taules les hem de
-combinar (per evitar el producte cartesià). Si fem una combinació normal
-(interna), _els que no tenen instituts no entren_. Però si fem una
-**combinació externa** _**sí que entraran**_.
+Hagamos una variante interesante. Vamos a sacar a los pueblos con el número
+de institutos que tiene cada uno. Nos hará falta la mesa POBLACIONES para poder
+sacar el nombre de la población y la tabla INSTITUTOS para sacar el número
+de institutos, y agruparemos por el nombre de la población. Las dos tablas las debemos
+combinar (para evitar el producto cartesiano). Si hacemos una combinación normal
+(interna), _los que no tienen institutos no entran_. Pero si hacemos una
+**combinación externa** _**sí que entrarán**_.
 
-Només ens queda comptar per un camp que en el cas dels que no tenen instituts
-tinga el valor nul, és a dir, per un camp de la taula INSTITUTS, i el que
-millor se'ns acopla és algun que forma part de la clau principal, ja que com
-no pot agafar un valor nul en la taula INSTITUTS, l'única possibilitat que
-agafe el valor nul en la combinació externa és que la població no tinga
-institut, i aleshores en el moment de comptar ens donarà el valor 0.
+Sólo nos queda contar por un campo que en el caso de quienes no tienen institutos
+tenga el valor nulo, es decir, por un campo de la tabla INSTITUTOS, y el que
+mejor se nos acopla es alguno que forma parte de la clave principal, ya que cómo
+no puede tomar un valor nulo en la tabla INSTITUTOS, la única posibilidad de que
+coja el valor nulo en la combinación externa es que la población no tenga
+instituto, y entonces en el momento de contar nos dará el valor 0.
 
-Aquesta serà la consulta, on hem tornat a ordenar pel nom de la població
+Ésta será la consulta, donde hemos vuelto a ordenar por el nombre de la población
 
-    SELECT POBLACIONS.nom,COUNT(INSTITUTS.codi)  
-    FROM POBLACIONS LEFT JOIN INSTITUTS ON POBLACIONS.cod_m=INSTITUTS.cod_m  
-    GROUP BY POBLACIONS.nom  
+    SELECT POBLACIONES.nombre,COUNTO(INSTITUTOS.código)  
+    FROM POBLACIONES LEFT JOIN INSTITUTOS DONDE POBLACIONES.cod_m=INSTITUTS.cod_m  
+    GROUP BY POBLACIONS.nombre  
     ORDER BY 1
 
-I aquest serà el resultat
+Y éste será el resultado
 
 ![](T6_II_2_3_2.png)
 
-Una altra variant també interessant és fer una consulta similar per a traure
-els pobles que no tenen institut. Haurem de fer una combinació externa, i en
-la condició posar justament que un dels camps de la taula INSTITUTS siga nul
-(per exemple, la clau principal):
+Otra variante también interesante es realizar una consulta similar para sacar
+los pueblos que carecen de instituto. Deberemos hacer una combinación externa, y en
+la condición poner justamente que uno de los campos de la mesa INSTITUTOS sea nulo
+(por ejemplo, la clave principal):
 
-Aquesta serà la consulta, on hem tornat a ordenar pel nom de la població:
+Ésta será la consulta, donde hemos vuelto a ordenar por el nombre de la población:
 
-    SELECT POBLACIONS.nom  
-    FROM POBLACIONS LEFT JOIN INSTITUTS ON POBLACIONS.cod_m=INSTITUTS.cod_m  
+    SELECT POBLACIONES.nombre  
+    FROM POBLACIONES LEFT JOIN INSTITUTOS DONDE POBLACIONES.cod_m=INSTITUTS.cod_m  
     WHERE INSTITUTS.codi IS NULL  
     ORDER BY 1
 
-I aquest serà el resultat:
+Y éste será el resultado:
 
 ![](T6_II_2_3_3.png)
 
-**<u>Exemples</u>**
+**<u>Ejemplos</u>**
 
-  1) **Traure totes les comarques amb el número de pobles que té cadascuna, fins i tot aquelles comarques que no tinguen cap poble.**
+  1) **Sacar todas las comarcas con el número de pueblos que tiene cada una, incluso aquellas comarcas que no tengan ningún pueblo.**
 
-Aquest exemple és poc il·lustratiu, perquè no tenim en principi cap camarca
-que no tinga pobles. De tota manera, la manera seria fent un LEFT JOIN entre
-COMARQUES i POBLACIONS, per a després agrupar per comarca i comptar les
-poblacions. Observeu com també podem utilitzar la sintaxi del **USING** en el
+Este ejemplo es poco ilustrativo, porque no tenemos en principio ninguna camarca
+que no tenga pueblos. De todas formas, la forma sería haciendo un LEFT JOIN entre
+COMARCAS y POBLACIONES, para después agrupar por comarca y contar las
+poblaciones. Observe como también podemos utilizar la sintaxis del **USING** en el
 LEFT JOIN.
 
-    SELECT COMARQUES.nom_c, COUNT(cod_m)  
-    FROM COMARQUES LEFT JOIN POBLACIONS USING(nom_c)  
-    GROUP BY COMARQUES.nom_c  
+    SELECT COMARCAS.nombre_c, COUNT(cod_m)  
+    FROM COMARCAS LEFT JOIN POBLACIONES USING(nombre_c)  
+    GROUP BY COMARCAS.nombre_c  
     ORDER BY 1;
 
 
-### :pencil2: Exercicis
+### :pencil2: Ejercicios
 
-**Ex_60** Traure el codi i el nom dels clients que no tenen cap factura.
+**Ex_60** Sacar el código y el nombre de los clientes que no tienen ninguna factura.
 
-**Ex_61** Traure el codi, descripció i total d'unitats venudes de tots
-els articles, fins i tot d'aquells que no s'ha venut res.
+**Ex_61** Sacar el código, descripción y total de unidades vendidas de todos
+los artículos, incluso de aquellos que no se han vendido nada.
 
 !!! note "Nota"
-    Per a deixar-lo més bonic, com que la suma de valors nuls no és 0 sinó nul,
-    per a que ens aparegue el valor 0 podem utilitzar la funció COALESCE(_valor_
-    ,0), que si el valor és nul torna un 0.
+    Para dejarlo más bonito, puesto que la suma de valores nulos no es 0 sino nulo,
+    para que nos aparezca el valor 0 podemos utilizar la función COALESCE(_valor_
+    ,0), que si el valor es nulo devuelve un 0.
 
 
-**Ex_62** Traure el nom de tots els pobles i el número de clients en
-cas de que en tinguen. Ordena per número de clients de forma descendent.
+**Ex_62** Sacar el nombre de todos los pueblos y el número de clientes en
+caso de que lo tengan. Ordena por número de clientes de forma descendente.
 
-**Ex_63** Traure el codi i la descripció de les categories, amb el
-número d'articles de cada categoria i el número total d'unitats venudes de
-cada categoria, d'aquelles categories de les quals tenim més de 15 articles, i
-ordenat per número d'articles de forma descendent. Aquesta sentència ja és
-prou complicada. Concretament haureu de tenir en compte que:
+**Ex_63** Sacar el código y la descripción de las categorías, con el
+número de artículos de cada categoría y el número total de unidades vendidas de
+cada categoría, de aquellas categorías de las que tenemos más de 15 artículos, y
+ordenado por número de artículos de forma descendente. Esta sentencia ya es
+bastante complicada. Concretamente tendrá que tener en cuenta que:
 
-  * Voldrem traure el número d'articles de cada categoria, però potser alguns articles no s'han venut, i per tant no apareixeran en la taula LINIA_FAC.
-  * I també tenim el problema que, com ens fa falta la taula LINIA_FAC, un article venut en més d'una factura apareixerà més d'una vegada. Si comptem de forma normal, el comptaríem més d'una vegada cada article. Per tant voldrem comptar els diferents articles de cada categoria.
+  * Querremos sacar el número de artículos de cada categoría, pero quizás algunos artículos no se han vendido, y por tanto no aparecerán en la tabla LINIA_FAC.
+  * Y también tenemos el problema de que, como nos hace falta la tabla LINIA_FAC, un artículo vendido en más de una factura aparecerá más de una vez. Si contamos de forma normal, lo contaríamos más de una vez cada artículo. Por tanto queremos contar los diferentes artículos de cada categoría.
 
-Llicenciat sota la  [Llicència Creative Commons Reconeixement NoComercial
-SenseObraDerivada 2.5](http://creativecommons.org/licenses/by-nc-nd/2.5/)
+Licenciado bajo la [Licencia Creative Commons Reconocimiento NoComercial
+SinObraDerivada 2.5](http://creativecommons.org/licenses/by-nc-nd/2.5/)
 

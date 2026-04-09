@@ -1,97 +1,94 @@
-# 1. Introducció
+# 1. Introducción
 
 
-**SQL** és un llenguatge per a organitzar, gestionar i recuperar dades
-emmagatzemades en una Base de Dades. El nom "**SQL**" és una abreviatura de
-_**Structured Query Language**_ (Llenguatge Estructurat de Consultes), i com
-el seu nom indica, és un llenguatge informàtic que es pot utilitzar per a
-interaccions amb una Base de Dades de tipus relacional.
+**SQL** es un lenguaje para organizar, gestionar y recuperar datos
+almacenadas en una Base de Datos. El nombre "**SQL**" es una abreviatura de
+_**Structured Query Language**_ (Lenguaje Estructurado de Consultas), y cómo
+su nombre indica, es un lenguaje informático que se puede utilizar para
+interacciones con una Base de Datos de tipo relacional.
 
-SQL s'utilitza per a controlar totes les funcions que un SGBD proporciona als
-seus usuaris, incloent:
+SQL se utiliza para controlar todas las funciones que un SGBD proporciona a
+sus usuarios, incluyendo:
 
-  * **_Definició de dades_**. SQL permet a un usuari definir l'estructura i organització de les dades emmagatzemades i les relacions existents entre elles (claus externes).
+  * **_Definición de datos_**. SQL permite a un usuario definir la estructura y organización de los datos almacenados y las relaciones existentes entre sí (claves externas).
 
-  * **_Recuperació de dades_**. SQL permet a un usuari o a un programa d'aplicació recuperar les dades emmagatzemades de la base de dades i utilitzar-les.
+  * **_Recuperación de datos_**. SQL permite a un usuario o programa de aplicación recuperar los datos almacenados de la base de datos y utilizarlos.
 
-  * **_Manipulació de dades_**. SQL permet a un usuari o a un programa d'aplicació actualitzar la base de dades afegint noves dades, suprimint dades antigues i modificant dades prèviament emmagatzemades.
+  * **_Manipulación de datos_**. SQL permite a un usuario oa un programa de aplicación actualizar la base de datos añadiendo nuevos datos, suprimiendo datos antiguos y modificando datos previamente almacenados.
 
-  * **_Control d'accés_**. SQL pot ser utilitzat per a restringir la capacitat d'un usuari per a recuperar, afegir i modificar dades, protegint així les dades guardades davant d'accessos no autoritzats.
+  * **_Control de acceso_**. SQL puede ser utilizado para restringir la capacidad de un usuario para recuperar, añadir y modificar datos, protegiendo así los datos guardados frente a accesos no autorizados.
 
-  * **_Compartició de dades_**. SQL s'utilitza per a coordinar la compartició de dades per part d'usuaris concurrents, assegurant que no interfereixen entre ells.
+  * **_Compartición de datos_**. SQL se utiliza para coordinar la compartición de datos por parte de usuarios concurrentes, asegurando que no interfieren entre sí.
 
-  * **_Integritat de dades_**. SQL defineix restriccions d'integritat en la base de dades, protegint-la contra corrupcions causades per actualitzacions inconsistents o per fallades del sistema.
+  * **_Integridad de datos_**. SQL define restricciones de integridad en la base de datos, protegiéndola contra corrupciones causadas por actualizaciones inconsistentes o por fallos del sistema.
 
-SQL no és realment un llenguatge informàtic complet tal com JAVA, C o Python.
-SQL no disposa de la sentència _IF_ per a examinar condicions, ni de les
-sentències _WHILE_ o _FOR_ per a fer bucles, per exemple. En compte d'això,
-SQL és un subllenguatge de base de dades, que consta d'unes trenta sentències
-especialitzades per a tasques de gestió de bases de dades, però **només 7 són
-les sentències principals**.
+SQL no es realmente un lenguaje informático completo tal como JAVA, C o Python.
+SQL no dispone de la sentencia _IF_ para examinar condiciones, ni de las
+sentencias _WHILE_ o _FOR_ para hacer bucles, por ejemplo. En lugar de eso,
+SQL es un sublenguaje de base de datos, que consta de unas treinta sentencias
+especializadas para tareas de gestión de bases de datos, pero **sólo 7 son
+las principales sentencias**.
 
-També es diu que és un llenguatge de **quarta generació** perquè en ell es diu
-quina informació es vol, sense especificar exactament com s'aconsegueix
-aquesta informació.
+También se dice que es un lenguaje de **cuarta generación** porque en él se llama
+qué información se quiere, sin especificar exactamente cómo se consigue
+esta información.
 
-També es diu que és un llenguatge orientat a **conjunt de registres** , ja que
-una sentència pot tornar un conjunt de registres. Açò és un gran avantatge amb
-els llenguatges de tercera generació, que només podien treballar registre a
-registre.
+También se dice que es un lenguaje orientado a **conjunto de registros**, ya que
+una sentencia puede devolver un conjunto de registros. Esto es una gran ventaja con
+los lenguajes de tercera generación, que sólo podían trabajar registro en
+registro.
 
-Dues són les maneres d'executar sentències SQL.
+Dos son las formas de ejecutar sentencias SQL.
 
-  * **De forma interactiva** : s'escriu una sentència SQL, i s'executa, tornant normalment un conjunt de registres que es presentaran en forma tabular. En **Access** el lloc on procedir d'aquesta manera és en les **consultes** , triant _**Vista SQL**_. Tindrem lloc per escriure la sentència tal i com es mostra en la primera imatge. En la segona imatge, es mostra una consulta ja feta en el tema anterior, però veient-la en SQL. En la tercera hem executat la consulta:
-
-![](T6_1_1_1.png) | ![](T6_1_1_2.png) | ![](T6_1_1_3.png)  
----|---|---  
+  * **De forma interactiva** : se escribe una sentencia SQL, y se ejecuta, devolviendo normalmente un conjunto de registros que se presentarán en forma tabular.  
   
-  * **Dins d'un programa** escrit en un altre llenguatge, que actuarà com llenguatge amfitrió (i el SQL seria el llenguatge host, "_huesped_ "). En el cas de Access podríem incloure sentències SQL en Visual Basic. D'aquesta manera s'estén el llenguatge amfitrió i li permet accedir a la Base de Dades.
+  * **Dentro de un programa** escrito en otro lenguaje, que actuará como lenguaje anfitrión (y el SQL sería el lenguaje host, "_huesped_ "). 
+  
+SQL es el lenguaje estándar de acceso y manipulación de Bases de Datos de los
+Sistemas Gestores de Bases de Datos Relacionales. A todos, absolutamente a todos
+los SGBD Relacionales comerciales se puede acceder por SQL.
 
-SQL és el llenguatge estàndard d'accés i manipulació de Bases de Dades dels
-Sistemes Gestors de Bases de Dades Relacionals. A tots, absolutament a tots
-els SGBD Relacionales comercials es pot accedir per SQL.
 
+## DDL, DQL y DML
 
-## DDL, DQL i DML
+Como se ha comentado en la pregunta anterior, SQL nos permite definir, controlar y
+acceder a una Base de Datos.
 
-Com s'ha comentat en la pregunta anterior, SQL ens permet definir, controlar i
-accedir a una Base de Dades.
+Haremos una distinción principal entre estas funciones, separando lo que son las
+estructuras de las tablas y el contenido de las tablas. En este sentido
+tendremos 3 subtipos de lenguajes:
 
-Farem una distinció principal entre aquestes funcions, separant el que són les
-estructures de les taules i el contingut de les taules. En aquest sentit
-tindrem 3 subtipus de llenguatges:
-
-  * **DDL** (_Data Definition Language_ o _Llenguatge de Definició de Dades_): permet definir, modificar o esborrar les estructures, com poden ser taules, vistes, índex, ... i fins i tot Bases de Dades. 
-  Bàsicament les sentències són 3:   
+  * **DDL** (_Data Definition Language_ o _Lenguaje de Definición de Datos_): permite definir, modificar o borrar las estructuras, como pueden ser tablas, vistas, índice, ... e incluso Bases de Datos. 
+  Básicamente las sentencias son 3:   
 
 
   |    |    |     
 ---|---  
-**CREATE** | per a crear l'estructura   
-**ALTER** | per a modificar-la  
-**DROP** | per a esborrar-la  
+**CREATE** | para crear la estructura   
+**ALTER** | para modificarla  
+**DROP** | para borrarla  
 
-* **DQL** (_Data Query Language_ o _Llenguatge de Consulta de Dades_): permet consultar dades d'una base de dades.
+* **DQL** (_Data Query Language_ o _Lenguaje de Consulta de Datos_): permite consultar datos de una base de datos.
 
 
-**SELECT** | per a consultar dades 
+**SELECT** | para consultar datos 
 ---|---
 
-* **DML** (_Data Manipulation Language_ o _Llenguatge de Manipulació de Dades_): permet accedir al contingut de les estructures, a les dades. Aquest accés pot ser de dos tipus: per a consultar o per a modificar les dades  
+* **DML** (_Data Manipulation Language_ o _Lenguaje de Manipulación de Datos_): permite acceder al contenido de las estructuras, a los datos. Este acceso puede ser de dos tipos: para consultar o modificar los datos  
 
   |    |    |     
 ---|---  
-**INSERT** | insereix noves files  
-**UPDATE** | modifica el contingut de files ja existents  
-**DELETE** | esborra files  
+**INSERT** | inserta nuevas filas  
+**UPDATE** | modifica el contenido de filas ya existentes  
+**DELETE** | borra filas  
 
-El llenguatge SQL és més extens que les sentències anteriors, incorporant
-també el que s'anomena **DCL** (_Data Control Language_ o _Llenguatge de
-Control de Dades_), que permet controlar les dades per a donar permisos o
-llevar-los sobre les dades, o controlar les transaccions, ..., però de moment
-ens aconformarem amb les sentències de DML i DDL, i aquestes últimes,
-sobretot, per a definir taules.
+El lenguaje SQL es más extenso que las sentencias anteriores, incorporando
+también lo que se llama **DCL** (_Data Control Language_ o _Lenguaje de
+Control de Datos_), que permite controlar los datos para dar permisos o
+quitarlos sobre los datos, o controlar las transacciones, ..., pero de momento
+nos conformaremos con las sentencias de DML y DDL, y estas últimas,
+sobre todo, para definir tablas.
 
-Llicenciat sota la  [Llicència Creative Commons Reconeixement NoComercial
+Licenciado bajo la [Licencia Creative Commons Reconocimiento NoComercial
 CompartirIgual 3.0](http://creativecommons.org/licenses/by-nc-sa/3.0/)
 

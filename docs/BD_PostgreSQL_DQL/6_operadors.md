@@ -1,37 +1,37 @@
-# 4.1 Operadors
+# 4.1 Operadores
 
-Els operadors que es gasten en el SQL de PostgreSQL són moltíssims. Cada tipus
-de dades té una sèrie d'operadors, i el mateix operador, aplicat a tipus
-distints pot fer coses diferents.
+Los operadores que se gastan en el SQL de PostgreSQL son muchísimos. Cada tipo
+de datos tiene una serie de operadores, y el propio operador, aplicado a tipos
+distintos puede hacer cosas distintas.
 
-Es poden veure tots els operadors en la taula **PG_OPERATOR** , on tindrem el
-nom de l'operador, els tipus de dades dels operands i del resultat i el
-procediment que implementa l'operador. Ací tenim una vista d'aquesta taula,
-encara que hi ha tantíssims operadors que mareja i tot (els que estan repetits
-és per a especificar l'actuació sobre operands de diferents tipus).
+Se pueden ver todos los operadores en la tabla **PG_OPERATOR** , donde tendremos el
+nombre del operador, los tipos de datos de los operandos y del resultado y el
+procedimiento que implementa el operador. Aquí tenemos una vista de esta mesa,
+aunque hay tantísimos operadores que marea y todo (los que están repetidos
+es para especificar la actuación sobre operandos de distintos tipos).
 
 ![](T6_1_6_1.png)
 
-Podríem fins i tot definir els nostres operadors, amb la sentència **CREATE
-OPERATOR** , on definiríem el tipus de l'operador de l'esquerra, el de la
-dreta, la funció que implementa l'operador, ... Ho intentarem en el tema
-següent, quan ja sapiguem crear funcions.
+Podríamos incluso definir a nuestros operadores, con la sentencia **CREATE
+OPERATOR** , donde definiríamos el tipo del operador de la izquierda, el de la
+derecha, la función que implementa el operador, ... Lo intentaremos en el tema
+siguiente, cuando ya sepamos crear funciones.
 
-No farem un repàs extens de tots els operadors. Només els més habituals, i
-algun d'un tipus de dades especial. Els tipus de dades els veurem en la
-tercera part d'aquest tema, quan les sentències de creació de taules.
+No realizaremos un repaso extenso de todos los operadores. Sólo los más habituales, y
+alguno de un tipo de datos especial. Los tipos de datos los veremos en la
+tercera parte de este tema, cuando las sentencias de creación de tablas.
 
-Per tant, fixeu-vos sobretot en els opradors **aritmètics** , de **cadena** i
-de **comparació**.
+Por tanto, fíjese sobre todo en los operadores **aritméticos** , de **cadena** y
+de **comparación**.
 
-**Operadors aritmètics**{.azul}
+**Operadores aritméticos**{.azul}
 
 
-+ |  Suma |  - |  Resta |  * |  Multiplicació |  / |Divisió  
++ |  Suma |  - |  Resto |  * |  Multiplicación |  / |División  
 ---|---|---|---|---|---|---|---
-^ |  Exponenciació |  \|/ |  Arrel quadrada |  ! |  Factorial |  % |  Mòdul (rest de la divisió)  
+^ |  Exponenciación |  \|/ |  Raíz cuadrada |  ! |  Factorial |  % |  Módulo (resto de la división)  
   
-**<u>Exemples</u>**
+**<u>Ejemplos</u>**
 ```
 SELECT |/16;
 
@@ -40,80 +40,80 @@ SELECT 5 ^ 3;
 SELECT 5!;
 ```
 
-**Operadors de cadena**{.azul}
+**Operadores de cadena**{.azul}
 
-\|\| |  Concatenació  
+\|\| |  Concatenación  
 ---|---  
   
-**<u>Exemples</u>**
+**<u>Ejemplos</u>**
 ```
 SELECT 'Data i hora actual: ' || Now();
 ```
 
-**Operadors de comparació**{.azul}
+**Operadores de comparación**{.azul}
 
-= |  Igual | < > | Distint | != |  Distint | | |
+= |  Igual | < > | Distinto | != |  Distinto | | |
 ---|---|---|---|---|---|---|---
-\> |  Major |  > = |  Major o igual |  < |  Menor |  < = |  Menor o igual
+\> |  Mayor |  > = |  Mayor o igual |  < |  Menor |  < = |  Menor o igual
 
   
-S'utilitzen principalment en les condicions. Tornen sempre un valor booleà
+Se utilizan principalmente en las condiciones. Vuelven siempre un valor booleano
 (true o false)
 
 
-**Operadors conversor de tipus**{.azul}
+**Operadores conversor de tipos**{.azul}
 
 ```
 ::tipus
 ```
 
-Servirà per a convertir alguna dada a algun tipus de dades.
+Servirá para convertir algún dato a algún tipo de datos.
 
-Així, per exemple,
+Así, por ejemplo,
 
-  * **'25-4-2012'::date** estem convertint una cadena de text en una dada de tipus date.
-  * **'(0,0)'::point** estem convertint el text a un punt.
+  * **'25-4-2012'::date** estamos convirtiendo una cadena de texto en un dato de tipo date.
+  * **'(0,0)'::point** estamos convirtiendo el texto a un punto.
 
-La forma utilitzada en els exemples anteriors és una forma molt habitual de
-posar les constants d'un determinat tipus: la posem com a cadena de caràcters
-(entre cometes) i després la convertim. L'única restricció serà que PostgreSQL
-"entenga" el que hi ha entre cometes per fer la conversió.
+La forma utilizada en los ejemplos anteriores es una forma muy habitual de
+poner las constantes de un determinado tipo: la ponemos como cadena de caracteres
+(entre comillas) y después la convertimos. La única restricción será que PostgreSQL
+"entienda" lo que hay entre comillas para realizar la conversión.
 
-Per veure que realment hi ha un canvi ens aprofitem de DBeaver que diu de quin
-tipus és un camp, si pot. Observeu que en el primer camp no hem posat més que
-una tira de caràcters, però en el segon intentem reconvertir aquesta mateixa
-tira de caràcters al tipus POINT. En el resultat s'observa com ha entés que el
-tipus de la dada és POINT.
+Para ver que realmente existe un cambio nos aprovechamos de DBeaver que dice de cuál
+tipos es un campo, si puede. Observe que en el primer campo no hemos puesto más que
+una tira de caracteres, pero en el segundo intentamos reconvertir esta misma
+tira de índoles al tipo POINT. En el resultado se observa cómo ha entendido que el
+tipos del dato es POINT.
 
 ![](T6_1_6_2.png)
 
-També ens serviria la funció **point ('(0,0)')**
+También nos serviría la función **point ('(0,0)')**
 
-**<u>Operadors Geomètrics</u>**
+**<u>Operadores Geométricos</u>**
 
-**Operador** |  **Descripció** |  **Utilització**  
+**Operador** |  **Descripción** |  **Utilización**  
 ---|---|---  
-<-> |  Distància (han de ser del mateix tipus) |  point '(1,0)' <-> point '(3,0)'  
+<-> |  Distancia (deben ser del mismo tipo) |  point '(1,0)' <-> point '(3,0)'  
 <@ |  Està contingut en? |  '(1,1)'::point @ '((0,0),(2,2))'::box  
-@> |  Conté? |  box '((0,0),(2,2))' @> point '(1,1)'  
+@> |  ¿Contiene? |  box '((0,0),(2,2))' @> point '(1,1)'  
   
-La llista d'operadors és molt més llarga, però ací només volem mostrar-ne
-algun a mode il·lustratiu.
+La lista de operadores es mucho más larga, pero aquí sólo queremos mostrarlos
+alguno a modo ilustrativo.
 
-Podem fer comprovacions d'aquest tipus:
+Podemos realizar comprobaciones de este tipo:
 ```
 SELECT '(0,0)'::point <-> '(3,4)'::point;
 ```
-que ens donarà la **distància** entre el punt **(0,0)** i el punt **(3,4)**.
-Aquesta distància ha de ser 5.
+que nos dará la **distancia** entre el punto **(0,0)** y el punto **(3,4)**.
+Esta distancia debe ser 5.
 ```
 SELECT '(1,1)'::point <@ '((0,0),2)'::circle;
 ```
-que ens dirà si el **punt** **(1,1)** està **dins** del **cercle amb origen
-(0,0) i radi 2**. Com que sí que està tornarà el valor **true** (vertader).
+que nos dirá si el **punto** **(1,1)** está **dentro** del **círculo con origen
+(0,0) y radio 2**. Debido a que sí está devolverá el valor **true** (verdadero).
 
 
 
-Llicenciat sota la  [Llicència Creative Commons Reconeixement NoComercial
+Licenciado bajo la [Licencia Creative Commons Reconocimiento NoComercial
 CompartirIgual 3.0](http://creativecommons.org/licenses/by-nc-sa/3.0/)
 

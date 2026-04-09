@@ -1,119 +1,111 @@
-# 10. La clàusula LIMIT .. OFFSET
+# 10. La cláusula LIMIT .. OFFSET
 
-Per mig de la clàusula **LIMIT - OFFSET** podrem fer que no apareguen totes
-les files que torna la sentència, sinó unes quantes.
+Por medio de la cláusula **LIMIT - OFFSET** podremos hacer que no aparezcan todas
+las filas que devuelve la sentencia, sino unas cuantas.
 
-  * **LIMIT número** : especificarem quantes files volem que es tornen
-  * **OFFSET número** : especificarem a partir de quina posició volem que es tornen les files
+  * **LIMIT número** : especificaremos cuántas filas queremos que se devuelvan
+  * **OFFSET número** : especificaremos a partir de qué posición queremos que se devuelvan las filas
 
-Si no posem la part del OFFSET, apareixeran les primeres, i si especifiquem
-OFFSET, se saltaran les primeres, tantes com s'indica en OFFSET. Per a que
-realment tinga sentit aquesta clàusula, és conveninet ordenar la informació,
-ja que al dir les primeres ja s'està assumint que seran les primeres respecte
-algun ordre. Així, per exemple ens podrem plantejar traure coses com les 10
-poblacions més altes, o les més habitades.
+Si no ponemos la parte del OFFSET, aparecerán las primeras, y si especificamos
+OFFSET, se saltarán las primeras, tantas como se indica en OFFSET. Para que
+realmente tenga sentido esta cláusula, es conveniente ordenar la información,
+ya que al decir las primeras ya se está asumiendo que serán las primeras respeto
+algún orden. Así, por ejemplo, nos podremos plantear sacar cosas como las
+poblaciones más altas, o las más habitadas.
 
-L'ordre implícit que acabem de comentar s'haurà de fer per mig de la clàusula
-ORDER BY. Així, si volem traure els clients més joves haurem d'ordenar per la
-data de naixement en ordre descendent, per a després traure els primenrs. Per
-tant és molt difícil veure una clàusula LIMIT si no tenim una clàusula ORDER
+El orden implícito que acabamos de comentar deberá realizarse por medio de la cláusula
+ORDER BY. Así, si queremos sacar a los clientes más jóvenes tendremos que ordenar por la
+fecha de nacimiento en orden descendente, para después sacar los primeros. Por
+tanto es muy difícil ver una cláusula LIMIT si no tenemos una cláusula ORDER
 BY.
 
 !!! note "Nota"
-    En el SQL d'Access no existeix la clàusula LIMIT. Per a fer coses similar
-    disposa del predicat <b>TOP</b> , que es posa immediatament després del SELECT,
-    però sempre traurà les primeres, no té possibilitat d'OFFSET.
+    En SQL de Access no existe la cláusula LIMIT. Para hacer cosas similar
+    dispone del predicado <b>TOP</b> , que se pone inmediatamente después del SELECT,
+    pero siempre sacará las primeras, no tiene posibilidad de OFFSET.
 
 
 **<u>Sintaxi</u>**
 
     SELECT <columnes>  
       FROM <taules>  
-      [LIMIT _n_] [OFFSET _m_]
+      [LIMITE _n_] [OFFSET _m_]
 
-El número _**n**_ ha de ser un enter, i se seleccionaran únicament les _**n**_
-primeres files (les de dalt). En cas de posat OFFSET se saltaran  _**m**_
-files. En cas de no posar **LIMIT** , se saltaran _**m** _files i es trauran
-totes les altres fins el final.
+El número _**n**_ debe ser un entero, y se seleccionarán únicamente las _**n**_
+primeras filas (las de arriba). En caso de puesto OFFSET se saltarán _**m**_
+filas. En caso de no poner **LIMIT** , se saltarán _**m** _files y se sacarán
+todas las demás hasta el final.
 
-Per exemple, si volem traure les 10 poblacions més altes, haurem d'agafar les
-10 primeres, ordenant per altura en forma descendent:
+Por ejemplo, si queremos sacar los 10 juegos más caros, deberemos coger los 10 primeros, ordenando por precio en forma descendente:
 
-    SELECT nom , altura  
-      FROM POBLACIONS  
-      ORDER BY altura DESC  
-      LIMIT 10
+    SELECT titulo, precio  
+      FROM juegos  
+      ORDER BY precio DESC  
+      LIMIT 10;
 
-L'exemple anterior sembla correcte, però no funciona del tot bé perquè amb les
-dades que tenim, hi ha 3 poblacions que no tenen altura, i el valor nul el
-posa al final de tots els altres valors, en ordre ascendent, i per tant al
-principi en ordre descendent.
+Si quisiéramos saltar algunos resultados, podemos usar OFFSET. Por ejemplo, sacar los juegos del 4º al 13º más caros (saltando los 3 primeros):
 
-Ho podem arreglar senzillament saltant les 3 primeres (que són les del nul)
+    SELECT titulo, precio  
+      FROM juegos  
+      ORDER BY precio DESC  
+      LIMIT 10 OFFSET 3;
 
-    SELECT nom , altura  
-      FROM POBLACIONS  
-      ORDER BY altura DESC  
-      LIMIT 10 OFFSET 3
+Aunque es mejor asegurarse de que los valores no sean nulos si no queremos sorpresas:
 
-Encara que sembla millor llevar les d'altura nula, així no estem obligats a
-saber quantes poblacions amb altura nula hi ha
+    SELECT titulo, precio  
+      FROM juegos  
+      WHERE precio IS NOT NULL  
+      ORDER BY precio DESC  
+      LIMIT 10;
 
-    SELECT nom , altura  
-      FROM POBLACIONS  
-      WHERE altura IS NOT NULL  
-      ORDER BY altura DESC  
-      LIMIT 10
+Si quisiéramos sacar todos los juegos excepto los 3 más caros, podemos poner OFFSET sin LIMIT:
 
-Si vulguérem traure totes les poblacions i altures, excepte les que tenen nul,
-i sabem que aquestes en són 3, podem posar OFFSET sense LIMIT, per a saltar
-les 3 primeres, i traure-les totes fins el final
+    SELECT titulo, precio  
+      FROM juegos  
+      ORDER BY precio DESC  
+      OFFSET 3;
 
-    SELECT nom , altura  
-      FROM POBLACIONS  
-      ORDER BY altura DESC  
-      OFFSET 3
+**<u>Ejemplos</u>**
 
-**<u>Exemples</u>**
+  1) Sacar los 5 juegos con mayor precio.
 
-  1) Traure les 5 poblacions més poblades
+    SELECT titulo, precio  
+      FROM juegos  
+      ORDER BY precio DESC  
+      LIMIT 5;
 
-    SELECT nom , poblacio  
-      FROM POBLACIONS  
-      ORDER BY poblacio DESC  
-      LIMIT 5
+  2) Sacar los 4 estudios con más juegos en el catálogo.
 
-  2) Traure les 4 comarques amb més pobles.
-
-    SELECT nom_c , COUNT(*)  
-      FROM POBLACIONS  
-      GROUP BY nom_c  
+    SELECT id_estudio, COUNT(*)  
+      FROM juegos  
+      GROUP BY id_estudio  
       ORDER BY 2 DESC  
-      LIMIT 4
+      LIMIT 4;
 
-  3) Traure les 10 poblacions amb més instituts, saltant-nos les 3 primeres.
+  3) Sacar los 10 estudios con más juegos, saltándonos los 3 primeros.
 
-    SELECT cod_m , COUNT(*)  
-      FROM INSTITUTS  
-      GROUP BY cod_m  
+    SELECT id_estudio, COUNT(*)  
+      FROM juegos  
+      GROUP BY id_estudio  
       ORDER BY 2 DESC  
-      LIMIT 10 OFFSET 3
+      LIMIT 10 OFFSET 3;
 
 
-## :pencil2: Exercicis
+## :pencil2: Ejercicios
 
-**Ex_44** Traure tota la informació dels dos articles més cars.
+En la BD **TechQuest**, conectando como usuario **tech_alu**:
 
-**Ex_45** Traure el codi de les tres ciutats amb més clients
+**Ex_44** Sacar toda la información de los dos **productos** más caros.
 
-**Ex_46** Traure el venedor que ha venut menys factures  
+**Ex_45** Sacar la **población** de las tres ciudades con más **clientes**.
 
-**Ex_47** Traure les tres factures més cares (sense comptar els descomptes)
+**Ex_46** Sacar al **empleado** que ha realizado menos **pedidos**.
 
-**Ex_48** Modificar l'anterior per a traure totes les factures, excepte les 3
-més cares.
+**Ex_47** Sacar los tres **pedidos** más caros (sumando el total de sus líneas sin contar descuentos).
+
+**Ex_48** Modificar lo anterior para sacar todos los **pedidos**, excepto los 3 más caros.
 
 
-Llicenciat sota la  [Llicència Creative Commons Reconeixement NoComercial
+Licenciado bajo la [Licencia Creative Commons Reconocimiento NoComercial
 CompartirIgual 3.0](http://creativecommons.org/licenses/by-nc-sa/3.0/)
 

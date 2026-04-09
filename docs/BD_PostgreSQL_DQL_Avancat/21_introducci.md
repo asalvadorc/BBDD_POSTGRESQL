@@ -1,20 +1,20 @@
-# 1 Introducció
+# 1 Introducción
 
-En la primera part del tema s'ha repassat tota la sintaxi de la sentència
-SELECT. Una vegada conegudes totes les clàusules, és moment de traure tota la
-potència de SQL accedint a Bases de Dades Relacionals, fent unes sentències
-"avançades", d'un nivell de complexitat major que fins ara.
+En la primera parte del tema se repasó toda la sintaxis de la sentencia
+SELECT. Una vez conocidas todas las cláusulas, es momento de sacar toda la cláusula
+potencia de SQL accediendo a Bases de Datos Relacionales, haciendo unas sentencias
+"avanzadas", de un nivel de complejidad mayor que hasta ahora.
 
-Els tipus de sentències avançades que veurem seran:
+Los tipos de sentencias avanzadas que veremos serán:
 
-  * Combinacions de taules, en les quals entrarà en joc més d'una taula. Veurem les distintes possibilitats que tindrem.
+  * Combinaciones de tablas, en las que entrará en juego más de una mesa. Veremos las distintas posibilidades que tendremos.
 
-  * Subconsultes, on tindrem una sentència SQL dins d'una altra.
+  * Subconsultas, donde tendremos una sentencia SQL dentro de otra.
 
-  * Consultes d'unió, on unirem més d'una sentència SQL.
+  * Consultas de unión, donde uniremos más de una sentencia SQL.
 
 
 
-Llicenciat sota la  [Llicència Creative Commons Reconeixement NoComercial
-SenseObraDerivada 2.5](http://creativecommons.org/licenses/by-nc-nd/2.5/)
+Licenciado bajo la [Licencia Creative Commons Reconocimiento NoComercial
+SinObraDerivada 2.5](http://creativecommons.org/licenses/by-nc-nd/2.5/)
 

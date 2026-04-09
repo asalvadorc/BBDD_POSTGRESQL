@@ -1,93 +1,86 @@
-# 5. Funcions d'agregat
+# 5. Funciones de agregado
 
-Les **funcions d'agregat**, o funcions de domini agregat, són aquelles que
-trauen un resultat a partir dels valors d'un determinat camp en un conjunt de
-files. Així tindrem una funció per a **sumar** els valors d'una columna, o
-**comptar** -los, o traure la **mitjana** , o el **màxim** , ...
+Las **funciones de agregado**, o funciones de dominio agregado, son aquellas que
+sacan un resultado a partir de los valores de un determinado campo en un conjunto de
+filas. Así tendremos una función para **sumar** los valores de una columna, o
+**contar** -los, o sacar la **media** , o el **máximo** , ...
 
-Actuaran sobre un conjunt de files determinat, que en principi suposarem que
-és tota la taula (totes les files de la taula). En la següent pregunta, veurem
-que el conjunt de files sobre el qual es calcula una funció d'agregat, el
-podrem canviar amb la clàusula **GROUP BY**.
+Actuarán sobre un conjunto de filas determinado, que en principio supondremos que
+es toda la mesa (todas las filas de la mesa). En la siguiente pregunta, veremos
+que el conjunto de filas sobre el que se calcula una función de agregado, el
+podremos cambiar con la cláusula **GROUP BY**.
 
 **<u>Sintaxi</u>**
 
-  * **COUNT (* | <expressió> )**: compta el número de files; si es posa una columna o expressió, no es comptaran els valors nuls.
+  * **COUNT (* | <expressió> )**: cuenta el número de filas; si se pone una columna o expresión, no se contarán los valores nulos.
 
-  * **SUM ( <expressió> )**: torna la suma de la columna o expressió especificada. Ignora els valors nuls.
+  * **SUM ( <expressió> )**: devuelve la suma de la columna o expresión especificada. Ignora los valores nulos.
 
-  * **AVG ( <expressió> )**: calcula la mitjana aritmètica de la columna o expressió especificada. Ignora els valors nuls.
+  * **AVG ( <expressió> )**: calcula la media aritmética de la columna o expresión especificada. Ignora los valores nulos.
 
-  * **VAR_SAMP ( <expressió> )**: calcula la variància d'una mostra a partir de la columna o expressió especificada.
+  * **VAR_SAMP ( <expressió> )**: calcula la varianza de una muestra a partir de la columna o expresión especificada.
 
-  * **STDDEV ( <expressió> )**: desviació típica d'una mostra.
+  * **STDDEV ( <expressió> )**: desviación típica de una muestra.
 
-  * **MAX ( <expressió> )**: calcula el màxim.
+  * **MAX ( <expressió> )**: calcula el máximo.
 
-  * **MIN ( <expressió> )**: calcula el mínim.
+  * **MIN ( <expressió> )**: calcula el mínimo.
 
-Per exemple, si volem saber el nombre d'Instituts:
+Por ejemplo, si queremos saber el número de juegos en la plataforma:
 
-    SELECT COUNT(*) AS "Nombre d'Instituts"  
-      FROM INSTITUTS;
+    SELECT COUNT(*) AS "Número de Juegos"  
+      FROM juegos;
 
 
 !!! note "Nota"
-      És interessant la utilització d'àlias, per a que no apareguen capçaleres com _**count**_
+      Es interesante la utilización de alias, para que no aparezcan cabeceras como _**count**_
   
 
-**<u>Exemples</u>**
-
-  1) Comptar el nombre total de pobles.
+  1) Contar el número total de juegos registrados.
 
     SELECT Count(*)  
-      FROM POBLACIONS;
+      FROM juegos;
 
-  2) Comptar el nombre de poblacions de la **Plana Alta**.
+  2) Contar el número de juegos del estudio con ID **1** (Valve).
 
     SELECT Count(*)  
-      FROM POBLACIONS  
-      WHERE nom_c = 'Plana Alta';
+      FROM juegos  
+      WHERE id_estudio = 1;
 
-  3) Calcular la mitjana d'habitants dels pobles de la **Plana Alta** i **Plana Baixa**.
+  3) Calcular el precio medio de los juegos de los estudios **2** y **3**.
 
-    SELECT AVG(poblacio)  
-      FROM POBLACIONS  
-      WHERE nom_c = 'Plana Alta' OR nom_c = 'Plana Baixa'
+    SELECT AVG(precio)  
+      FROM juegos  
+      WHERE id_estudio = 2 OR id_estudio = 3;
 
-  4) Calcular la mitjana de densitat de les poblacions. La densitat es calcula com el número d'habitants dividit per l'extensió.
+  4) Calcular el precio medio de todos los juegos aplicando un descuento teórico del 10%.
 
-    SELECT AVG(poblacio/extensio)  
-      FROM POBLACIONS;
+    SELECT AVG(precio * 0.9)  
+      FROM juegos;
 
-  5) Calcular l'altura màxima i mínima de tots els pobles.
+  5) Calcular el precio máximo y mínimo de todos los juegos.
 
-    SELECT MAX(altura), MIN(altura)  
-      FROM POBLACIONS
-
-
-## :pencil2: Exercicis
-
-**Ex_15** Comptar el nombre de **clients** que tenen el **codi postal nul**.
-
-**Ex_16** Comptar el número de vegades que l'article **L76104** entra en les
-línies de factura, i el número total d'unitats venudes d'aquest article. Només
-us fa falta la taula LINIA_FAC.
-
-**Ex_17** Traure la **mitjana** del **stock** dels articles.
-
-**Ex_18** Modificar l'anterior per a**tenir en compte els valors nuls, com si
-foren 0**. Us vindrà bé la funció **COALESCE** que converteix els nuls del
-primer paràmetre al valor donat com a segon paràmetre (si és diferent de nul,
-deixa igual el valor). Per tant l'heu d'utilitzar d'aquesta manera:
-**COALESCE(stock,0)**
-
-**Ex_19** Comptar **quantes factures** té el client **375**  
-
-**Ex_20** Calcular el **descompte màxim** , el **mínim** i el descompte
-**mitjà** de les **factures**.
+    SELECT MAX(precio), MIN(precio)  
+      FROM juegos;
 
 
-Llicenciat sota la  [Llicència Creative Commons Reconeixement NoComercial
+## :pencil2: Ejercicios
+
+En la BD **TechQuest**, conectando como usuario **tech_alu**:
+
+**Ex_15** Contar el número de **clientes** que tienen la **dirección nula** (o el código postal).
+
+**Ex_16** Contar el número de veces que el producto **10** (id_producto) aparece en las **líneas de pedido**, y el número total de unidades vendidas de este producto. Solo le hace falta la tabla **lineas_pedido**.
+
+**Ex_17** Sacar la **media** del **stock** de los productos.
+
+**Ex_18** Modificar lo anterior para **tener en cuenta los valores nulos, como si fueran 0**. Utilice la función **COALESCE** de esta manera: `COALESCE(stock, 0)`.
+
+**Ex_19** Contar **cuántos pedidos** tiene el cliente con ID **5**.
+
+**Ex_20** Calcular el **descuento máximo**, el **mínimo** y el descuento **medio** de los **pedidos**.
+
+
+Licenciado bajo la [Licencia Creative Commons Reconocimiento NoComercial
 CompartirIgual 3.0](http://creativecommons.org/licenses/by-nc-sa/3.0/)
 

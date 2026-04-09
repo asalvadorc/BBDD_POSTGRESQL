@@ -1,74 +1,74 @@
-# 12. Ordre amb què s'executa una sentència SQL
+# 12. Orden con el que se ejecuta una sentencia SQL
 
-Com hem vist, i com veurem en la Part II d'aquest tema, la sentència
-**SELECT** és molt completa i molt potent. Pot fer moltes coses.
+Como hemos visto, y cómo veremos en la Parte II de este tema, la sentencia
+**SELECT** es muy completa y muy potente. Puede hacer muchas cosas.
 
-Potser ens convinga saber en quin ordre s'executen les clàusules de què es
-compon, perquè això ens pot prevenir de possibles errors en el moment de
-construir una sentència d'una certa envergadura. L'ordre d'execució és el
-següent:
+Quizás nos convenga saber en qué orden se ejecutan las cláusulas de las que se
+compone, porque esto puede prevenirnos de posibles errores en el momento de
+construir una sentencia de cierta envergadura. El orden de ejecución es el
+siguiente:
 
-  * Primer s'agafen les dades des de la taula o les taules especificades en el **FROM**. No podrem tractar informació que no tinguem en aquest origen de dades.
-  * Després s'eliminen les files que no acompleixen la condició del **WHERE** , en cas que tinguem aquesta clàusula.
-  * Després les files resultants s'agrupen pel o pels camps especificats en el **GROUP BY** , en cas que tinguem aquesta clàusula.
-  * Una vegada fets els grups, s'eliminen els que no acomplesquen la condició del **HAVING** , en cas que tinguem aquesta clàusula.
-  * Després se selecciona la informació especificada en les columnes, que en cas d'haver alguna funció d'agregat actuarà sobre els grups que resten (si teníem clàusula GROUP BY) o sobre el total de l'origen de dades.
-  * Posteriorment s'ordena pels camps especificats en el **ORDER BY** , en cas que tinguem aquesta clàusula.
-  * Després s'aplica els predicat **DISTINCT** en cas de tenir-lo especificat.
-  * Per últim s'agafen tantes files com indica la clàusula **LIMIT** , desplaçades tantes com indique **OFFSET** , si és que tenim aquesta clàusula especificada..
-  * Si tenim clàusula**INTO** es procedirà a crear una taula nova amb el resultat anterior.
+  * Primero se cogen los datos desde la tabla o las tablas especificadas en el **FROM**. No podremos tratar información que no tengamos en ese origen de datos.
+  * Después se eliminan las filas que no cumplen la condición del **WHERE** , en caso de que tengamos esta cláusula.
+  * Después las filas resultantes se agrupan por el o por los campos especificados en el **GROUP BY** , en caso de que tengamos esta cláusula.
+  * Una vez hechos los grupos, se eliminan los que no cumplan la condición del **HAVING** , en caso de que tengamos esta cláusula.
+  * Después se selecciona la información especificada en las columnas, que en caso de haber alguna función de agregado actuará sobre los grupos que quedan (si teníamos cláusula GROUP BY) o sobre el total del origen de datos.
+  * Posteriormente se ordena por los campos especificados en el **ORDER BY** , en caso de que tengamos esta cláusula.
+  * Después se aplica los predicados **DISTINCT** en caso de tenerlo especificado.
+  * Por último se toman tantas filas como indica la cláusula **LIMIT** , desplazadas tantas como indique **OFFSET** , si es que tenemos esta cláusula especificada.
+  * Si tenemos cláusula**INTO** se procederá a crear una nueva tabla con el resultado anterior.
 
-Tenir clar aquest ordre ens pot clarificar alguna cosa, i poder evitar alguns
-errors. L'error de la següent sentència ja s'havia explicat en l'apartat de la clàusula GROUP BY.
+Tener claro este orden puede clarificarnos algo, y poder evitar algunos
+errores. El error de la siguiente sentencia se había explicado ya en el apartado de la cláusula GROUP BY.
 
-    SELECT nom_c, COUNT(*), cod_m  
-      FROM POBLACIONS  
-      GROUP BY nom_c
+    SELECT nombre_c, COUNT(*), cod_m  
+      FROM POBLACIONES  
+      GROUP BY nombre_c
 
-> ens donarà el següent error:
+> nos dará el siguiente error:
 
 ![](T6_1_19_1.png)
 
-> Però si analitzem l'ordre en què s'executen és lògic: quan arribem a mostrar
-> els camps (entre ells **cod_m**) els grups ja s'han fet, i per a valors
-> iguals de **nom_c**. En aquest moment no puc traure una cosa individual de
-> cada grup com és el codi de municipi, perquè ja s'ha agrupat. En aquest
-> moment només es pot intentar traure el nom de la comarca (ja que té el
-> mateix valor per a tot el grup, és el camp pel qual hem agrupat), o alguna
-> funció d'agregat, que calcula sobre el grup. I d'això ens intenta avisar
+> Pero si analizamos el orden en el que se ejecutan es lógico: cuando llegamos a mostrar
+> los campos (entre ellos **cod_m**) los grupos ya se han realizado, y para valores
+> iguales de **nombre_c**. En este momento no puedo sacar algo individual de
+> cada grupo como es el código de municipio, porque ya se ha agrupado. En este
+> momento sólo se puede intentar sacar el nombre de la comarca (ya que tiene el
+> mismo valor para todo el grupo, es el campo por el que hemos agrupado), o alguna
+> función de agregado, que calcula sobre el grupo. Y de eso nos intenta avisar
 > PostgreSQL.
 
-> Per a solucionar-lo podem incloure el **cod_m** en el **GROUP BY** , i
-> aleshores farem un grup per cada comarca i població diferent, però
-> segurament això no ens valdrà de res en aquest exemple, perquè cada grup
-> només contindrà un element (un municipi), encara que en altres exemples sí
-> que pot tenir sentit. O si no era això el que preteníem, senzillament llevem
-> el camp cod_m de la sentència, i ens funcionarà bé.
+> Para solucionarlo podemos incluir el **cod_m** en el **GROUP BY** , y
+> entonces haremos un grupo por cada comarca y población diferente, pero
+> seguramente esto no nos valdrá de nada en este ejemplo, porque cada grupo
+> sólo contendrá un elemento (un municipio), aunque en otros ejemplos sí
+> que puede tener sentido. O si no era eso lo que pretendíamos, sencillamente levantamos
+> el campo cod_m de la sentencia, y nos funcionará bien.
 
-Un altre exemple il·lustratiu (que ja el vam posar molt paregut en l'apartat de la clàusula GROUP BY) pot ser el següent: podríem intentar traure l'altura màxima de tots els
-pobles, i la població que té aquesta altura. Podríem estar temptats de fer-lo
-d'aquesta manera:
+Otro ejemplo ilustrativo (que ya lo pusimos muy parecido en el apartado de la cláusula GROUP BY) puede ser el siguiente: podríamos intentar sacar la altura máxima de todos los
+pueblos, y la población que tiene esa altura. Podríamos estar tentados de hacerlo
+de esta forma:
 
-    SELECT MAX(altura), nom  
-      FROM POBLACIONS;
+    SELECT MAX(altura), nombre  
+      FROM POBLACIONES;
 
-> Ens donarà el mateix error que abans, ja que com tenim una funció d'agregat
-> intentarà fer grups, i com no tenim clàusula GROUP BY tota la taula serà un
-> grup. I podrà calcular el màxim sense problemes, però no podrà traure una
-> cosa individual del grup, com és el nom. I en aquest cas no es pot
-> solucionar incloent el nom en el GROUP BY, perquè aleshores farem un grup
-> per cada població. De moment, abans de veure les subconsultes, només podem
-> resoldre aquest exemple ordenant per l'altura de forma descendent, i fer
-> **LIMIT 1**.
+> Nos dará el mismo error que antes, ya que cómo tenemos una función de agregado
+> intentará hacer grupos, y como no tenemos cláusula GROUP BY toda la mesa será un
+> grupo. Y podrá calcular el máximo sin problemas, pero no podrá sacar una
+> cosa individual del grupo, como es el nombre. Y en este caso no se puede
+> solucionar incluyendo el nombre en el GROUP BY, porque entonces haremos un grupo
+> por cada población. Por el momento, antes de ver las subconsultas, sólo podemos
+> resolver este ejemplo ordenando por la altura de forma descendente, y hacer
+> **LIMITE 1**.
 
-Podem observar que si tenim clàusula **GROUP BY** , a partir d'aquest moment
-tots els camps que posem han d'estar en el GROUP BY o en una funció d'agregat,
-tant en la condició del **HAVING** , com en les **columnes** com en el **ORDER
-BY**. En canvi no caldrà per a la clàusula **WHERE** , ja que aquesta es
-realitza abans que el **GROUP BY**
+Podemos observar que si tenemos cláusula **GROUP BY** , a partir de ese momento
+todos los campos que ponemos deben estar en el GROUP BY o en una función de agregado,
+tanto en la condición del **HAVING**, como en las **columnas** como en el **ORDER
+BY**. En cambio no será necesario para la cláusula **WHERE** , ya que ésta es
+realiza antes que el **GROUP BY**
 
 
 
-Llicenciat sota la  [Llicència Creative Commons Reconeixement NoComercial
+Licenciado bajo la [Licencia Creative Commons Reconocimiento NoComercial
 CompartirIgual 3.0](http://creativecommons.org/licenses/by-nc-sa/3.0/)
 

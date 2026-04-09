@@ -1,7 +1,9 @@
-# 4. La clàusula WHERE
+# 4. La cláusula WHERE
 
-Ens servirà per establir filtres. Només eixiran les files que satisfacen la
-condició del filtre.
+![alt text](image-1.png)
+
+Nos servirá para establecer filtros. Sólo saldrán las filas que satisfagan la
+condición del filtro.
 
 **<u>Sintaxi</u>**
 
@@ -10,149 +12,127 @@ condició del filtre.
       FROM <taules>  
       WHERE <condició>;
 
-La condició podrà ser una o més d'una, unides en aquest cas pels operadors
-lògics **AND** , **OR** i **NOT**. Cada condició serà una comparació entre
-expressions, on poden entrar columnes, constants, paràmetres, funcions vàlides
-de PostgreSQL, ... unides per operadors aritmètics. Els operadors que es poden
-utilitzar per a fer les comparacions són:
+La condición podrá ser una o más de una, unidas en este caso por los operadores
+lógicos **AND** , **OR** y **NOT**. Cada condición será una comparación entre
+expresiones, donde pueden entrar columnas, constantes, parámetros, funciones válidas
+de PostgreSQL, ... unidas por operadores aritméticos. Los operadores que se pueden
+utilizar para hacer las comparaciones son:
 
 ![](where.png)
 <!--
-  * **<  <=    =   >=   >  <>  (!=)** (distint)
+  * **<  <=    =   >= > <> (!=)** (distinto)
 
-  * **BETWEEN** _valor1_**AND** _valor2_ (els valors compresos entre valor1 i valor2)
+  * **BETWEEN** _valor1_**AND** _valor2_ (los valores comprendidos entre valor1 y valor2)
 
-  * **IN** (_llista_de_valors_) si el valor amb què es compara està en la llista de valors (entre parèntesis i valors separats per comes)
+  * **IN** (_lista_de_valors_) si el valor con el que se compara está en la lista de valores (entre paréntesis y valores separados por comas)
 
-  * També podem utilitzar **LIKE** en la condició. En els exemples 4, 7 i 8 es veu la seua utilització. L'operador LIKE s'utilitza junt amb els caràcters "**comodí** ": 
-  * **%** (equival a 0 o més caràcters, els que siga)
-  * **_** (1 i només un caràcter, això sí, el que siga).
+  * También podemos utilizar **LIKE** en la condición. En los ejemplos 4, 7 y 8 se ve su utilización. El operador LIKE se utiliza junto con los caracteres "**comodino**": 
+  * **%** (equivale a 0 o más caracteres, los que sea)
+  * **_** (1 y sólo un carácter, eso sí, lo que sea).
 
-  * **IS [NOT]** és un operador especial per a comparar amb el valor nul (**NULL**).
+  * **IS [NOT]** es un operador especial para comparar con el valor nulo (**NULL**).
 -->
-Recordem per una altra banda com s'escriuen les constants:
+Recordemos por otro lado cómo se escriben las constantes:
 
-  * les constants **numèriques** van tal qual, sense cometes ni res (amb el **punt** decimal, i no coma decimal)
+  * las constantes **numéricas** van tal cual, sin comillas ni nada (con el **punto** decimal, y no coma decimal)
 
-  * les constants **alfanumèriques** (de text) van entre cometes simples
+  * las constantes **alfanuméricas** (de texto) van entre comillas simples
 
-  * les constants de data van entre cometes simples, i PostgreSQL ja farà la conversió
+  * las constantes de fecha van entre comillas simples, y PostgreSQL ya hará la conversión
 
-  * per últim el valur nul s'escriu **NULL**
+  * por último el valor nulo se escribe **NULL**
 
-**<u>Exemples</u>**
+**<u>Ejemplos</u>**
 
-1) Traure les comarques de la província de Castelló
-
-    SELECT *  
-      FROM COMARQUES  
-      WHERE provincia = 'Castelló';
-
-2) Traure totes les poblacions que tenen de llengua el valencià.
+1) Sacar los estudios cuya sede está en **Japón**.
 
     SELECT *  
-      FROM POBLACIONS  
-      WHERE llengua = 'V';
+      FROM estudios  
+      WHERE sede LIKE '%Japón%';
 
-3) Traure les poblacions de la comarca de la Plana Alta de més de 300 metres d'altura
-
-    SELECT *  
-      FROM POBLACIONS  
-      WHERE nom_c = 'Plana Alta' AND altura > 300;
-
-4) Traure els instituts dels codis postals 12001, 12002 o 12003)
+2) Sacar todos los juegos que son del género **RPG** (id_genero = 2).
 
     SELECT *  
-      FROM INSTITUTS  
-      WHERE codpostal=12001 OR codpostal=12002 OR codpostal=12003;
+      FROM juegos  
+      WHERE id_genero = 2;
 
-
-    SELECT *  
-      FROM INSTITUTS  
-      WHERE codpostal >= 12001 AND codpostal <= 12003;
-
+3) Sacar los juegos del estudio **CD Projekt Red** con un precio superior a **40 €**.
 
     SELECT *  
-      FROM INSTITUTS  
-      WHERE codpostal BETWEEN 12001 AND 12003;
+      FROM juegos  
+      WHERE id_estudio = 3 AND precio > 40;
 
-
-    SELECT *  
-      FROM INSTITUTS  
-      WHERE codpostal IN (12001,12002,12003);
-
-5) Traure els pobles de la comarca **Plana d'Utiel** (Tenim la dificultat de la cometa simple, que ens serveix sempre per a delimitar una constant alfanumèrica) La manera de solucionar-ho és posar-la dues vegades
+4) Sacar los productos de las categorías **1, 2 o 3**.
 
     SELECT *  
-      FROM POBLACIONS  
-      WHERE nom_c = 'Plana d''Utiel';
-
-6) Traure nom i província dels pobles que comencen per **G** (el primer cognom)
-
-    SELECT nom, nom_c  
-      FROM POBLACIONS  
-      WHERE nom LIKE 'G%';
-
-7) Traure les poblacions que estan a 40º 1' (i els segons que siguen) de latitud nord
+      FROM productos  
+      WHERE id_categoria = 1 OR id_categoria = 2 OR id_categoria = 3;
 
     SELECT *  
-      FROM POBLACIONS  
-      WHERE latitud LIKE '40º01____N';
-
-Hem posat els 40º i 1 minut. A continuació hem posat exactament 4 caràcters,
-els que siga. Hem posat 4, que serien la cometa que assenyala els minuts, les
-2 xifres dels segons i la doble cometa que assenyala els segons. Observeu com
-la cometa simple és problemàtica, ja que és la que serveix per a delimitar la
-constant alfanumèrica. Si volem posar-la, en la constant l'haurem de doblar
-(l'haurem de posar 2 vegades seguides)
+      FROM productos  
+      WHERE id_categoria >= 1 AND id_categoria <= 3;
 
     SELECT *  
-      FROM POBLACIONS  
-      WHERE latitud LIKE '40º01''__"N';
-
-8) Traure totes les poblacions, el nom de les quals només consta d'una paraula (no tindran espais en blanc).
+      FROM productos  
+      WHERE id_categoria BETWEEN 1 AND 3;
 
     SELECT *  
-      FROM POBLACIONS  
-      WHERE nom NOT LIKE '% %';
+      FROM productos  
+      WHERE id_categoria IN (1, 2, 3);
 
-9) Traure els instituts que no tenen introduït el numero del carrer.
+5) Sacar los juegos del estudio **O'Reilly Games** (Ejemplo de cómo manejar la comilla simple doblándola).
 
     SELECT *  
-      FROM INSTITUTS  
-      WHERE numero IS NULL;
+      FROM estudios  
+      WHERE nombre = 'O''Reilly Games';
+
+6) Sacar el título de los juegos que comienzan por **E**.
+
+    SELECT titulo  
+      FROM juegos  
+      WHERE titulo LIKE 'E%';
+
+7) Sacar los juegos que tienen exactamente **5** caracteres en su título (usando `_`).
+
+    SELECT *  
+      FROM juegos  
+      WHERE titulo LIKE '_____';
+
+8) Sacar todos los juegos cuyo título solo consta de una palabra (no tienen espacios en blanco).
+
+    SELECT *  
+      FROM juegos  
+      WHERE titulo NOT LIKE '% %';
+
+9) Sacar a los empleados que no tienen asignado un jefe (id_jefe es nulo).
+
+    SELECT *  
+      FROM empleados  
+      WHERE id_jefe IS NULL;
 
 
-## :pencil2: Exercicis
+## :pencil2: Ejercicios
 
-**Ex_7** Traure els **clients** de la **ciutat** amb codi **12309**.
+En la BD **TechQuest**, conectando como usuario **tech_alu**:
 
-**Ex_8** Traure totes les **factures** del mes de **març** de **2015**.
+**Ex_7** Sacar los **clientes** de la **población** 'Madrid'.
 
-**Ex_9** Traure tots els articles de la **categoria** **BjcOlimpia** amb un
-**stock** entre**2** i **7** unitats.
+**Ex_8** Sacar todos los **pedidos** del mes de **marzo** de **2024**.
 
-**Ex_10** Traure tots els **clients** que **no** tenen introduït el **codi
-postal**.**  
-**
+**Ex_9** Sacar todos los **productos** de la **categoría** 'Gaming' con un **stock** entre **2** y **7** unidades.
 
-**Ex_11** Traure tots els **articles** amb el **stock** introduït però que
-**no** tenen introduït el **stock mínim**.
+**Ex_10** Sacar todos los **clientes** que **no** tienen introducida la **dirección**.
 
-**Ex_12** Traure tots els **clients** , el**primer cognom** dels quals és
-**VILLALONGA**.
+**Ex_11** Sacar todos los **productos** con el **stock** introducido pero que **no** tienen introducido el **stock mínimo**.
 
-**Ex_13.a** Modificar l'anterior per a traure tots els que són **VILLALONGA**
-de **primer** o de **segon** cognom.  
-**Ex_13.b** Modificar l'anterior per a traure tots els que **no** són
-**VILLALONGA** ni de primer ni de segon cognom.
+**Ex_12** Sacar todos los **clientes** cuyo **apellido** es **VILLALONGA**.
 
-**Ex_14** Traure els **articles** "**Pulsador** " (la descripció conté aquesta
-paraula), el **preu** dels quals oscila entre**2 i 4 €** i dels quals tenim un
-**stock** estrictament **major** que el **stock mínim**.**  
-**
+**Ex_13.a** Modificar lo anterior para sacar todos los que son **VILLALONGA** de **primer** o de **segundo** apellido.  
+**Ex_13.b** Modificar lo anterior para sacar todos los que **no** son **VILLALONGA** ni de primer ni de segundo apellido.
+
+**Ex_14** Sacar los **productos** de la marca "**Razer**" (o cuyo nombre contiene esta palabra), cuyo **precio** oscila entre **20 y 100 €** y de los que tenemos un **stock** estrictamente **mayor** que el **stock mínimo**.
 
 
-Llicenciat sota la  [Llicència Creative Commons Reconeixement NoComercial
+Licenciado bajo la [Licencia Creative Commons Reconocimiento NoComercial
 CompartirIgual 3.0](http://creativecommons.org/licenses/by-nc-sa/3.0/)
 

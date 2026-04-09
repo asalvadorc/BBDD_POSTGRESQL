@@ -1,62 +1,52 @@
-# 3. Àlies en les columnes
+# 3. Alias ​​en las columnas
 
-Tenim també la possibilitat de donar noms (_**àlies**_) a les columnes que
-apareixeran en la capçalera de les columnes corresponents en el resultat.
+Tenemos también la posibilidad de dar nombres (_**alias**_) a las columnas que
+aparecerán en la cabecera de las columnas correspondientes en el resultado.
 
 **<u>Sintaxi</u>**
 
-    SELECT columna1 [AS àlias1] [ , columna2 [AS àlias2] ]  
-      FROM TAULA;
+    SELECT columna1 [AS alias1] [ , columna2 [AS alias2] ]  
+      FROM MESA;
 
-Si volem que en la capçalera apareguen més d'una paraula, les haurem de tancar
-amb cometes dobles ( **"** ).
+Si queremos que en la cabecera aparezcan más de una palabra, deberemos cerrarlas
+con comillas dobles ( **"** ).
 
-Per exemple:
+Por ejemplo:
 
-    SELECT cod_m AS "Codi Municipi" , nom  
-      FROM POBLACIONS;
+    SELECT id_juego AS "Código Juego" , titulo  
+      FROM juegos;
    
-És especialment útil la utilització d'àlies quan posem una expressió, en
-compte d'una única columna. Si no posem àlies, apareix en la capçalera una
-cosa semblant a **?column?**.
+Es especialmente útil la utilización de sobrenombre cuando ponemos una expresión, en
+cuenta de una única columna. Si no ponemos sobrenombre, aparece en la cabecera una
+algo parecido a **?column?**.
 
-    SELECT nom_c || ' (' || provincia || ')' AS " Comarca (provincia)"  
-      FROM COMARQUES;
+    SELECT titulo || ' (' || fecha_lanzamiento || ')' AS "Juego (Lanzamiento)"  
+      FROM juegos;
 
-I a banda del seu valor estètic, més avant veurem sentències SQL en les quals
-obligatòriament haurem de posar àlies a les columnes que siguen el resultat
-d'una expressió.
+Y aparte de su valor estético, más adelante veremos sentencias SQL en las que
+obligatoriamente deberemos poner alias en las columnas que sean el resultado
+de una expresión.
 
-**<u>Exemples</u>**
+**<u>Ejemplos</u>**
 
-  1) Traure de les poblacions, el nom i el número d'habitants (camp poblacio), aquest últim el nom **habitants**.
+  1) Sacar de los juegos, el título y el precio, éste último con el nombre **Costo**.
 
-    SELECT nom, poblacio AS habitants  
-      FROM POBLACIONS;
+    SELECT titulo, precio AS Costo  
+      FROM juegos;
 
-  2) Traure tots els camps de la taula INSTITUTS de forma elegant.
+  2) Sacar todos los campos de la tabla **categorias** de forma elegante.
 
-    SELECT codi AS "Codi Institut", nom as Nom, adreca AS Adreça, numero AS
-    Número, codpostal AS "Codi Postal", cod_m AS "Codi Municipi"  
-      FROM INSTITUTS;
-
-Si volem que totes les capçaleres comencen per majúscula, haurem de posar tots
-els àlies entre cometes dobles, encara que només consten d'una paruala
-
-    SELECT codi AS "Codi Institut", nom as "Nom", adreca AS "Adreça", numero AS
-    "Número", codpostal AS "Codi Postal", cod_m AS "Codi Municipi"  
-      FROM INSTITUTS;
+    SELECT id_categoria AS "Código Categoría", nombre_categoria AS "Categoría", descripcion AS "Descripción"  
+      FROM categorias;
 
 
-## :pencil2: Exercicis
+## :pencil2: Ejercicios
 
-**Ex_5** Traure el num_f, data i cod_ven de les factures amb les següents
-capçaleres respectivament: **Número Factura** , **data** i **Codi Venedor**
+**Ex_5** Sacar el `id_pedido`, `fecha` e `id_empleado` de los **pedidos** con las siguientes cabeceras respectivamente: **Número Pedido**, **Fecha Realización** y **Código Vendedor**.
 
-
-**Ex_6** Donar àlias als camps que ho necessiten de la taula ARTICLE.
+**Ex_6** Dar alias a los campos que lo necesitan de la tabla **productos**.
 
 
-Llicenciat sota la  [Llicència Creative Commons Reconeixement NoComercial
+Licenciado bajo la [Licencia Creative Commons Reconocimiento NoComercial
 CompartirIgual 3.0](http://creativecommons.org/licenses/by-nc-sa/3.0/)
 

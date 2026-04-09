@@ -1,313 +1,313 @@
-# 3 Subconsultes
+# 3 Subconsultas
 
-Una subconsulta és una consulta dins d'una altra consulta. Aquesta subconsulta
-pot tenir tots els elements que hem vist fins ara.
+Una subconsulta es una consulta dentro de otra consulta. Esta subconsulta
+puede tener todos los elementos que hemos visto hasta ahora.
 
-El lloc on posar una subconsulta dins de la consulta principal pot ser en la
-clàusual WHERE o en la clàusula HAVING (formant part d'una condició) o en el
-FROM, i ha d'anar entre parèntesis. Fins i tot es pot posar en el mateix
-SELECT, és a dir, en les columnes que van després del SELECT.
+El lugar donde poner una subconsulta dentro de la consulta principal puede estar en la
+cláusual WHERE o en la cláusula HAVING (formando parte de una condición) o en el
+FROM, y debe ir entre paréntesis. Incluso se puede poner en lo mismo
+SELECT, es decir, en las columnas que van después del SELECT.
 
-  * Si va en el **FROM** , la subconsulta serà l'origen de les dades, i per tant s'executarà abans i proporcionarà les dades per a la consulta principal.
+  * Si va en el **FROM** , la subconsulta será el origen de los datos, y por tanto se ejecutará antes y proporcionará los datos para la consulta principal.
 
-  * Si va en el **WHERE** o el **HAVING** formarà part d'una condició, i així podrem comparar en la consulta principal un camp amb el que torne la subconsulta, per exemple. A banda de les comparacions normals que ja hem vist en el WHERE o el HAVING, podrem posar alguns operadors i predicats especials, com veurem més avant.
+  * Si va en el **WHERE** o el **HAVING** formará parte de una condición, y así podremos comparar en la consulta principal un campo con el que devuelva la subconsulta, por ejemplo. Aparte de las comparaciones normales que ya hemos visto en el WHERE o el HAVING, podremos poner algunos operadores y predicados especiales, como veremos más adelante.
 
-  * Si va en el mateix **SELECT** normalment serà per a traure un resultat global que no afecta a la resta de la consulta
+  * Si va en el mismo **SELECT** normalmente será para sacar un resultado global que no afecta al resto de la consulta
 
-## 3.1 Sintaxi en el FROM
+## 3.1 Sintaxis en el FROM
 
     SELECT ...  
-      FROM ( _Subconsulta_) AS _Nom_Subconsulta_
+      FROM ( _Subconsulta_) AS _Nombre_Subconsulta_
 
-Anem a posar un exemple per entendre-ho. Volem traure la mitjana de pobles per
-comarca. Ho podem fer de la següent manera: primer comptem quants pobles hi ha
-en cada comarca, i una vegada calculat això traem la mitjana.
+Vamos a poner un ejemplo para entenderlo. Queremos sacar la media de pueblos por
+comarca. Lo podemos hacer de la siguiente manera: primero contamos cuántos pueblos hay
+en cada comarca, y una vez calculado esto sacamos la media.
 
-    SELECT AVG(quants)  
-      FROM (SELECT COUNT(*) AS quants  
-            FROM POBLACIONS  
-            GROUP BY nom_c) AS S ;
+    SELECT AVG(cuántos)  
+      FROM (SELECT COUNT(*) AS cuántos  
+            FROM POBLACIONES  
+            GROUP BY nombre_c) AS S ;
 
-Observeu que és necessari posar-li un àlias a la columna de la subconsulta
-(quants) per a poder fer referència a ella en la consulta principal. I per una
-altra banda, en PostgreSQL les subconsultes que van al FROM han de tenir
-obligatòriament un àlies. Si no posàrem **AS S** (o qualsevol altre nom)
-ens donaria error.
+Observe que es necesario ponerle un alias en la columna de la subconsulta
+(cuántos) para poder hacer referencia a ella en la consulta principal. Y por una
+por otro lado, en PostgreSQL las subconsultas que van al FROM deben tener
+obligatoriamente un sobrenombre. Si no pusimos **AS S** (o cualquier otro nombre)
+nos daría error.
 
-Com veieu, ja té un nivell de complexitat més que acceptable. Sempre s'executa
-primer la subconsulta i amb les dades que proporciona, s'executa la consulta
-principal. Pel grau de complexitat és molt recomanable anar de dins cap a
-fora, és a dir, pensar bé la subconsulta, fins i tot executar-la per veure si
-trau el que necessitem (en l'exemple veure si trau el nombre de poblacions de
-cadascuna de les 34 comarques), i quan estiguem segurs que funciona bé crear
+Como ven, ya tiene un nivel de complejidad más que aceptable. Siempre se ejecuta
+primero la subconsulta y con los datos que proporciona, se ejecuta la consulta
+principal. Por el grado de complejidad es muy recomendable ir de dentro hacia
+fuera, es decir, pensar bien la subconsulta, incluso ejecutarla para ver si
+saca lo que necesitamos (en el ejemplo ver si saca el número de poblaciones de
+cada una de las 34 comarcas), y cuando estemos seguros de que funciona bien crear
 la consulta principal.
 
-## 3.2 Sintaxi en el WHERE o el HAVING
+## 3.2 Sintaxis en el WHERE o el HAVING
 
     SELECT ...  
-      FROM Taula  
-      WHERE camp operador ( _Subconsulta_)
+      FROM Tabla  
+      WHERE campo operador ( _Subconsulta_)
 
-Podem observar que el que farem serà comparar algun camp de la taula (o una
-expressió amb alguna funció) amb el resultat que ve de la subconsulta.
+Podemos observar que lo que haremos será comparar algún campo de la mesa (o una
+expresión con alguna función) con el resultado que viene de la subconsulta.
 
-Abans de veure què podem posar com a operador o com a camp o fins i tot veure
-uns predicats que podrem utilitzar, posarem un exemple, per clarificar les
-coses. Intentarem traure les comarques amb una altura superior a la mitjana.
-Calcular la mitjana de les altures és fàcil, i serà la subconsulta. El que
-farem serà comparar l'altura de cada població amb aquesta mitjana.
+Antes de ver qué podemos poner como operador o como campo o incluso ver
+unos predicados que podremos utilizar, pondremos un ejemplo, para clarificar las
+cosas. Intentaremos sacar las comarcas con una altura superior a la media.
+Calcular la media de las alturas es fácil, siendo la subconsulta. Lo que
+haremos será comparar la altura de cada población con esta media.
 
     SELECT *  
-      FROM POBLACIONS  
+      FROM POBLACIONES  
       WHERE altura > (SELECT AVG(altura)  
-                      FROM POBLACIONS)
+                      FROM POBLACIONES)
 
-Si executeu la consulta, veureu que l'altura de tots els pobles és superior a
-300,44 que és l'altura mitjana (aproximadament, perquè ho calcula amb molta
-precisió)
+Si ejecuta la consulta, verá que la altura de todos los pueblos es superior a
+300,44 que es la altura media (aproximadamente, porque lo calcula con mucha
+precisión)
 
-No hi ha cap problema en posar dues vegades la mateixa taula. Els camps es
-refereixen a la taula més propera. I funciona perfectament perquè la
-subconsulta ens torna un únic valor, la mitjana d'altures, i en la consulta
-principal es compara cada altura amb aquest valor. Posteriorment veurem com
-solucionar el problema de que la subconsulta torne més d'un valor.
+No hay ningún problema en poner dos veces la misma mesa. Los campos se
+refieren a la mesa más cercana. Y funciona perfectamente para que la
+subconsulta nos devuelve un único valor, la media de alturas, y en la consulta
+principal se compara cada altura con ese valor. Posteriormente veremos cómo
+solucionar el problema de que la subconsulta devuelva más de un valor.
 
-  **Operadors de comparació i predicats ANY, ALL, SOME**{.azul}
+  **Operadores de comparación y predicados AÑO, AJO, SOME**{.azul}
 
-  És com l'exemple de dalt, però amb qualsevol operador de comparació. Es compara el camp (o l'expressió) amb el resultat de la subconsulta. Si la subconsulta només torna un valor, no hi ha més problema, però si torna més d'un valor (més d'una fila) de moment seria incorrecte (no es pot comparar un camp amb uns quants valors). Posem un altre exemple per il·lustrar. Traure la població més alta es podria fer d'aquesta manera.
-
-    SELECT *  
-      FROM POBLACIONS  
-      WHERE altura = (SELECT MAX(altura)  
-                      FROM POBLACIONS)
-
-> No hi ha problema perquè la subconsulta torna un valor. Però anem a
-> complicar-la anem a veure les poblacions més altes de cada comarca. Podríem
-> intentar-lo d'aquesta manera:
+  Es como el ejemplo de arriba, pero con cualquier operador de comparación. Se compara el campo (o expresión) con el resultado de la subconsulta. Si la subconsulta sólo devuelve un valor, no hay más problema, pero si devuelve más de un valor (más de una fila) de momento sería incorrecto (no se puede comparar un campo con varios valores). Pongamos otro ejemplo que ilustrar. Sacar a la población más alta podría hacerse de esta manera.
 
     SELECT *  
-      FROM POBLACIONS  
+      FROM POBLACIONES  
       WHERE altura = (SELECT MAX(altura)  
-                      FROM POBLACIONS
-                      GROUP BY nom_c)
+                      FROM POBLACIONES)
 
-> Però ens donaria el següent error:
+> No hay problema porque la subconsulta devuelve un valor. Pero vamos a
+> complicarla vamos a ver a las poblaciones más altas de cada comarca. Podríamos
+> intentarlo de esta manera:
+
+    SELECT *  
+      FROM POBLACIONES  
+      WHERE altura = (SELECT MAX(altura)  
+                      FROM POBLACIONES
+                      GROUP BY nombre_c)
+
+> Pero nos daría el siguiente error:
 
 > ![](T6_II_3_1.png)
 
-> I és que la subconsulta torna 34 valors (un per cada comarca), i d'aquesta
-> manera no es pot comparar el valor de l'esquerra del igual amb els 34 valors
-> de la dreta. Per a solucionar el problema de quan torna més d'un valor podem
-> utilitzar els predicats **ALL**, **ANY**, **SOME**.
+> Y es que la subconsulta devuelve 34 valores (uno por cada comarca), y de ésta
+> modo no se puede comparar el valor de la izquierda del igual con los 34 valores
+> de la derecha. Para solucionar el problema de cuándo vuelve más de un valor podemos
+> utilizar los predicados **ALL**, **AÑO**, **SOME**.
 
->   * Si utilitzem **ALL**, el resultat serà cert si la comparació és certa amb
-> **TOTS** els valors que torna la subconsulta.
->   * Si utilitzem **ANY** o **SOME** (que són sinònims) el resultat serà cert
-> si la comparació és certa amb **ALGUN** valor de la subconsulta.
+> * Si utilizamos **ALL**, el resultado será cierto si la comparación es cierta con
+> **TODOS** los valores que devuelve la subconsulta.
+> * Si utilizamos **AÑO** o **SOME** (que son sinónimos) el resultado será cierto
+> si la comparación es cierta con **ALGUN** valor de la subconsulta.
 >
 
 >
-> En el nostre exemple, segurament ens convindria **ANY**.
+> En nuestro ejemplo, seguramente nos convendría **AÑO**.
 
     SELECT *  
-      FROM POBLACIONS  
-      WHERE altura = ANY (SELECT MAX(altura)  
-                          FROM POBLACIONS
-                          GROUP BY nom_c)
+      FROM POBLACIONES  
+      WHERE altura = AÑO (SELECT MAX(altura)  
+                          FROM POBLACIONES
+                          GROUP BY nombre_c)
 
-> Aquesta consulta no funcionarà bé del tot, ja que seleccionarà totes les
-> poblacions que coincideixen amb alguna de les altures màximes, siguen de la
-> seua comarca o no. Així per exemple, l'altura màxima de la comarca de la
-> **Plana Alta** és la **Serratella,** amb 781 metres, que efectivament
-> apareix al llistat. Però també apareix **Castelló** , que té una altura de
-> 30 metres. I apareix perquè l'altura màxima de la comarca **Ribera Baixa**
-> dóna la casualitat que és 30 metres (Almussafes). Ja dependrem a fer bé
-> aquesta consulta en els exemples posteriors, però per al fet de comparar amb
-> molts valors ens va bé.
+> Esta consulta no funcionará bien del todo, ya que seleccionará todas las
+> poblaciones que coinciden con alguna de las alturas máximas, sean de la
+> su comarca o no. Así por ejemplo, la altura máxima de la comarca de la
+> **Plana Alta** es la **Serratella,** con 781 metros, que efectivamente
+> aparece en el listado. Pero también aparece 'Castellón', que tiene una altura de
+> 30 metros. Y aparece porque la altura máxima de la comarca **Ribera Baixa**
+> da la casualidad de que es 30 metros (Almussafes). Ya dependeremos de hacer bien
+> esta consulta en los ejemplos posteriores, pero para comparar con
+> muchos valores nos va bien.
 
-**L'operador IN**{.azul}
+**El operador IN**{.azul}
 
-No serà problema que la subconsulta torne un valor o
-molts. La condició serà certa si el valor del camp (o de l'expressió) està
-entre la llista de valors que torna la subconsulta. També poden utilitzar
-NOT IN, i la condició serà certa quan el valor del camp no està entre la
-llista. Per exemple, una altra manera de traure les poblacions que no tenen
-institut, que la vista en les combinacions externes. En la subconsulta traem
-els codis de municipi de la taula INSTITUTS, i per tant són els pobles que
-tenen institut, i en la consulta principal volem els que no estan en aquesta
-llista
+No será problema que la subconsulta devuelva un valor o
+muchos. La condición será cierta si el valor del campo (o de la expresión) está
+entre la lista de valores que devuelve la subconsulta. También pueden utilizar
+NOT IN, y la condición será cierta cuando el valor del campo no está entre la
+lista. Por ejemplo, otra forma de sacar a las poblaciones que no tienen
+instituto, que la vista en las combinaciones externas. En la subconsulta sacamos
+los códigos de municipio de la mesa INSTITUTOS, y por tanto son los pueblos que
+tienen instituto, y en la consulta principal queremos los que no están en esta
+lista
 
     SELECT *  
-      FROM POBLACIONS  
+      FROM POBLACIONES  
       WHERE cod_m NOT IN (SELECT cod_m  
-                          FROM INSTITUTS)
+                          FROM INSTITUTOS)
 
-**L'operador EXISTS**{.azul}
+**El operador EXISTS**{.azul}
   
-És segurament el més incòmode. No es compara un camp (o expressió) amb la subconsulta, sinó únicament es posa **[NOT] EXISTS (_subconsulta_)** . La condició serà certa si la subconsulta torna **alguna fila** , i no serà certa si no torna cap fila. Intentem fer el mateix exemple d'abans, el dels pobles sense institut. Hem d'aconseguir que la subconsulta no tinga cap fila en el cas dels que no tenen institut. De paraula ho podem dir així: volem els pobles per als quals no existeix cap fila en INSTITUTS amb el mateix codi de municipi. Ara ja es pot intuir per on van els tirs:
+Es seguramente lo más incómodo. No se compara un campo (o expresión) con la subconsulta, sino únicamente se pone **[NOT] EXISTS (_subconsulta_)** . La condición será cierta si la subconsulta devuelve **alguna fila** , y no será cierta si no devuelve ninguna fila. Intentamos hacer el mismo ejemplo de antes, el de los pueblos sin instituto. Debemos conseguir que la subconsulta no tenga ninguna fila en el caso de quienes no tienen instituto. De palabra podemos decirlo así: queremos los pueblos para los que no existe ninguna fila en INSTITUTOS con el mismo código de municipio. Ahora ya se puede intuir por dónde van los tiros:
 
     SELECT *  
-      FROM POBLACIONS  
+      FROM POBLACIONES  
       WHERE NOT EXISTS (SELECT *  
-                        FROM INSTITUTS  
-                        WHERE cod_m= POBLACIONS.cod_m)
+                        FROM INSTITUTOS  
+                        WHERE cod_m= POBLACIONES.cod_m)
 
-> mireu com si en la subconsulta posem un camp (en l'exemple cod_m), si el
-> camp és de la taula (o taules) de la subconsulta, es referirà a ell, per
-> això si volem fer referència a un camp de la taula o taules de la consulta
-> principal hem de posar el nom de la taula davant.
+> mira como si en la subconsulta ponemos un campo (en el ejemplo cod_m), si el
+> campo es de la tabla (o tablas) de la subconsulta, se referirá a él, por
+> esto si queremos hacer referencia a un campo de la tabla o tablas de la consulta
+> principal debemos poner el nombre de la mesa delante.
 
-## 3.3 Sintaxi en el SELECT
+## 3.3 Sintaxis en el SELECT
 
     SELECT ... ( _Subconsulta_)  
-    FROM Taula
+    FROM Tabla
 
-Anem a posar també un exemple per entendre-ho. Anem a calcular la diferència
-de l'altura de cada població amb la mitjana. La mitjana és un resultat global
-indepentent de la resta de la consulta, que en aquest cas és molt senzilla
-perquè hem d'agafar informació simple de les poblacions. La subconsulta també
-és molt senzilla, perquè només hem de calcular la mitjana d'altures).
+Vamos a poner también un ejemplo para entenderlo. Vamos a calcular la diferencia
+de la altura de cada población con la media. La media es un resultado global
+independiente del resto de la consulta, que en este caso es muy sencilla
+porque debemos tomar información simple de las poblaciones. La subconsulta también
+es muy sencilla, porque sólo debemos calcular la media de alturas).
 
-    SELECT nom, altura, altura - (SELECT AVG(altura) FROM POBLACIONS)  
-      FROM POBLACIONS
+    SELECT nombre, altura, altura - (SELECT AVG(altura) FROM POBLACIONS)  
+      FROM POBLACIONES
 
-**<u>Exemples</u>**
+**<u>Ejemplos</u>**
 
-  1) **Traure l'altura mitjana de comarca més gran i la més menuda.**
+  1) **Sacar la altura media de comarca más grande y la más pequeña.**
 
-Ens fa falta prèviament l'altura mitjana de cada comarca, i això serà la
-subconsulta. No oblidem posar un àlias al camp de la subconsulta, per poder
-fer referència en la consulta principal. I no oblidem tampoc que les
-subconsultes en el FROM han de tenir àlies.
+Nos hace falta previamente la altura media de cada comarca, y esto será la
+subconsulta. No olvidemos poner un alias en el campo de la subconsulta, para poder
+hacer referencia en la consulta principal. Y no olvidemos tampoco que las
+subconsultas en el FROM deben tener alias.
 
-    SELECT MAX(mitjana),MIN(mitjana)  
-    FROM (SELECT AVG(altura) AS mitjana  
-          FROM POBLACIONS  
-          GROUP BY nom_c) AS S;
+    SELECT MAX(media),MIN(media)  
+    FROM (SELECT AVG(altura) AS media  
+          FROM POBLACIONES  
+          GROUP BY nombre_c) AS S;
 
-  2) **Traure tota la informació de les poblacions que tenen més de 5 instituts.**
+  2) **Sacar toda la información de las poblaciones que tienen más de 5 institutos.**
 
-Podem pensar en una subconsulta on estiguen els codis de municipi de les
-poblacions que tenen més de 5 instituts (es consulta en la teula INSTITUTS
-agrupant per codi_m i comptant el número de files per a que siga major que 5).
+Podemos pensar en una subconsulta donde estén los códigos de municipio de
+poblaciones que tienen más de 5 institutos (se consulta en la teja INSTITUTOS
+agrupando por código_m y contando el número de filas para que sea mayor que 5).
 
     SELECT *  
-      FROM POBLACIONS  
+      FROM POBLACIONES  
       WHERE cod_m IN (SELECT cod_m  
-                      FROM INSTITUTS  
+                      FROM INSTITUTOS  
                       GROUP BY cod_m  
                       HAVING count(*) > 5)
 
-  3) **Traure tota la informació de la població més alta i de la més baixa.**
+  3) **Sacar toda la información de la población más alta y de la más baja.**
 
-Ens plantegem 2 subconsultes, la que trau l'altura màxima i la que trau
-l'altura mínima (en una única sobconsulta ens tornaria valors en 2 columnes, i
-estaria més complicat). Senzillament serà traure tota la informació de les
-poblacions que tenen una altura igual al que torna una subconsulta o al que
-torna l'altra.
-
-    SELECT *  
-      FROM POBLACIONS  
-      WHERE altura = (SELECT MAX(altura)  
-                      FROM POBLACIONS)  
-            OR altura = (SELECT MIN(altura)  
-                        FROM POBLACIONS);
-
-  4) **Traure la població més alta de cada comarca.**
-
-La dificultat està en que ha de ser la màxima de les altures de la seua
-comarca. Per tant, en la subconsulta hem de fer referència a la comarca en
-qüestió. Com sempre estem tractant la taula POBLACIONS, tant en la consulta
-com en la subconsulta, haurem de posar un nom a la de la consulta principal,
-per poder fer referència a ella des de la subconsulta.
+Nos planteamos 2 subconsultas, la que saca la altura máxima y la que saca
+la altura mínima (en una única subconsulta nos devolvería valores en 2 columnas, y
+estaría más complicado). Sencillamente será sacar toda la información de las
+poblaciones que tienen una altura igual a lo que devuelve una subconsulta oa lo que
+devuelve la otra.
 
     SELECT *  
-      FROM POBLACIONS T1  
+      FROM POBLACIONES  
       WHERE altura = (SELECT MAX(altura)  
-                      FROM POBLACIONS  
-                      WHERE nom_c= T1.nom_c);
+                      FROM POBLACIONES)  
+            ORO altura = (SELECT MIN(altura)  
+                        FROM POBLACIONES);
 
-En el resultat obtenim 35 poblacions, quan només hi ha 34 comarques. La raó és
-que a l'Alcoià, hi ha 2 poblacions amb l'altura màxima (816 metres), per tant
-el resultat és correcte
+  4) **Sacar a la población más alta de cada comarca.**
 
-  5) **Obtenir el nom de la comarca i la província de les comarques que tenen una altura mitjana més alta que la mitjana de totes les poblacions.**
+La dificultad está en que debe ser la máxima de las alturas de su
+comarca. Por tanto, en la subconsulta debemos hacer referencia a la comarca en
+cuestión. Como siempre estamos tratando la mesa POBLACIONES, tanto en la consulta
+como en la subconsulta, deberemos poner un nombre a la de la consulta principal,
+para poder hacer referencia a ella desde la subconsulta.
 
-La subconsulta serà prou senzilla: la mitjana d'altures de les poblacions. En
-la consulta principal haurem d'agrupar per cada comarca i calcular la mitjana
-d'altures de les poblacions, i comparar-la amb la mitjana que ens ve de la
-subconsulta. Com que demana també la província, ens fa falta també la taula
-COMARQUES, i per tant l'haurem de reunir amb POBLACIONS; en aquesta ocasió ho
-hem fet posant la condicó en el WHERE.
+    SELECT *  
+      FROM POBLACIONES T1  
+      WHERE altura = (SELECT MAX(altura)  
+                      FROM POBLACIONES  
+                      WHERE nombre_c= T1.nombre_c);
 
-    SELECT COMARQUES.nom_c, provincia, AVG(altura)  
-      FROM COMARQUES , POBLACIONS  
-      WHERE COMARQUES.nom_c=POBLACIONS.nom_c  
-      GROUP BY COMARQUES.nom_c, provincia  
+En el resultado obtenemos 35 poblaciones, cuando sólo existen 34 comarcas. La razón es
+que en L'Alcoià, hay 2 poblaciones con la altura máxima (816 metros), por tanto
+el resultado es correcto
+
+  5) **Obtener el nombre de la comarca y la provincia de las comarcas que tienen una altura media más alta que la media de todas las poblaciones.**
+
+La subconsulta será bastante sencilla: la media de alturas de las poblaciones. En
+la consulta principal deberemos agrupar por cada comarca y calcular la media
+de alturas de las poblaciones, y compararla con la media que nos viene de la
+subconsulta. Como pide también la provincia, nos hace falta también la mesa
+COMARCAS, y por tanto tendremos que reunirlo con POBLACIONES; en esta ocasión lo
+hemos hecho poniendo la condición en el WHERE.
+
+    SELECT COMARCAS.nombre_c, provincia, AVG(altura)  
+      FROM COMARCAS, POBLACIONES  
+      WHERE COMARCAS.nombre_c=POBLACIONES.nombre_c  
+      GROUP BY COMARQUES.nombre_c, provincia  
       HAVING AVG(altura) > (SELECT AVG(altura)  
-                            FROM POBLACIONS)
+                            FROM POBLACIONES)
 
-  6) **Traure el nom de la comarca amb la província, número de pobles de cadascuna i el percentatge que suposa respecta al total de pobles.**
+  6) **Sacar el nombre de la comarca con la provincia, número de pueblos de cada una y el porcentaje que supone respecto al total de pueblos.**
 
-Tota la informació la podem traure d'una reunió entre les taules COMARQUES i
-POBLACIONS (per a comptar quants pobles hi ha en cada comarca), però per a
-poder calcular el percentatge necessitem el número total de poblacions, que el
-podem calcular amb una senzilla subconsulta. El lloc més còmode és en el
-SELECT. La reunió l'hem feta en aquesta ocasió amb el USING.
+Toda la información la podemos sacar de una reunión entre las tablas COMARCAS y
+POBLACIONES (para contar cuántos pueblos hay en cada comarca), pero para
+poder calcular el porcentaje necesitamos el número total de poblaciones, que el
+podemos calcularlo con una sencilla subconsulta. El sitio más cómodo está en el
+SELECT. La reunión la hemos realizado en esta ocasión con el USING.
 
-    SELECT COMARQUES.nom_c, provincia, COUNT(cod_m), COUNT (cod_m)*100.0/(SELECT
-    COUNT(*) FROM POBLACIONS)  
-      FROM COMARQUES INNER JOIN POBLACIONS USING(nom_c)  
+    SELECT COMARCAS.nombre_c, provincia, COUNT(cod_m), COUNT (cod_m)*100.0/(SELECT
+    COUNTO(*) FROM POBLACIONES)  
+      FROM COMARCAS INNER JOIN POBLACIONES USING(nombre_c)  
       GROUP BY 1,2;
 
-## :pencil2: Exercicis
+## :pencil2: Ejercicios
 
-**Ex_64** Traure el número màxim de factures fetes a un client
+**Ex_64** Sacar el número máximo de facturas hechas a un cliente
 
-**Ex_65** Traure el l'import que suposa la factura més cara i l'import que
-suposa la més barata (sense considerar ni descomptes ni IVA)
+**Ex_65** Sacar el importe que supone la factura más cara y el importe que
+supone la más barata (sin considerar ni descuentos ni IVA)
 
-**Ex_66** Traure el número de factures més alt que s'ha venut per venedor en
-cada trimestre (no traurem qui és el venedor, que seria encara més complicat).
-Per a poder agrupar per trimestre, ens farà falta la funció
-**TO_CHAR****(data,'Q')** , que trau el número de trimestre. El pas previ és
-calcular el número de factures de cada venedor i en cada trimestre. Després,
-amb la informació anterior, voldrem calcular el màxim de cada trimestre.
+**Ex_66** Sacar el número de facturas más alto que se ha vendido por vendedor en
+cada trimestre (no quitaremos quién es el vendedor, que sería aún más complicado).
+Para poder agrupar por trimestre, nos hará falta la función
+**TO_CHAR****(fecha,'Q')** , que saca el número de trimestre. El paso previo es
+calcular el número de facturas de cada vendedor y en cada trimestre. Después,
+con la información anterior, querremos calcular el máximo de cada trimestre.
 
-**Ex_67** Traure els articles més cars que la mitjana. Tragueu-los ordenats per
-la categoria, i després per codi d'article.
+**Ex_67** Sacar los artículos más caros que la media. Sáquelos ordenados por
+la categoría, y después por código de artículo.
 
-**Ex_68** Modificar l'anterior per a traure els articles més cars que la
-mitjana de la seua categoria. Tragueu-los ordenats per la categoria
+**Ex_68** Modificar lo anterior para sacar los artículos más caros que la
+promedio de su categoría. Sáquelos ordenados por la categoría
 
-**Ex_69** Traure els pobles on tenim clients però no tenim venedors. Ha de ser
-per mig de subconsultes (en plural). Ordeneu per codi del poble.
+**Ex_69** Sacar los pueblos donde tenemos clientes pero no tenemos vendedores. Debe ser
+mediante subconsultas (en plural). Ordene por código del pueblo.
 
-**Ex_70** Traure els pobles on tenim més venedors que clients. Traure el codi
-del poble, el nom i el número de venedors. Ordena per nom del poble.
+**Ex_70** Sacar los pueblos donde tenemos más vendedores que clientes. Sacar el código
+del pueblo, nombre y número de vendedores. Ordena por nombre del pueblo.
 
-**Ex_71** Traure l'import de la factura més cara de cada trimestre. La
-informació prèvia és la factura amb la data i l'import. A partir d'ahí haurem
-de calcular el màxim de l'import per a cada trimestre (no caldrà traure quina
-factura és).
+**Ex_71** Sacar el importe de la factura más cara de cada trimestre. La
+información previa es la factura con la fecha y el importe. A partir de ahí tendremos
+de calcular el máximo del importe para cada trimestre (no será necesario sacar cuál
+factura es).
 
-**Ex_72** Traure el nom del venedor, el número de factures que ha venut i el
-percentatge que suposa sobre el total. Podria ser que en el moment de calcular
-el percentatge, el número resultant s'haja de convertir a numèric per a que
-dóne bé el resultat, ja que en fer una operació amb enters, el resultat serà
-enter. Aleshores hauríem d'obligar a que el número tinga decimals
-(**::NUMERIC**). I la funció d'arrodonir és **ROUND**. Ordeneu pel nom.
+**Ex_72** Sacar el nombre del vendedor, el número de facturas que ha vendido y el
+porcentaje que supone sobre el total. Puede que en el momento de calcular
+el porcentaje, el número resultante deba convertirse a numérico para que
+da bien el resultado, ya que al realizar una operación con enteros, el resultado será
+entero. Entonces deberíamos obligar a que el número tenga decimales
+(**::NUMERIC**). Y la función de redondear es **ROUND**. Ordene por el nombre.
 
-**Ex_73** Traure tota la informació (amb l'import) de la factura més cara.
-Ha de ser per mig de subconsultes. Mireu que segurament hi haurà 2
-subconsultes. En la més interna calculem l'import de les factures. En l'altra
-calculem el màxim. I en la consulta principal, busquem la factura que
-coincideix amb aquest màxim.
+**Ex_73** Sacar toda la información (con el importe) de la factura más cara.
+Debe ser por medio de subconsultas. Vea que seguramente habrá 2
+subconsultas. En la más interna calculamos el importe de las facturas. En la otra
+calculamos el máximo. Y en la consulta principal, buscamos la factura que
+coincide con ese máximo.
 
-**Ex_74** (voluntari) Obtenir el venedor que ha venut més unitats de cada
-categoria, sense considerar en la categoria el valor nul. Aquesta consulta la
-podríem considerar ja com molt avançada.
+**Ex_74** (voluntario) Obtener el vendedor que ha vendido más unidades de cada
+categoría, sin considerar en la categoría el valor nulo. Esta consulta la
+podríamos considerar ya como muy avanzada.
 
-Llicenciat sota la  [Llicència Creative Commons Reconeixement NoComercial
-SenseObraDerivada 2.5](http://creativecommons.org/licenses/by-nc-nd/2.5/)
+Licenciado bajo la [Licencia Creative Commons Reconocimiento NoComercial
+SinObraDerivada 2.5](http://creativecommons.org/licenses/by-nc-nd/2.5/)
 
