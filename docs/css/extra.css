@@ -246,7 +246,8 @@ p {
    ILUMINACIÓN DE MENÚS SUPERIORES (TABS)
    ========================================================= */
 
-.md-tabs__link {
+.md-tabs__link,
+.md-tabs__link span {
     transition: all 0.3s ease !important;
     border-radius: 4px;
     margin: 0 4px;
@@ -265,11 +266,12 @@ p {
 }
 
 /* Página activa (iluminación permanente idéntica al hover) */
-.md-tabs__item--active .md-tabs__link {
+.md-tabs__item--active .md-tabs__link,
+.md-tabs__item--active .md-tabs__link span {
     background-color: rgba(255, 255, 255, 0.4) !important;
     opacity: 1 !important;
     color: #000000 !important;
-    font-weight: 700;
+    font-weight: 700 !important;
     box-shadow: 0 0 20px rgba(255, 255, 255, 0.7) !important;
     transform: translateY(-1px);
 }
