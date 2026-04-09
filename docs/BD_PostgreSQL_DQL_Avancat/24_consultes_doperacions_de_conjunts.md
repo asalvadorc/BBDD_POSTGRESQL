@@ -109,7 +109,7 @@ En principio no saldrán filas repetidas, a menos que ponemos **ALL**
       FROM COMARCAS INNER JOIN POBLACIONES USING (nombre_c)  
     ORDER BY nombre_c;
 
-## :pencil2: Ejercicios
+## :pencil2: Ejercicios {: .ejercicios-header}
 
 **Ex_75** Sacar el nombre de todos los clientes y vendedores implicados en alguna
 venta del primer trimestre de 2015

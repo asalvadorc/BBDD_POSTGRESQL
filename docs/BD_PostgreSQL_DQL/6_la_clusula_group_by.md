@@ -81,7 +81,7 @@ Nos daría un error de sintaxis porque `titulo` no está en la cláusula GROUP B
       GROUP BY marca, id_categoria;
 
 
-## :pencil2: Ejercicios
+## :pencil2: Ejercicios {: .ejercicios-header}
 
 En la BD **TechQuest**, conectando como usuario **tech_alu**:
 

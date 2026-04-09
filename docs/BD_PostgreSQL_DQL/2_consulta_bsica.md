@@ -1,4 +1,4 @@
-# **2. Consulta básica**
+# 2. Consulta básica
 
 
 Lo mínimo que debe indicarse en una instrucción SELECT es las columnas que queremos
@@ -81,7 +81,7 @@ coma sirve para separar los campos de la consulta SQL.
     SELECT titulo, SUBSTR(titulo, 1, STRPOS(titulo, ' ') - 1) 
       FROM juegos;
 
-## **:pencil2: Ejercicios**
+## :pencil2: Ejercicios {: .ejercicios-header}
 
 En la BD **TechQuest**, conectando como usuario **tech_alu**:
 

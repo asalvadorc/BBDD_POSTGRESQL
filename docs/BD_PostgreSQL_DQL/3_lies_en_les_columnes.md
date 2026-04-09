@@ -40,7 +40,7 @@ de una expresión.
       FROM categorias;
 
 
-## :pencil2: Ejercicios
+## :pencil2: Ejercicios {: .ejercicios-header}
 
 **Ex_5** Sacar el `id_pedido`, `fecha` e `id_empleado` de los **pedidos** con las siguientes cabeceras respectivamente: **Número Pedido**, **Fecha Realización** y **Código Vendedor**.
 

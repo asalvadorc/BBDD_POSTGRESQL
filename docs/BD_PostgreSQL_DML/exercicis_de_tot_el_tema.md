@@ -1,4 +1,4 @@
-# **2. Consultas de actualización (DML)**
+# 2. Consultas de actualización (DML)
 
 Como ya se ha comentado en la introducción, y por no interferir entre nosotros, cada uno se conectará a su Base de Datos **factura_local**.
 

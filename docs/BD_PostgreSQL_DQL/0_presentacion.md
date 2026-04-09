@@ -1,4 +1,4 @@
-# **Presentación Tema 4 (Parte 1)**
+# Presentación Tema 4 (Parte 1)
 
 A continuación, tienes incrustada la presentación inicial de este bloque.
 

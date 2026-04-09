@@ -91,7 +91,7 @@ Si quisiéramos sacar todos los juegos excepto los 3 más caros, podemos poner O
       LIMIT 10 OFFSET 3;
 
 
-## :pencil2: Ejercicios
+## :pencil2: Ejercicios {: .ejercicios-header}
 
 En la BD **TechQuest**, conectando como usuario **tech_alu**:
 

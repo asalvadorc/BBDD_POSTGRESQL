@@ -111,7 +111,7 @@ Recordemos por otro lado cómo se escriben las constantes:
       WHERE id_jefe IS NULL;
 
 
-## :pencil2: Ejercicios
+## :pencil2: Ejercicios {: .ejercicios-header}
 
 En la BD **TechQuest**, conectando como usuario **tech_alu**:
 

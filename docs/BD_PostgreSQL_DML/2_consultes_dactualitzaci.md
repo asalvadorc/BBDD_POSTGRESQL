@@ -3,7 +3,7 @@ title: "Bases de Datos"
 ---
 
 
-## **2.1 INSERT**
+## 2.1 INSERT
 
 Servirá para introducir nuevas filas en una determinada mesa. Hay dos
 variantes de esta sentencia. La primera servirá para introducir nuevas filas
@@ -157,7 +157,7 @@ Consulte la sentencia SELECT, el apartado "Especificación de una B.D. externa".
                         GRUPO POR dni  
                         TENIENDO CUENTA(*) > 1);
 
-### **:pencil2: Ejercicios**
+### :pencil2: Ejercicios {: .ejercicios-header}
 
 Como ya se ha comentado en la introducción, y por no interferir entre nosotros, cada uno se conectará a su Base de Datos **factura_local**.
 
@@ -217,7 +217,7 @@ N8008BA | Base Tt Lateral Niessen Trazo Bla | 4.38 | 6 | 6 | Niessen
 6559 | 1 | IM2P10L | 3 | 14.84 |   
 6559 | 2 | N8008BA | 6 | 4.38 | 20  
 
-## **2.2 DELETE**
+## 2.2 DELETE
 
 Esta sentencia servirá para **borrar filas enteras** de una determinada
 mesa.
@@ -264,7 +264,7 @@ seguridad de las tablas o de toda la Base de Datos.
                       GROUP BY dny  
                       HAVING SUM(horas)<20);
 
-### **:pencil2: Ejercicios**
+### :pencil2: Ejercicios {: .ejercicios-header}
 
 En **factura_local**:
 
@@ -273,7 +273,7 @@ sus líneas de factura
 
 **Ex_7** - Borrar los artículos de los que **no** tenemos**stock mínimo**.
 
-## **2.3 UPDATE**
+## 2.3 UPDATE
 
 
 
@@ -321,7 +321,7 @@ de toda la Base de Datos.
       SIETE departamento=8, población='Ares'
       WHERE población='Castellón';
 
-### **:pencil2: Ejercicios**
+### :pencil2: Ejercicios {: .ejercicios-header}
 
 En **factura_local**:
 

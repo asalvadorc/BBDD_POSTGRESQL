@@ -21,7 +21,7 @@ Trabajaremos con dos Bases de Datos **nuevas** en local utilizando contenedores:
 Vamos a realizar la instalación: 
 
 
-## **1.1 Instalación de Docker**
+## 1.1 Instalación de Docker
 
 **🔹Windows**{.azul}
 
@@ -43,7 +43,7 @@ Vamos a realizar la instalación:
 
     sudo apt install docker-compose
 
-## **1.2 PostgreSQL con Docker Compose**
+## 1.2 PostgreSQL con Docker Compose
 
 1) En una carpeta, por ejemplo, **docker/postgres_local**{.verde}, **crea el archivo** vacío **docker-compose.yml**{.verde}.
   El archivo **docker-compose.yml**{.verde} define el contenedor de PostgreSQL, su configuración y los puertos para conectarse desde DBeaver. 
@@ -84,7 +84,7 @@ Copia el siguiente contenido dentro del archivo **docker-compose.yml**{.verde}
 !!!Note "Consejo"
      Puedes personalizar POSTGRES_USER, POSTGRES_PASSWORD y POSTGRES_DB según las necesidades de tu proyecto.
 
-## **1.3 Crear una conexión desde DBeaver al servidor PostgreSQL creado con Docker**
+## 1.3 Crear una conexión desde DBeaver al servidor PostgreSQL creado con Docker
 Una vez que el contenedor PostgreSQL está en funcionamiento, puedes conectarte desde DBeaver siguiendo estos pasos:
 
 1) Abre DBeaver y conéctate al servidor PostgreSQL utilizando las credenciales definidas en el **docker-compose.yml**{.verde}.   
@@ -106,7 +106,7 @@ Una vez que el contenedor PostgreSQL está en funcionamiento, puedes conectarte 
 !!!Note "Nota"
     Si tienes problemas de conexión, comprueba que el contenedor está en funcionamiento con **docker ps** y que el puerto **5432** no está ocupado por otro servicio.
 
-## **1.4 Crear bases de datos dentro de la conexión postgres_local**
+## 1.4 Crear bases de datos dentro de la conexión postgres_local
 
 Creamos las bases de datos **pruebas** y **factura_local** dentro de la conexión **postgres_local** porque esta conexión corresponde al servidor PostgreSQL que tenemos instalado en local con **Docker**.
 

@@ -260,7 +260,7 @@ SELECT. La reunión la hemos realizado en esta ocasión con el USING.
       FROM COMARCAS INNER JOIN POBLACIONES USING(nombre_c)  
       GROUP BY 1,2;
 
-## :pencil2: Ejercicios
+## :pencil2: Ejercicios {: .ejercicios-header}
 
 **Ex_64** Sacar el número máximo de facturas hechas a un cliente
 

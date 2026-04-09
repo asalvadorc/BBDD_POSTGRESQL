@@ -1,4 +1,4 @@
-# **1. Introducción**
+# 1. Introducción
 
 Servirá para introducir nuevas filas en una determinada mesa. Hay dos
 variantes de esta sentencia. La primera servirá para introducir nuevas filas

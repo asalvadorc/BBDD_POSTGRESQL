@@ -1,4 +1,4 @@
-# **3. Esquemas Steamify y TechQuest**
+# 3. Esquemas Steamify y TechQuest
 
 Para que el aprendizaje sea más ameno y cercano al desarrollo de aplicaciones web actual, utilizaremos dos entornos de datos modernos: **Steamify** para los ejemplos de las explicaciones y **TechQuest** para los ejercicios prácticos.
 

@@ -1,4 +1,4 @@
-# **1. La consulta SELECT**
+# 1. La consulta SELECT
 
 ![Resumen visual de las partes de la instrucción SELECT](sql_select_summary.png)
 

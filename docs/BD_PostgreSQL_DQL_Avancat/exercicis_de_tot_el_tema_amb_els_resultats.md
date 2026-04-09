@@ -1,4 +1,4 @@
-# Ejercicios con los resultados (parte II)
+# Ejercicios con los resultados (parte II) {: .ejercicios-header}
 
 **Ex_51** Sacar el nombre de los clientes con el número de factura y la fecha
 (individuales, sin agrupar nada) que tiene cada cliente. Saca el resultado ordenado

@@ -1,7 +1,7 @@
 
-# **Ejemplos de BDs**
+# Ejemplos de BDs
 
-## **BD Juego**
+## BD Juego
 
 Una empresa desarrolla un videojuego que puede estar disponible en varias plataformas (PC, consola, etc.).
 Los usuarios pueden jugar al videojuego y realizar valoraciones sobre él.
@@ -98,7 +98,7 @@ Además, cada videojuego pertenece a uno o varios géneros (acción, RPG, aventu
 
 
 
-## **BD Netflix**
+## BD Netflix
 
 📄 ENUNCIADO — Base de Datos NETFLIX
 
@@ -185,7 +185,7 @@ Cada vez que un usuario visualiza un contenido, se registra la visualización in
 
 
 
-## **BD POKEMON**
+## BD POKEMON
 
 📄 ENUNCIADO — Base de Datos POKÉMON
 

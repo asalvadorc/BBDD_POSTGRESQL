@@ -68,7 +68,7 @@ p {
 [data-md-color-scheme="default"] .md-typeset h5, 
 [data-md-color-scheme="default"] .md-typeset h6 {
     color: #000000 !important;
-    font-weight: bold !important;
+    font-weight: 400 !important;
 }
 
 /* Forzar negrita para todos los títulos en cualquier modo */
@@ -78,7 +78,7 @@ p {
 .md-typeset h4, 
 .md-typeset h5, 
 .md-typeset h6 {
-    font-weight: bold !important;
+    font-weight: 400 !important;
 }
 
 /* Tarjetas y Admonitions (Avisos) Modernos pero visualmente tranquilos */
@@ -290,3 +290,22 @@ p {
     transform: scale(1.05);
 }
 
+
+/* =========================================================
+   ESTILO ESPECIAL PARA CABECERAS DE EJERCICIOS
+   ========================================================= */
+.md-typeset h1.ejercicios-header,
+.md-typeset h2.ejercicios-header,
+.md-typeset h3.ejercicios-header,
+.md-typeset h4.ejercicios-header,
+.md-typeset h5.ejercicios-header,
+.md-typeset h6.ejercicios-header {
+    color: #D88344 !important;
+    font-size: 1.8em !important;
+    border: 2px solid #D88344;
+    padding: 8px 15px;
+    border-radius: 12px;
+    display: inline-block;
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+}

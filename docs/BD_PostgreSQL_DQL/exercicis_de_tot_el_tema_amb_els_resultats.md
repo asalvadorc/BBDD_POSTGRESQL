@@ -1,4 +1,4 @@
-# Ejercicios con los resultados (parte I)
+# Ejercicios con los resultados (parte I) {: .ejercicios-header}
 
 En la BD **factura**, conectando como usuario **factura_alu**:
 

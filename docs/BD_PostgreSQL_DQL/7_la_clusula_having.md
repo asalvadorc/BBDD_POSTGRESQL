@@ -55,7 +55,7 @@ Por ejemplo, esta sentencia servirá para sacar los estudios que tienen más de 
       HAVING AVG(precio) > 50;
 
 
-## :pencil2: Ejercicios
+## :pencil2: Ejercicios {: .ejercicios-header}
 
 **Ex_28** Calcular la media de cantidades pedidas de aquellos **productos** que se han pedido más de dos veces (contando cuántas veces aparece en las líneas de pedido).
 
