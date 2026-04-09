@@ -102,7 +102,7 @@ ejecutar la sentencia.
             población VARCHAR(50) DEFAULT 'Castellón' ,  
             fecha_incorporacion DATE DEFAULT CURRENT_DATE )
 
-### :pencil2:Ejercicios {: .ejercicios-header}
+### **:pencil2:Ejercicios {: .ejercicios-header}**
 
 A lo largo de esta tercera parte, en el conjunto de ejercicios de DDL, crearemos
 toda la estructura de la Base de Datos **FACTURA** , pero para no interferir
@@ -126,7 +126,7 @@ En la Base de Datos llamada **factura_local**:
     ambas conexiones: la de **FACTURA** (para ir consultando) y la de
     **factura_local** (para ir creando y modificando).
 
-### 2.2.1 Restricciones (Constraint)
+### **2.2.1 Restricciones (Constraint)**
 
 
 
@@ -139,7 +139,7 @@ que se ponen en la misma definición del campo) y las que afectan o pueden
 afectar a más de un campo, que deben definirse separadamente de la definición
 de los campos. Empecemos por las primeras, por ser más sencillas de entender:
 
-#### 2.2.1.1 Restricciones de campo único
+#### **2.2.1.1 Restricciones de campo único**
 
 Son restricciones que se ponen en la misma definición del campo y sólo
 afectarán a este campo: van por tanto después del tipo de datos del campo y
@@ -340,7 +340,7 @@ EMPLEADO3 en la mesa DEPARTAMENTO_. Si tenemos un criterio claro para los nombre
 restricciones, si después las queremos desactivar temporal o sencillamente
 borrarlas, podremos hacerlo desde SQL.
 
-#### 2.2.1.2 Restricciones de campo múltiple
+#### **2.2.1.2 Restricciones de campo múltiple**
 
 También se llaman restricciones de tabla, en contraposición a las anteriores, que
 son restricciones de campo. Son restricciones que van dentro de la definición de una
@@ -501,7 +501,7 @@ empleados, porque no hay otro remedio, y también la de no repetición del campo
             CONSTRAINT check_dates  
             CHECK (EXTRACT(year FROM AGE(fecha_incorporación,fecha_nacimiento) ) >=18 ) )
 
-### :pencil2: Ejercicios {: .ejercicios-header}
+### **:pencil2: Ejercicios {: .ejercicios-header}**
 
 ![](factura_rel.png)
 
@@ -643,7 +643,7 @@ Ahora le pondremos el nombre EMP3 en la mesa EMPLEAT3
 
       ALTERAR TABLA EMP3 RENOMBRAR A EMPLEADO3;
 
-### :pencil2: Ejercicios {: .ejercicios-header}
+### **:pencil2: Ejercicios {: .ejercicios-header}**
 
 ![](factura_rel.png)
 
@@ -758,7 +758,7 @@ nombre del índice y la tabla en la que está definido.
 
       DROP INDEX nombre_índice ON tabla
 
-### :pencil2: Ejercicios {: .ejercicios-header}
+### **:pencil2: Ejercicios {: .ejercicios-header}**
 
 En **factura_local**:
 
@@ -833,7 +833,7 @@ Por ejemplo, para borrar la vista anterior: a borrar una vista
 
       DROP VIEW ESTADISTICA;
 
-### :pencil2: Ejercicios {: .ejercicios-header}
+### **:pencil2: Ejercicios {: .ejercicios-header}**
 
 En **factura_local**:
 
@@ -865,7 +865,7 @@ existe lo sustituye. Lamentablemente en PostgreSQL depende de la versión: en
 las más modernas sí se puede, pero en versiones anteriores no podremos, salvo en las vistas y las
 funciones.
 
-### 2.7.1 Secuencias
+### **2.7.1 Secuencias**
 
 **Creación de una secuencia**{.azul}
 
@@ -968,7 +968,7 @@ secuencia para no interferir con los compañeros/as.
 
       DROP SEQUENCE s_num_fac;
 
-### 2.7.2 Dominios
+### **2.7.2 Dominios**
 
 Los dominios son los conjuntos de valores que puede tomar un determinado campo.
 Habitualmente se pone sencillamente un tipo de datos. Pero el modelo relacional
@@ -1084,7 +1084,7 @@ borramos todo lo que hemos creado:
 Aún no borramos los dominios **hemi_lat** , **grados_lat** y **min_seg** ,
 porque los utilizaremos en la siguiente pregunta.
 
-### 2.7.3 Tipos de datos
+### **2.7.3 Tipos de datos**
 
 Ya habíamos comentado que PosgreSQL es muy versátil, y permite al usuario crear
 tipos de datos personales.
@@ -1238,7 +1238,7 @@ los compañeros:
 
       DROP DOMAIN hemi_lato, grados_lato, min_seg;
 
-### :pencil2: Ejercicios {: .ejercicios-header}
+### **:pencil2: Ejercicios {: .ejercicios-header}**
 
 En **factura_local**:
 

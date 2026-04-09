@@ -157,7 +157,7 @@ Consulte la sentencia SELECT, el apartado "Especificación de una B.D. externa".
                         GRUPO POR dni  
                         TENIENDO CUENTA(*) > 1);
 
-### :pencil2: Ejercicios {: .ejercicios-header}
+### **:pencil2: Ejercicios {: .ejercicios-header}**
 
 Como ya se ha comentado en la introducción, y por no interferir entre nosotros, cada uno se conectará a su Base de Datos **factura_local**.
 
@@ -264,7 +264,7 @@ seguridad de las tablas o de toda la Base de Datos.
                       GROUP BY dny  
                       HAVING SUM(horas)<20);
 
-### :pencil2: Ejercicios {: .ejercicios-header}
+### **:pencil2: Ejercicios {: .ejercicios-header}**
 
 En **factura_local**:
 
@@ -321,7 +321,7 @@ de toda la Base de Datos.
       SIETE departamento=8, población='Ares'
       WHERE población='Castellón';
 
-### :pencil2: Ejercicios {: .ejercicios-header}
+### **:pencil2: Ejercicios {: .ejercicios-header}**
 
 En **factura_local**:
 
