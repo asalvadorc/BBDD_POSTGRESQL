@@ -1,4 +1,4 @@
-# 1 Introducción
+# 1. Introducción
 
 En la primera parte del tema se repasó toda la sintaxis de la sentencia
 SELECT. Una vez conocidas todas las cláusulas, es momento de sacar toda la cláusula

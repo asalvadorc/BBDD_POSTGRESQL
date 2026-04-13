@@ -1,4 +1,4 @@
-# 4 Consultas de operaciones de conjuntos
+# 4. Consultas de operaciones de conjuntos
 
 Agruparemos en este apartado las consultas que traten conjuntos de filas para
 realizar operaciones de algebra de conjuntos: **unión** , **intersección** y

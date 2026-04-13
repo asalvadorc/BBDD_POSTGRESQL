@@ -1,4 +1,4 @@
-# 2 Combinaciones de tablas
+# 2. Combinaciones de tablas
 
 Vimos en la sentencia básica que en la cláusula FROM poníamos la tabla **o
 tablas** de dónde se tomarían los datos, pero en todos los ejemplos posteriores

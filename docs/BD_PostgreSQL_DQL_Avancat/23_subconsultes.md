@@ -1,4 +1,4 @@
-# 3 Subconsultas
+# 3. Subconsultas
 
 Una subconsulta es una consulta dentro de otra consulta. Esta subconsulta
 puede tener todos los elementos que hemos visto hasta ahora.

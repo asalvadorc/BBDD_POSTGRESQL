@@ -2,12 +2,12 @@
 site_name: BD - Bases de Datos
 theme: 
   name: material
-  logo: assets/logocaminas.png
+  logo: assets/logo.png
   favicon: assets/favicon.png
   features:
     - navigation.tabs
-    - navigation.tabs.sticky
-    - navigation.sections
+    #- navigation.sections
+    #-  navigation.tabs.sticky
     - navigation.top
     - navigation.footer
     - search.suggest
