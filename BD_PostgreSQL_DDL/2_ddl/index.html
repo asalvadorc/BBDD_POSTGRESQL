@@ -1,0 +1,3186 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../1_introducci/">
+      
+      
+        <link rel="next" href="../exercicis_de_tot_el_tema/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Bases de Datos - BD - Bases de Datos</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../css/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#21-tipo-de-datos" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="BD - Bases de Datos" class="md-header__button md-logo" aria-label="BD - Bases de Datos" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            BD - Bases de Datos
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Bases de Datos
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Cambiar a modo oscuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo oscuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Cambiar a modo claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../RA_CE/" class="md-tabs__link">
+          
+  
+  
+  SQL - POSTGRES
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../BD_PostgreSQL_DQL/0_presentacion/" class="md-tabs__link">
+          
+  
+  
+  DQL - Consultas (parte I)
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../BD_PostgreSQL_DQL_Avancat/20_presentacion/" class="md-tabs__link">
+          
+  
+  
+  DQL - Consultas avanzadas (parte II)
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../1_introducci/" class="md-tabs__link">
+          
+  
+  
+  DDL - Creación de Tablas
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../BD_PostgreSQL_DML/1_introducci/" class="md-tabs__link">
+          
+  
+  
+  DML - Manipulación de Datos
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="BD - Bases de Datos" class="md-nav__button md-logo" aria-label="BD - Bases de Datos" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    BD - Bases de Datos
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SQL - POSTGRES
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SQL - POSTGRES
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../RA_CE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Resultados de Aprendizaje y Criterios de Evalucación
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DQL/objectius_i_coneixements_previs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Objetivos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DQL/1_introducci/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Introducción
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DQL/2_client_dbeaver_installaci_i_confiuraci/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. DBeaver
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DQL/3_dades_dels_exemples_i_els_exercicis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3 Datos de los ejemplos y los ejercicios
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_1_6" id="__nav_1_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Operadores y Funciones de Postgres
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    4. Operadores y Funciones de Postgres
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DQL/6_operadors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.1. Operadores
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DQL/7_funcions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.2. Funciones
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DQL - Consultas (parte I)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    DQL - Consultas (parte I)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DQL/0_presentacion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Presentación Tema 4 (Parte 1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DQL/1_la_consulta_select/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. La consulta SELECT
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DQL/2_consulta_bsica/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Consulta básica
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DQL/3_lies_en_les_columnes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Alias en las columnas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DQL/4_la_clusula_where/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. La cláusula WHERE
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DQL/5_funcions_dagregat/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. Funciones de agregado
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DQL/6_la_clusula_group_by/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. La cláusula GROUP BY
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DQL/7_la_clusula_having/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7. La cláusula HAVING
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DQL/8_la_clusula_order_by/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8. La cláusula ORDER BY
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DQL/9_el_predicat_distinct/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    9. El predicado DISTINCT
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DQL/10_la_clusula_limit__offset/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10. La cláusula LIMIT .. OFFSET
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DQL/11_consulta_de_creaci_de_taules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11. Consulta de creación de tablas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DQL/12_ordre_amb_qu_sexecuta_una_sentncia_sql/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    12. Orden en el que se ejecuta una sentencia SQL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DQL/exercicis_de_tot_el_tema_amb_els_resultats/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ejercicios con los resultados (parte I)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DQL/ejemplos_bd/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ejemplos de BDs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DQL - Consultas avanzadas (parte II)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    DQL - Consultas avanzadas (parte II)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DQL_Avancat/20_presentacion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Presentación Tema 4 (Parte 2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DQL_Avancat/21_introducci/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Introducción
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DQL_Avancat/22_combinacions_de_taules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Combinaciones de tablas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DQL_Avancat/23_subconsultes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Subconsultas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DQL_Avancat/24_consultes_doperacions_de_conjunts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Consultas de operaciones de conjuntos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DQL_Avancat/exercicis_de_tot_el_tema_amb_els_resultats/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ejercicios con los resultados (parte II)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DDL - Creación de Tablas
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    DDL - Creación de Tablas
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1_introducci/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Introducción
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. DDL
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. DDL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#21-tipo-de-datos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Tipo de datos
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#22-create-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 CREATE TABLE
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.2 CREATE TABLE">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ejercicios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ejercicios
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#221-restricciones-constraint" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2.1 Restricciones (Constraint)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.2.1 Restricciones (Constraint)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#2211-restricciones-de-campo-unico" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2.1.1 Restricciones de campo único
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2212-restricciones-de-campo-multiple" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2.1.2 Restricciones de campo múltiple
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejercicios_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ejercicios
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#23-alter-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 ALTER TABLE
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.3 ALTER TABLE">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ejercicios_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ejercicios
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#24-drop-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4 DROP TABLE
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#25-indice" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.5 Índice
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.5 Índice">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ejercicios_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ejercicios
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#26-vistas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.6 Vistas
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.6 Vistas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ejercicios_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ejercicios
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#27-creacion-de-otros-objetos-secuencias-dominios-y-tipos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.7. Creación de otros objetos: secuencias, dominios y tipos.
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.7. Creación de otros objetos: secuencias, dominios y tipos.">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#271-secuencias" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.7.1 Secuencias
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#272-dominios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.7.2 Dominios
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#273-tipos-de-datos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.7.3 Tipos de datos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejercicios_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ejercicios
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../exercicis_de_tot_el_tema/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ejercicios de todo el tema
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DML - Manipulación de Datos
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    DML - Manipulación de Datos
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DML/1_introducci/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Introducción
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DML/2_consultes_dactualitzaci/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Consultas de actualización (DML)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DML/exercicis_de_tot_el_tema/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ejercicios de todo el tema
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+  <h1>2. DDL</h1>
+
+<p><strong>DDL</strong>(<em>Data Definition Language</em>) o <strong>Lenguaje de Definición de Datos</strong> es
+el conjunto de sentencias que nos permiten definir, retocar o borrar
+la estructura de la Base de Datos. Y como la estructura básica de una Base de
+Datos Relacional es la mesa, nos dedicaremos básicamente a estudiar las
+sentencias que nos permiten definir las tablas (o modificarlas o borrarlas)
+las), con todas las restricciones que hemos visto en el Modelo Relacional: clave
+principal, claves externas, campos no nulos, ... También veremos otros objetos que
+podremos definir, sobre todo <strong>vistas</strong> , que se corresponden con el esquema externo
+que vimos en el Tema 1, es decir, la visión particular que puede tener un
+usuario.</p>
+<p>Serán 3 sentencias las que veremos:</p>
+<ul>
+<li>
+<p><strong>CREATE</strong> , que permite crear un objeto nuevo.</p>
+</li>
+<li>
+<p><strong>DROP</strong> , que permite borrar un objeto ya existente.</p>
+</li>
+<li>
+<p><strong>ALTER</strong> , que permite modificar un objeto ya existente.</p>
+</li>
+</ul>
+<p>En el momento de crear una tabla definiremos todos sus campos, con las
+restricciones pertinentes en cada uno de ellos. Cada campo deberá ser de un tipo
+de datos. En cada SGBD existen unos tipos de datos particulares, aunque los
+más básicos son similares, y en ellos será donde incidiremos más.</p>
+<h2 id="21-tipo-de-datos">2.1 Tipo de datos</h2>
+<p>En el momento de definir un campo deberemos especificar obligatoriamente de cuál
+tipos será. Ya se vieron los tipos básicos de Access en el tutorial del tema
+5. Ahora veremos los tipos básicos de <strong>PostgreSQL</strong> , y veremos que habrá
+muchos tipos similares (como en todos los SGBD).</p>
+<p>En el siguiente cuadro se resumen los tipos de datos más importantes de
+PostgreSQL. Es un conjunto muy extenso, que incluso puede ampliar el usuario con
+la instrucción <strong>CREATE TYPE</strong>, como veremos al final del tema. Son especialmente
+interesantes los tipos geométricos (con <strong><em>POINT</em></strong> , <strong><em>BOX</em></strong> ,...) y el INET
+(dirección IP).</p>
+<p><img alt="" src="../resum_ddl.png" /></p>
+<p>También dispondremos de un tipo enumerado. Lo veremos en la última pregunta del tema.</p>
+<p>En la documentación de PostgreSQL encontraremos todos los tipos posibles:   </p>
+<blockquote>
+<p><a href="http://www.postgresql.org/docs/9.5/static/datatype.html">http://www.postgresql.org/docs/9.5/static/datatype.html</a></p>
+</blockquote>
+<h2 id="22-create-table">2.2 CREATE TABLE</h2>
+<p>Permite crear una nueva mesa. Obligatoriamente se tendrán que especificar los campos
+y los tipos de datos de cada campo. Obviamente, una vez creada la mesa
+estará vacía, sin fila alguna.</p>
+<p><strong><u>Sintaxi</u></strong></p>
+<pre><code>CREATE TABLE mesa  
+  ( campo1 tipo [(tamaño)] [DEFAULT valor] [restricción11] [restricción12] [...]  
+  [, campo2 tipo [(tamaño)] [DEFAULT valor] [restricción21] [restricción22][...]  
+  [, ...]]  
+  [, restricciónmultiple1 [, ...]] )
+</code></pre>
+<p>Podemos observar que la definición de la estructura de la mesa va entre
+paréntesis, separando por comas la definición de cada campo.</p>
+<ul>
+<li>
+<p>El nombre de la tabla no debe ser el de ningún otro objeto anterior (tabla o vista). Si queremos poner un nombre con más de una palabra o con una palabra reservada, deberemos ponerlo entre comillas dobles; pero no se lo aconseje, es preferible la utilización del guión bajo, y así sólo es una palabra.</p>
+</li>
+<li>
+<p>En cada campo pondremos su nombre y el tipo. Si el tipo de datos es VARCHAR, podremos poner opcionalmente el tamaño máximo (si no lo ponemos será de 255 en el caso de texto). Si el tipo de datos es NUMERIC, podremos poner opcionalmente el tamaño (número de cifras significativas) y número de cifras de la parte fraccionaria.</p>
+</li>
+<li>
+<p>Podemos poner ocionalmente un valor por defecto con la cláusula <strong>DEFAULT</strong>. De esta forma, al introducir una nueva fila en la tabla, si no le ponemos valor en este campo, tomará el valor por defecto. En el valor se puede poner una constante del tipo del campo, o una expresión con funciones, siempre que devuelva un dato de los tipos del campo.</p>
+</li>
+<li>
+<p>Podemos poner opcionalmente restricciones en cada campo. Deberán ir antes de la coma que separa del siguiente campo. También pueden haber restricciones que afectan a más de un campo, que preferiblemente pondremos al final de la definición de la tabla. Veremos las restricciones en el siguiente punto.</p>
+</li>
+</ul>
+<p><strong><u>Ejemplos</u></strong></p>
+<p>Si desea practicar estos ejemplos, hágalo sobre la Base de Datos <strong>pruebas</strong>
+(usuario <strong>pruebas</strong> , contraseña <strong>pruebas</strong>). Si le da error para que la tabla
+que vaya a crear ya está creada la tabla, bórela primero, y vuelva a
+ejecutar la sentencia.</p>
+<p>1) Crear una nueva tabla llamada <strong>EMPLEAT1</strong> con dos campos, uno llamado <strong>dni</strong> de tipo texto y longitud 10 y otro llamado <strong>nombre</strong>**** con longitud 50.</p>
+<pre><code>  CREATE TABLE EMPLEADO1 (dny VARCHAR (10) , nombre VARCHAR (50));
+</code></pre>
+<p>2) Crear una tabla llamada <strong>EMPLEAT2</strong> con un campo texto de 10 caracteres llamado <strong>dni</strong> ; otro campo de tipo texto de longitud predeterminada (255) llamado <strong>nombre;</strong> otro campo llamado <strong>data_nacimiento</strong> de tipo data; otro llamado <strong>sueldo</strong> de tipo numérico, con 6 cifras significativas, de las cuales 2 debe ser de la parte fraccionaria y un último llamado <strong>departamento</strong> de tipo numérico pequeño (INT2 o SMALLINT).</p>
+<pre><code>  CREATE TABLE EMPLEADO2  
+        ( dni VARCHAR(10) ,  
+        nombre VARCHAR ,  
+        fecha_nacimiento DATE ,  
+        sueldo NUMERIC(6,2) ,  
+        departamento INT2 )
+</code></pre>
+<p>3) Crear una tabla llamada <strong>EMPLEAT3</strong> como el del ejemplo anterior, pero con dos campos más al final: un campo llamado <strong>poblacio</strong> de tipo texto de 50 caracteres, y con el valor por defecto <strong>Castellón</strong> y un último llamado <strong>data_incorporacio</strong> de tipo fecha y valor por defecto la fecha de</p>
+<pre><code>  CREATE TABLE EMPLEADO3  
+        ( dni VARCHAR(10) ,  
+        nombre VARCHAR ,  
+        fecha_nacimiento DATE ,  
+        sueldo NUMERIC(6,2) ,  
+        departamento INT2 ,  
+        población VARCHAR(50) DEFAULT 'Castellón' ,  
+        fecha_incorporacion DATE DEFAULT CURRENT_DATE )
+</code></pre>
+<h3 class="ejercicios-header" id="ejercicios"><strong><img alt="✏" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/270f.svg" title=":pencil2:" />Ejercicios</strong></h3>
+<p>A lo largo de esta tercera parte, en el conjunto de ejercicios de DDL, crearemos
+toda la estructura de la Base de Datos <strong>FACTURA</strong> , pero para no interferir
+cada uno con los demás compañeros, cada uno se conectará a su Base de Datos
+<strong>factura_local</strong>.<br />
+El esquema Entidad-Relación y el esquema relacional que implementaremos será el
+siguiente:</p>
+<p><img alt="" src="../factura.png" /></p>
+<p>En la Base de Datos llamada <strong>factura_local</strong>:</p>
+<blockquote>
+<p><strong>Ex_1</strong> - Cree la tabla <strong>CATEGORÍA</strong> , con los mismos campos y del mismo
+tipos que en la tabla CATEGORÍA de <strong>FACTURA</strong> , pero de momento sin clave
+principal ni ninguna otra restricción.</p>
+<p><strong>Ex_2</strong> - Cree la tabla <strong>ARTÍCULO</strong> , también sin restricciones. </p>
+</blockquote>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Durante todos estos ejercicios de DDL puede ser muy conveniente tener abiertas
+ambas conexiones: la de <strong>FACTURA</strong> (para ir consultando) y la de
+<strong>factura_local</strong> (para ir creando y modificando).</p>
+</div>
+<h3 id="221-restricciones-constraint"><strong>2.2.1 Restricciones (Constraint)</strong></h3>
+<p>Por medio de las restricciones podremos definir dentro de una tabla restricciones
+de usuario como son la definición de la clave principal, claves externas, campos no
+nulos y campos únicos.</p>
+<p>Hay dos formas de definir restricciones: las que afectan a un único campo (y
+que se ponen en la misma definición del campo) y las que afectan o pueden
+afectar a más de un campo, que deben definirse separadamente de la definición
+de los campos. Empecemos por las primeras, por ser más sencillas de entender:</p>
+<h4 id="2211-restricciones-de-campo-unico"><strong>2.2.1.1 Restricciones de campo único</strong></h4>
+<p>Son restricciones que se ponen en la misma definición del campo y sólo
+afectarán a este campo: van por tanto después del tipo de datos del campo y
+antes de la coma de separación de los campos.</p>
+<p><strong><u>Sintaxi</u></strong></p>
+<pre><code>  [ CONSTRAINT nombre ] {PRIMARY KEY | UNIQUE | NOTE NULL | REFERENCIAS tabla2 [(campo1)] | CHECK (_condición_)}
+</code></pre>
+<p>Si no ponemos nombre a la restricción (CONSTRAINT nombre) PostgreSQL le asignará
+automáticamente un nombre. Esto puede resultar cómodo en ocasiones, para no haber
+de inventarnos nombres para las restricciones, pero después nos limitaría a que
+no podríamos retocar estas restricciones.</p>
+<p>Los tipos de restricciones que podemos definir son:</p>
+<p><strong class="azul">Restricción de clave principal</strong></p>
+<ul>
+<li><strong>PRIMARY KEY</strong> : el campo será clave principal.</li>
+</ul>
+<blockquote>
+<p>Por ejemplo, de esta forma definiremos la tabla EMPLEAT3 (como la de
+el apartado anterior) con el campo dni como clave principal. Recuerde que lo ha
+de borrar primero (quizá no lo esté visualizando, pero sí que
+está creada; refresca constantemente las tablas para saber la situación
+actual)</p>
+</blockquote>
+<pre><code>  CREATE TABLE EMPLEADO3  
+        ( dni VARCHAR(10) CONSTRAINT cp_emp3 PRIMARY KEY,  
+        nombre VARCHAR ,  
+        fecha_nacimiento DATE ,  
+        sueldo NUMERIC(6,2) ,  
+        departamento INT2 ,  
+        población VARCHAR(50) DEFAULT 'Castellón' ,  
+        fecha_incorporacion DATE DEFAULT CURRENT_DATE )
+</code></pre>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Puede comprobar que, si no pone nombre a la restricción, es decir, si pone
+directamente dni <strong>TEXT(10) PRIMARY KEY</strong>, y vaya al diseño de la mesa,
+PostgreSQL pone automáticamente un nombre a la restricción formado por el nombre de la tabla seguido de <strong>_pkey</strong>.</p>
+</div>
+<blockquote>
+<blockquote>
+<p>Tenga en cuenta también que si la mesa ya existía dará un error. Sólo
+debe borrarla primero.</p>
+</blockquote>
+</blockquote>
+<p><strong class="azul">Restricción de unicidad</strong></p>
+<ul>
+<li><strong>UNIQUE</strong> : el campo será único, es decir, no se podrá tomar dos veces el mismo valor en este campo (<em>Indexado sin duplicados</em> en Access). PostgreSQL generará automáticamente un índice para ese campo. Veremos qué es un índice en la pregunta 6.</li>
+</ul>
+<blockquote>
+<p>Por ejemplo, de esta forma definiríamos la tabla EMPLEAT3 con la restricción
+que el campo <strong>nombre</strong> no se puede repetir (si desea probar la sentencia hágalo
+en la BD <strong>pruebas</strong> , y si ya existe el borre primero):</p>
+</blockquote>
+<pre><code>  CREATE TABLE EMPLEADO3  
+        ( dni VARCHAR(10) ,  
+        nombre VARCHAR CONSTRAINT u_nombre UNIQUE,  
+        fecha_nacimiento DATE ,  
+        sueldo NUMERIC(6,2) ,  
+        departamento INT2 ,  
+        población VARCHAR(50) DEFAULT 'Castellón' ,  
+        fecha_incorporacion DATE DEFAULT CURRENT_DATE )
+</code></pre>
+<p><strong class="azul">Restricción de valor no nulo</strong></p>
+<ul>
+<li><strong>NOT NULL</strong> : el campo no podrá tomar un valor nulo (<em>Requerido</em> en Access). Debemos ser conscientes de que no vale la pena definir como no nula la clave principal, puesto que por definición ya lo es.</li>
+</ul>
+<blockquote>
+<p>Por ejemplo, de esta forma definiremos que el campo <strong>nombre</strong> debe ser no
+nulo.</p>
+</blockquote>
+<pre><code>  CREATE TABLE EMPLEADO3  
+        ( dni VARCHAR(10) ,  
+        nombre VARCHAR CONSTRAINT nn_nombre NOT NULL ,  
+        fecha_nacimiento DATE ,  
+        sueldo NUMERIC(6,2) ,  
+        departamento INT2 ,  
+        población VARCHAR(50) DEFAULT 'Castellón' ,  
+        fecha_incorporacion DATE DEFAULT CURRENT_DATE )
+</code></pre>
+<p><strong class="azul">Restricción de integridad referencial</strong></p>
+<ul>
+<li><strong>REFERENCIAS</strong> : servirá para definir que este campo es una clave externa. Deberemos especificar obligatoriamente la tabla a la que apunta, y opcionalmente podemos poner entre paréntesis el campo de la tabla al que apunta, aunque si no lo ponemos, por defecto apuntará a la clave principal (y nosotros siempre querremos apuntar a la clave principal).</li>
+</ul>
+<blockquote>
+<p>Por ejemplo, de esta forma podemos definir la clave externa que apunta a la
+mesa DEPARTAMENTO (y que indica que el empleado pertenece al departamento). Antes
+de crear esta versión de EMPLEAT3, debemos tener creada la tabla
+DEPARTAMENTO, sino dará error:</p>
+</blockquote>
+<pre><code>  CREATE TABLE DEPARTAMENTO  
+        ( num_d INT2 CONSTRAINT cp_dep PRIMARY KEY ,  
+        nombre_d VARCHAR(50) ,  
+        director VARCHAR(10) ,  
+        fecha DATE );
+
+  CREATE TABLE EMPLEADO3  
+        ( dni VARCHAR(10) ,  
+        nombre VARCHAR ,  
+        fecha_nacimiento DATE ,  
+        sueldo NUMERIC(6,2) ,  
+        departamento INT2 CONSTRAINT ce_emp3_dep REFERENCIAS DEPARTAMENTO ,  
+        población VARCHAR(50) DEFAULT 'Castellón' ,  
+        fecha_incorporación DATE DEFAULT CURRENT_DATE );
+</code></pre>
+<blockquote>
+<p>Como ya se vio en el tema del Modelo Relacional (restricciones de integridad referencial), hay 3 formas de actuar cuando se borra o se modifica una fila de la tabla
+principal que tiene asociadas filas en la tabla relacionada por medio de la clave
+externa. Por ejemplo, ¿qué hacemos con los familiares de un empleado si borramos
+¿el empleado? Estas formas de actuar deben especificarse en el momento de
+definir la clave externa. La forma de ponerlas en SQL y el significado son
+las siguientes:</p>
+<ul>
+<li>
+<p><strong>NO ACTION</strong> : no se dejará borrar o modificar de la tabla
+principal si tiene alguna fila relacionada. Es la opción por defecto. Así en
+el ejemplo de EMPLEAT3, con una clave externa que apunta a DEPARTAMENTO, si
+intentamos borrar o modificar el número de un departamento que tiene empleados,
+nos dará un mensaje de error, avisando de que cómo tiene registros relacionados en
+otra tabla no se puede borrar o modificar.
+</p>
+</li>
+<li>
+<p><strong>CASCADE</strong> : se borrarán (o modificarán) en cascada los registros
+relacionados de la tabla donde está la clave externa. Se especificará con <strong>ON
+DELETE CASCADE</strong> o <strong>ON UPDATE CASCADE</strong>.</p>
+</li>
+</ul>
+</blockquote>
+<pre><code>  CREATE TABLE EMPLEADO3  
+        ( dni VARCHAR(10) ,  
+        nombre VARCHAR ,  
+        fecha_nacimiento DATE ,  
+        sueldo NUMERIC(6,2) ,  
+        departamento INT2 CONSTRAINT ce_emp3_dep REFERENCIAS DEPARTAMENTO DÓNDE DELETE
+        CASCADE DONDE UPDATE CASCADE ,  
+        población VARCHAR(50) DEFAULT 'Castellón' ,  
+        fecha_incorporacion DATE DEFAULT CURRENT_DATE )
+</code></pre>
+<blockquote>
+<p>De esta manera si borramos un departamento de la mesa DEPARTAMENTO,
+se borrarán también los empleados de la mesa EMPLEADOS3 de este departamento.
+Y si en la mesa DEPARTAMENTO modificamos un número de departamento, por
+ejemplo de 5 a 50, este valor será el nuevo valor en el campo departamento de
+la mesa EMPLEAT3 para aquellos que antes tenían un 5.
+</p>
+<ul>
+<li><strong>SET NULL</strong> : pondrá a nulo el campo que es clave externa de los registros
+que estén relacionados con el borrado o modificado de la tabla principal.
+Así, si hicimos la siguiente definición de la tabla EMPLEAT3</li>
+</ul>
+</blockquote>
+<pre><code>    CREATE TABLE EMPLEADO3  
+        ( dni VARCHAR(10) ,  
+        nombre VARCHAR ,  
+        fecha_nacimiento DATE ,  
+        sueldo NUMERIC(6,2) ,  
+        departamento INT2 CONSTRAINT ce_emp3_dep REFERENCIAS DEPARTAMENTO DÓNDE DELETE
+        SIETE NULL ,  
+        población VARCHAR(50) DEFAULT 'Castellón' ,  
+        fecha_incorporacion DATE DEFAULT CURRENT_DATE )
+</code></pre>
+<blockquote>
+<p>en caso de que borramos el departamento 5, no daría ningún error por ésta
+restricción de integridad, y pondría a nulo el departamento de aquellos empleados
+que antes eran del departamento 5.
+</p>
+<ul>
+<li><strong>SET DEFAULT</strong>: Establece las columnas que referencian a sus valores por defecto. Debe existir una fila en la tabla referenicada que coincida con los valores por defecto, si no son NULL, o la operación fallará.</li>
+</ul>
+</blockquote>
+<p><strong class="azul">Restricción externa</strong></p>
+<ul>
+<li><strong>CHECK</strong> : realizará una comprobación para validar los valores introducidos para este campo. La condición de validación debe ir entre paréntesis, y debe ser una expresión, normalmente de comparación del campo en cuestión con algún valor.</li>
+</ul>
+<p>Por ejemplo, vamos a exigir que el sueldo sea estrictamente positivo (por tipo de
+datos numérico, podría tomar el valor 0 o valores negativos)</p>
+<pre><code>  CREATE TABLE EMPLEADO3  
+        ( dni VARCHAR(10) ,  
+        nombre VARCHAR ,  
+        fecha_nacimiento DATE ,  
+        sueldo NUMERIC(6,2) CONSTRAINT sueldo_positivo CHECK (sueldo &gt; 0),  
+        departamento INT2 ,  
+        población VARCHAR(50) DEFAULT 'Castellón' ,  
+        fecha_incorporacion DATE DEFAULT CURRENT_DATE )
+</code></pre>
+<p>Evidentemente se puede poner más de una restricción en la definición de una mesa. En
+este ejemplo recogemos todas las anteriores, es decir, definimos la tabla
+<strong>EMPLEAT3</strong> con todos sus campos, y definiendo la <em>clave principal</em>
+(<strong>dni</strong>), con el campo <strong>nombre</strong> <em>único , con el <strong>sueldo</strong> _estrictamente positivo</em>, y con el campo <strong>departament</strong> que será <em>clave externa</em> que apunta a la tabla
+DEPARTAMENTO. Para complicarlo un poco más también exigiremos que el campo <strong>nombre</strong>
+sea <em>no nulo</em>, y así ver que se puede poner más de una restricción en un campo.</p>
+<pre><code>CREATE TABLE EMPLEADO3  
+        ( dni VARCHAR(10) CONSTRAINT cp_emp3 PRIMARY KEY ,  
+        nombre VARCHAR CONSTRAINT u_nombre UNIQUE CONSTRAINT nn_nombre NOT NULL ,  
+        fecha_nacimiento DATE ,  
+        sueldo NUMERIC(6,2) CONSTRAINT sueldo_positivo CHECK (sueldo &gt; 0) ,  
+        departamento INT2 CONSTRAINT ce_emp3_dep REFERENCIAS DEPARTAMENTO ,  
+        población VARCHAR(50) DEFAULT 'Castellón' ,  
+        fecha_incorporacion DATE DEFAULT CURRENT_DATE )
+</code></pre>
+<p>Observe que como cuestión de estilo se han puesto nombres a las restricciones que
+de alguna forma sugieren el motivo de la restricción. Así, <strong>cp_emp3</strong> quiere
+decir <em>clave princpal de EMPLEAT3</em> , <strong>u_nombre</strong> significa que el campo <em>nombre</em> es
+<em>único</em> , <strong>nn_nombre</strong> significa que <em>nombre</em> es <em>no nulo</em> , <strong>nn_sou</strong> significa que
+<em>sou</em> es <em>no nul</em> , y <strong>ce_emp3_dep</strong> significa <em>clave externa de la tabla
+EMPLEADO3 en la mesa DEPARTAMENTO</em>. Si tenemos un criterio claro para los nombres de las
+restricciones, si después las queremos desactivar temporal o sencillamente
+borrarlas, podremos hacerlo desde SQL.</p>
+<h4 id="2212-restricciones-de-campo-multiple"><strong>2.2.1.2 Restricciones de campo múltiple</strong></h4>
+<p>También se llaman restricciones de tabla, en contraposición a las anteriores, que
+son restricciones de campo. Son restricciones que van dentro de la definición de una
+tabla pero fuera de la definición de un campo, y que pueden afectar a uno o varios
+campo. Deberá definirse expresamente a cuál o qué campos afectan.</p>
+<p><strong><u>Sintaxi</u></strong></p>
+<pre><code>  [ CONSTRAINT nombre ] {PRIMARY KEY | UNIQUE | FOREIGN KEY | CHECK (_condicio_)} (c11 [,c12][,...])   
+  [ REFERENCIAS tabla2 [ (c21 [,c22][,...]) ] ]  
+  [ DONDE DELETE {CASCADE | SET NULL}] [DONDE UPDATE {CASCADE | SIETE NULL}] ]
+</code></pre>
+<p>Al igual que antes, si no ponemos nombre a la restricción (CONSTRAINT nombre) PostgreSQL
+le asignará uno automáticamente, que será construido de forma muy lógica.</p>
+<p>Observe que ahora siempre especificamos el o los campos afectados.</p>
+<p>Los tipos de restricciones son los mismos que en el caso anterior, pero la
+sintaxis variará ligeramente:</p>
+<p><strong class="azul">Restricción de clave principal</strong></p>
+<ul>
+<li><strong>PRIMARY KEY</strong> : pondremos entre paréntesis el campo o campos (en este caso separados por comas) que serán clave principal.</li>
+</ul>
+<blockquote>
+<p>Por ejemplo, definimos otra vez el campo dni como clave principal de la
+mesa EMPLEAT3</p>
+</blockquote>
+<pre><code>  CREATE TABLE EMPLEADO3  
+        ( dni VARCHAR(10) ,  
+        nombre VARCHAR ,  
+        fecha_nacimiento DATE ,  
+        sueldo NUMERIC(6,2) ,  
+        departamento INT2 ,  
+        población VARCHAR(50) DEFAULT 'Castellón' ,  
+        data_incorporacion DATE DEFAULT CURRENT_DATE ,  
+        CONSTRAINT cp_emp3 PRIMARY KEY (dny) )
+</code></pre>
+<blockquote>
+<p>Y ahora otro para definir la clave principal de FAMILIAR. Cómo la clave está
+formada por 2 campos, estamos obligados a utilizar una restricción de campo
+múltiple.</p>
+</blockquote>
+<pre><code>  CREATE TABLE FAMILIAR  
+        ( dni VARCHAR(10),  
+        nombre VARCHAR,  
+        data_n DATE,  
+        parentesco VARCHAR(50),  
+        CONSTRAINT cp_fam2 PRIMARY KEY (dny,nombre) )
+</code></pre>
+<blockquote>
+<p>Como comentábamos, si la clave principal está formada por 2 campos estaremos
+obligados a utilizar una restricción de campo múltiple. Un <strong class="rojo">error</strong> bastante común
+sería lo siguiente:</p>
+</blockquote>
+<pre><code>  CREATE TABLE FAMILIAR2
+        ( dni VARCHAR(10) PRIMARY KEY,
+        nombre VARCHAR PRIMARY KEY,
+        data_n DATE,
+        parentesco VARCHAR(50) )
+</code></pre>
+<blockquote>
+<p>Puede comprobar que dará <strong class="rojo">error</strong> , porque estamos intentando definir 2
+claves principales. La clave principal es única, eso sí formada por 2 campos en
+esta ocasión.</p>
+</blockquote>
+<p><strong class="azul">Restricción de unicidad</strong></p>
+<ul>
+<li><strong>UNIQUE</strong> : ahora pondremos entre paréntesis el o los campos que serán únicos (en su conjunto). PostgreSQL generará automáticamente un índice para esa combinación de campos. Veremos qué es un índice en la pregunta 6.</li>
+</ul>
+<blockquote>
+<p>Por ejemplo, modificamos la definición de EMPLEAT3 (llamándola EMPLEAT4) ,
+con un campo para los apellidos y un campo para el nombre. Definiremos la
+restricción de que los campos apellidos y nombre (en conjunto) no se pueden repetir.</p>
+</blockquote>
+<pre><code>  CREATE TABLE EMPLEADO4  
+        ( dni VARCHAR(10),  
+        apellidos VARCHAR,  
+        nombre VARCHAR,  
+        fecha_nacimiento DATE,  
+        sueldo NUMERIC(6,2) ,  
+        departamento INT2 ,  
+        CONSTRAINT u_nombre4 UNIQUE (apellidos,nombre) )
+</code></pre>
+<p><strong class="azul">Restricción de valor no nulo</strong></p>
+<ul>
+<li><strong>NOT NULL</strong>.</li>
+</ul>
+<blockquote>
+<p>No existe esta opción como restricción múltiple. Por tanto se debe
+definir siempre como restricción de campo único.</p>
+</blockquote>
+<p><strong class="azul">Restricción de integridad referencial</strong></p>
+<ul>
+<li><strong>FOREIGN KEY</strong> : servirá para definir que este o estos campos son una clave externa. Es la que más varía en su sintaxis, ya que debemos especificar tanto el o los campos de esta tabla que son clave externa, como la tabla a la que apunta (y en todo caso el o los campos donde se apunta, aunque si no lo ponemos apuntará a la clave principal de la otra tabla, lo que querremos siempre):<pre><code>[CONSTRAINT nombre] FOREIGN KEY (c11 [,c12][,...]) REFERENCIAS tabla2 [(c21 [,c22][,...])] [ON DELETE {CASCADE | SET NULL}] [DONDE UPDATE {CASCADE | SIETE NULL}]
+</code></pre>
+</li>
+</ul>
+<blockquote>
+<p>En el ejemplo de la clave externa que apunta a la mesa DEPARTAMENTO quedará
+así:</p>
+</blockquote>
+<pre><code>  CREATE TABLE EMPLEADO3  
+        ( dni VARCHAR(10) ,  
+        nombre VARCHAR ,  
+        fecha_nacimiento DATE ,  
+        sueldo NUMERIC(6,2) ,  
+        departamento INT2 ,  
+        población VARCHAR(50) DEFAULT 'Castellón' ,  
+        data_incorporacion DATE DEFAULT CURRENT_DATE ,  
+        CONSTRAINT ce_emp3_dep FOREIGN KEY (departamento) REFERENCIAS DEPARTAMENTO )
+</code></pre>
+<p><strong class="azul">Restricción externa</strong></p>
+<ul>
+<li><strong>CHECK</strong> : ahora la condición de validación podrá afectar a más de un campo</li>
+</ul>
+<p>Por ejemplo podríamos exigir que la fecha de incorporación sea estrictamente
+posterior a la fecha de nacimiento</p>
+<pre><code>  CREATE TABLE EMPLEADO3  
+        ( dni VARCHAR(10) ,  
+        nombre VARCHAR ,  
+        fecha_nacimiento DATE ,  
+        sueldo NUMERIC(6,2) ,  
+        departamento INT2 ,  
+        población VARCHAR(50) DEFAULT 'Castellón' ,  
+        data_incorporacion DATE DEFAULT CURRENT_DATE ,  
+        CONSTRAINT check_dates CHECK (fecha_incorporación &gt; fecha_nacimiento) )
+</code></pre>
+<p>Otro algo más real, vamos a coger empleados de más de 18 años, y
+por tanto vamos a exigir que la fecha de incorporación sea más de 18 años
+posterior a la fecha de nacimiento. Para ello utilizamos la función
+<strong>AGE(f1,f2)</strong> que calcula el tiempo entre la fecha d2 y la fecha d1 (que debe
+ser la posterior), y de ahí extraeremos los años con <strong>EXTRACT(year FROM ...)</strong></p>
+<pre><code>  CREATE TABLE EMPLEADO3  
+        ( dni VARCHAR(10) ,  
+        nombre VARCHAR ,  
+        fecha_nacimiento DATE ,  
+        sueldo NUMERIC(6,2) ,  
+        departamento INT2 ,  
+        población VARCHAR(50) DEFAULT 'Castellón' ,  
+        data_incorporacion DATE DEFAULT CURRENT_DATE ,  
+        CONSTRAINT check_dates  
+        CHECK (EXTRACT(year FROM AGE(fecha_incorporación,fecha_nacimiento) ) &gt;=18 ) )
+</code></pre>
+<p>Evidentemente, se pueden mezclar las restricciones de campo único y las de campo
+múltiplo. Aquí tenemos un ejemplo donde se recogen muchas (no todas) las
+restricciones anteriores. Hemos puesto de campo múltiple la de los 18 años de los
+empleados, porque no hay otro remedio, y también la de no repetición del campo
+<strong>nombre</strong> , aunque podía ser de campo único:</p>
+<pre><code>CREATE TABLE EMPLEADO3  
+        ( dni VARCHAR(10) CONSTRAINT cp_emp3 PRIMARY KEY ,  
+        nombre VARCHAR CONSTRAINT nn_nombre NOT NULL ,  
+        fecha_nacimiento DATE ,  
+        sueldo NUMERIC(6,2) CONSTRAINT sueldo_positivo CHECK (sueldo &gt; 0) ,  
+        departamento INT2 CONSTRAINT ce_emp3_dep REFERENCIAS DEPARTAMENTO ,  
+        población VARCHAR(50) DEFAULT 'Castellón' ,  
+        data_incorporacion DATE DEFAULT CURRENT_DATE ,  
+        CONSTRAINT u_nombre3 UNIQUE (nombre) ,  
+        CONSTRAINT check_dates  
+        CHECK (EXTRACT(year FROM AGE(fecha_incorporación,fecha_nacimiento) ) &gt;=18 ) )
+</code></pre>
+<h3 class="ejercicios-header" id="ejercicios_1"><strong><img alt="✏" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/270f.svg" title=":pencil2:" /> Ejercicios</strong></h3>
+<p><img alt="" src="../factura_rel.png" /></p>
+<p>En <strong>factura_local</strong>:</p>
+<blockquote>
+<p><strong>Ex_3</strong> - Crear la tabla <strong>PROVINCIA</strong> , con la clave principal.</p>
+<p><strong>Ex_4</strong> - Crear la tabla <strong>PUEBLO</strong> , con la clave principal y la restricción
+que el campo <strong>cod_pro</strong> es clave externa que apunta a PROVINCIA.</p>
+<p><strong>Ex_5</strong> - Crear la tabla <strong>VENEDOR</strong> , con la clave principal y la clave
+externa a PUEBLO (de momento no definimos la clave externa a VENDEDOR, que es
+reflexiva).</p>
+<p><strong>Ex_6</strong> - Crear la tabla <strong>CLIENTE</strong> , con la clave principal y la clave externa
+en PUEBLO</p>
+<p><strong>Ex_7</strong> - Crear la tabla <strong>FACTURA</strong> , con la clave principal y las claves
+externas a CLIENTE y VENDEDOR. También debe exigir que <strong>cod_cli</strong> sea no nulo.</p>
+<p><strong>Ex_8</strong> - Crear la tabla <strong>LINIA_FAC</strong> , con la clave principal (observa que
+está formada por 2 campos) pero de momento sin la clave externa que apunta a
+ARTÍCULO. Además <strong>cod_a</strong> debe ser no nulo.</p>
+</blockquote>
+<h2 id="23-alter-table">2.3 ALTER TABLE</h2>
+<p>Permite modificar la estructura de una tabla ya existente, bien añadiendo, levante o
+modificando campos (columnas), bien añadiendo o quitando restricciones. También servirá
+para cambiar el nombre de un campo e incluso cambiar el nombre de la tabla</p>
+<p><strong><u>Sintaxi</u></strong></p>
+<p>Para alterar la estructura de algún campo o restricción utilizaremos esta
+sintaxis:</p>
+<pre><code>  ALTER TABLE mesa  
+        {ADD | DROP | ALTER} {COLUMNO campo | CONSTRAINT restricción múltiple}
+</code></pre>
+<p>Para cambiar el nombre de un campo:</p>
+<pre><code>  ALTER TABLE mesa  
+        RENAME [COLUMN] campo TO nuevo_nombre_campo
+</code></pre>
+<p>Para cambiar el nombre de la tabla:</p>
+<pre><code>ALTER TABLE mesa  
+  RENAME TO nuevo_nombre_tabla
+</code></pre>
+<p><strong class="azul">Añadir campo o restricción</strong></p>
+<p>Si queremos añadir una columna o una restricción, deberemos definirla totalmente.</p>
+<ul>
+<li>
+<p>En el caso de un campo, deberemos especificar el nombre, el tipo y opcionalmente una restricción que afecte sólo al campo. Por ejemplo, esta sentencia añade el campo supervisor (de tipo texto de 10) a la tabla EMPLEAT3. Observe que en la definición del campo pueden entrar restricciones de campo único.</p>
+<pre><code>ALTER TABLE EMPLEADO3  
+    ADD COLUMNO supervisor VARCHAR(10)
+</code></pre>
+</li>
+<li>
+<p>En el caso de una restricción, ésta será del tipo de restricción múltiple, con la sintaxis que vimos en el apartado de restricciones. Por ejemplo, esta sentencia añade la clave externa reflexiva (de EMPLEAT3 a EMPLEAT3) que indica los supervisores. El dni debería ser la clave principal de EMPLEAT3</p>
+<pre><code>ALTER TABLE EMPLEADO3  
+    ADD CONSTRAINT ce_emp3_emp3 FOREIGN KEY (supervisor) REFERENCIAS EMPLEAT3 (dni)
+</code></pre>
+</li>
+</ul>
+<p><strong class="azul">Modificar un campo</strong></p>
+<p>Podemos hacer dos cosas: modificar el tipo del campo o modificar el valor por
+defecto (poner valor por defecto o quitarlo)</p>
+<p>Para cambiar el tipo deberemos utilizar la <strong>sintaxis</strong>... ALTER COLUMN <em>camp</em>
+TYPE <em>nuevo_tipo</em> **. Por ejemplo vamos a hacer que el campo poblacion sea de 25
+caracteres</p>
+<pre><code>  ALTER TABLE EMPLEADO3  
+        ALTER COLUMNO población TYPE VARCHAR(25)
+</code></pre>
+<p>Cambiar el tipo de datos es automático cuando los tipos son compatibles entre
+ellos. Si no lo son nos dará error, pero seguramente podremos esquivarlo con la
+cláusula<strong>USING</strong> , que nos permite poner a continuación el campo y aprovechamos por
+a poner un <strong>operador de conversión de tipos</strong> (<strong>::</strong>) con esta <strong>sintaxis</strong>:</p>
+<pre><code>  ALTER TABLE _MESA_  
+        ALTER COLUMNO _campo_ TYPE _tipo_nuevo_ USING _campo ::_tipo_nuevo_
+</code></pre>
+<p>Para cambiar el valor por defecto utilizaremos la <strong>sintaxis</strong>: **... ALTER COLUMN <em>camp</em> {SET | DROP} DEFAULT [<em>expresión</em>] **</p>
+<pre><code>  ALTER TABLE EMPLEADO3  
+        ALTER COLUMNO población DROP DEFAULT
+</code></pre>
+<p><strong class="azul">Borrar campo o restricción</strong></p>
+<p>Si queremos quitar un campo o una restricción es suficiente con especificar el nombre
+del campo o de la restricción (por eso puede ser muy interesante dar nombre a las
+restricciones). En el primer ejemplo quitamos la clave externa del supervisor. En
+la segunda levantamos el campo supervisor.</p>
+<pre><code>  ALTER TABLE EMPLEADO3  
+        DROP CONSTRAINT ce_emp3_emp3;
+
+  ALTER TABLE EMPLEADO3  
+        DROP COLUMN supervisor
+</code></pre>
+<p><strong class="azul">Renombrar un campo</strong></p>
+<p>Por ejemplo renombramos el campo <strong>data_incorporacio</strong> a <strong>data_inc</strong> :</p>
+<pre><code>  ALTER TABLE EMPLEADO3  
+        RENAME COLUMN data_incorporacio TO data_inc
+</code></pre>
+<p><strong class="azul">Renombrar la tabla</strong></p>
+<p>Ahora le pondremos el nombre EMP3 en la mesa EMPLEAT3</p>
+<pre><code>  ALTER TABLE EMPLEADO3  
+        RENAME TO EMP3
+</code></pre>
+<p><strong><u>Ejemplos</u></strong></p>
+<p>1) Modificar la tabla <strong>EMP3</strong> para añadir el campo cp (código postal) de tipo texto de 5 caracteres.</p>
+<pre><code>  ALTER TABLE EMP3 ADD COLUMNO cp VARCHAR(5);
+</code></pre>
+<p>2) Modificar la tabla <strong>EMP3</strong> para modificar el campo anterior y que sea de tipo numérico.</p>
+<pre><code>  ALTER TABLE EMP3 ALTER COLUMNO cp TYPE NUMERIC(5) USING CP::NUMERIC;
+</code></pre>
+<p>3) Modificar la tabla <strong>EMP3</strong> para añadir la restricción (aunque sea algo extraña) que no se puede repetir la combinación código postal y población.</p>
+<pre><code>  ALTER TABLE EMP3 ADD CONSTRAINT u_cp_pobl UNIQUE (cp,poblacio);
+</code></pre>
+<p>4) Modificar la tabla <strong>EMP3</strong> para borrar la restricción anterior</p>
+<pre><code>  ALTER TABLE EMP3 DROP CONSTRAINT u_cp_pobl;
+</code></pre>
+<p>5) Modificar la tabla <strong>EMP3</strong> para modificar el nombre del campo <strong>cp</strong> en <strong>código_postal</strong></p>
+<pre><code>  ALTER TABLE EMP3 RENAME COLUMN cp TO código_postal;
+</code></pre>
+<p>6) Renombrar la tabla <strong>EMP3</strong> a <strong>EMPLEAT3</strong></p>
+<pre><code>  ALTERAR TABLA EMP3 RENOMBRAR A EMPLEADO3;
+</code></pre>
+<h3 class="ejercicios-header" id="ejercicios_2"><strong><img alt="✏" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/270f.svg" title=":pencil2:" /> Ejercicios</strong></h3>
+<p><img alt="" src="../factura_rel.png" /></p>
+<p>En <strong>factura_local</strong>:</p>
+<p><strong>Ex_9</strong> - Añadir un campo a la tabla <strong>VENEDOR</strong> llamado <strong>alias</strong> de tipo
+texto, que debe ser no nulo y único.</p>
+<p><strong>Ex_10</strong> - Borrar el campo anterior, <strong>alies</strong> , de la tabla <strong>VENEDOR</strong>.</p>
+<p><strong>Ex_11</strong> - Añadir la clave principal de <strong>CATEGORÍA</strong>.</p>
+<p><strong>Ex_12</strong> - En la tabla <strong>ARTÍCULO</strong> añadir la clave principal y la clave externa a
+CATEGORÍA.</p>
+<p><strong>Ex_13</strong> - En la tabla <strong>LINIA_FAC</strong> añadir la clave externa que apunta a
+FACTURA, <strong>exigiendo que se borre en cascada</strong> (si se borra una factura,
+se borrarán automáticamente sus líneas de factura). Y también la clave
+externa que apunta a ARTÍCULO (esta normal, es decir NO ACTION)</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Para no hacerlo demasiado largo, se han dejado de definir alguna restricción,
+  concretamente la reflexiva de VENDEDOR a VENDEDOR (que marca la cabeza)</p>
+</div>
+<h2 id="24-drop-table">2.4 DROP TABLE</h2>
+<p>Nos servirá para borrar absolutamente una tabla, tanto datos como
+la estructura. Hay que tener cuidado con ella, porque es una operación que no
+se puede deshacer, y por tanto potencialmente muy peligrosa.</p>
+<p><strong><u>Sintaxi</u></strong></p>
+<pre><code>  DROP TABLE mesa
+</code></pre>
+<p><strong><u>Ejemplos</u></strong></p>
+<pre><code>  DROP TABLE FAMILIAR
+</code></pre>
+<h2 id="25-indice">2.5 Índice</h2>
+<p>Los índices son estructuras de datos que permiten mantener ordenada una tabla
+respecto a uno o más de un campo, cada uno de ellos de forma ascendente o
+descendente.</p>
+<p>Tener un índice por un determinado campo o campos permite reducir drásticamente el
+tiempo utilizado en ordenar por ellos (porque ya se mantiene este orden) y también
+cuando se busca un determinado valor de este campo, ya que como está ordenado se
+pueden realizar búsquedas binarias o dicotómicas. Cuando no está ordenado no hay más
+remedio que realizar una búsqueda secuencial, que es considerablemente más lenta.</p>
+<p>De todas formas no debe abusarse de los índices, ya que es una estructura
+adicional de datos que ocupará espacio, y que cómo mantener los índices
+constantemente actualizados, cada vez que se realiza una operación
+de actualización (inserción, modificación o borrado) debe reestructurarse
+el índice, para poner o quitar el elemento a su sitio.</p>
+<!--
+El següent vídeo intenta explicar de forma molt senzilla com es podria
+implementar un índex, per poder observar les característiques anteriors. Hem
+de ser conscients, però, que tot aquest procés és transparent per a l'usuari,
+que només notaria, en crear un índex, que els SELECT van més ràpids, i els
+INSERT, DELETE i UPDATE van més lents.-->
+
+<p><strong class="azul">Creación de índice</strong></p>
+<p>Aparte de la creación explícita de índice que haremos en esta pregunta,
+PostgreSQL crea implícitamente un índice cada vez que:</p>
+<ul>
+<li>Creamos una clave princpal</li>
+<li>Creamos una restricción de unicidad (UNIQUE)</li>
+</ul>
+<p>En ambos casos será un índice que no podrá repetirse. Por tanto, en los casos
+anteriores no es necesario crear un índice, porque PostgreSQL ya lo ha hecho
+automáticamente.</p>
+<p>En PostgreSQL la creación de índices es muy completa. Vamos a ver una versión
+resumida:</p>
+<p><strong><u>Sintaxi</u></strong></p>
+<pre><code>    CREATE [UNIQUE] INDICE nombre_índice  
+         DÓNDE tabla (c1 [ASC|DESC][, c2 [ASC|DESC], ...] [NULLS { FIRST | LAST }] )
+</code></pre>
+<p>Si ponemos la opción UNIQUE impedirá que se repitan los valores del campo (o
+campos) que forman el índice, de forma similar a la restricción UNIQUE del
+CONSTRINT.</p>
+<p><strong>La opción de ordenación por defecto es la ascendente.</strong></p>
+<p>Podemos hacer que los nulos estén al principio de todo o al final de todo, según
+nos convenga:</p>
+<ul>
+<li>
+<p><strong>FIRST</strong> : hará que en la ordenación, los valores nulos vayan antes de cualquier otro valor. Ésta es la opción por defecto, si el orden es descendente, además de crear el índice hace que sea clave principal. 
+  Evidentemente no debe haber una clave principal creada con anterioridad.</p>
+</li>
+<li>
+<p><strong>LAST</strong> : los valores nulos estarán al final de todo, después de cualquier otro valor. Es la opción predeterminada cuando el orden es ascendente.</p>
+</li>
+</ul>
+<p><strong><u>Ejemplos</u></strong></p>
+<p>1) Crear un índice en la tabla <strong>EMPLEAT4</strong> para el campo <strong>departamento</strong> en orden ascendente .</p>
+<pre><code>  CREATE INDICE i_dep DONDE EMPLEADO4 (departamento);
+</code></pre>
+<p>2) Crear un índice para el campo <strong>data_nacimiento</strong>(descendente) y <strong>sueldo</strong>(ascendente) en la tabla <strong>EMPLEAT4</strong>. En ambos casos, <strong>data_nacimiento</strong> y <strong>sou</strong> , deben ordenarse los valores nulos al final</p>
+<pre><code>  CREAR ÍNDICE i_sou_date DONDE EMPLEADO4 (fecha_nacimiento DESC NULL ÚLTIMO, salario NULL
+  ÚLTIMO);
+</code></pre>
+<p><strong class="azul">Borrar un índice</strong></p>
+<p>La sentencia de borrar un índice es muy sencilla. Sólo tenemos que especificar el
+nombre del índice y la tabla en la que está definido.</p>
+<pre><code>  DROP INDEX nombre_índice ON tabla
+</code></pre>
+<h3 class="ejercicios-header" id="ejercicios_3"><strong><img alt="✏" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/270f.svg" title=":pencil2:" /> Ejercicios</strong></h3>
+<p>En <strong>factura_local</strong>:</p>
+<p><strong>Ex_14</strong> - Añadir un índice llamado <strong>i_nombre_cli</strong> a la tabla <strong>CLIENTE</strong> por el campo
+<strong>nombre</strong>.</p>
+<p><strong>Ex_15</strong> - Añadir un índice llamado <strong>i_adr_ven</strong> en la tabla <strong>VENEDOR</strong> para
+que esté ordenado por <strong>cp</strong> (ascendente) y <strong>dirección</strong> (descendente).</p>
+<h2 id="26-vistas">2.6 Vistas</h2>
+<p>Las vistas, también llamadas esquemas externos, consisten en visiones
+particulares de la B.D. Se corresponde al nivel externo de la arquitectura a tres
+niveles. Las tablas, que son las que realmente contienen los datos y dan la
+visión global de la B.D., corresponden al nivel conceptual.</p>
+<p><strong class="azul">Creación de una vista</strong></p>
+<p><strong><u>Sintaxi</u></strong></p>
+<pre><code>  CREATE VIEW _nombre_vista_  
+    AS _subconsulta_  
+    [WITH READ ONLY];
+</code></pre>
+<p>donde se le da un nombre, es el resultado de una subconsulta (un SELECT), y tenemos la
+posibilidad de impedir la modificación de los datos.</p>
+<p>Por ejemplo, una vista con las comarcas, el número de poblaciones de cada
+comarca, el total de habitantes y la altura media:</p>
+<pre><code>  CREATE OR REPLACE VIEW ESTADISTICA AS  
+        SELECT nombre_c, count(nombre) AS num_p,sum(poblacion) AS pobl, avg(altura) AS alt_media  
+              FROM POBLACIONES  
+              GROUP BY nombre_c  
+              ORDER BY nombre_c;
+</code></pre>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Si desea probar esta vista, puede hacerlo en la Base de Datos <strong>geo</strong> , ya
+que en ella tenemos datos para la consulta que proporciona los datos a la
+vista. Recuerde que nos estamos conectando todos como el mismo usuario, por tanto
+si alguien ha creado un objeto (en este caso una vista) no se podrá utilizar
+ese nombre para crear otro objeto. Por eso es conveniente que si hace una
+intenta crear un objeto, luego borre este objeto.</p>
+</div>
+<p>Observe la sintaxis CREATE OR REPLACE, que va muy bien para crear, y si ya
+existe para sustituir. Puesto que estamos accediendo todos como el propio usuario,
+será bastante normal que el objeto ya exista por haberlo creado un compañero.
+De esta forma le sustituiremos. No pasa nada por borrar un objeto ya
+existente, ya que todo esto son pruebas.</p>
+<p>La forma de utilizarla es como una tabla normal, pero ya sabemos, que en
+realidad los datos están en las tablas.</p>
+<pre><code>  SELECT *  
+    FROM ESTADISTICA;
+</code></pre>
+<p>E incluso se puede jugar con tablas y vistas. En esta sentencia sacaremos la
+provincia, nombre de la comarca, número de pueblos y altura media de las
+comarcas con 5 o menos pueblos:</p>
+<pre><code>  SELECT provincia,COMARCAS.nombre_c,num_p,alto_media  
+    FROM COMARCAS, ESTADISTICA  
+    WHERE COMARCAS.nombre_c=ESTADISTICA.nombre_c and num_p &lt;= 5;
+</code></pre>
+<p><strong class="azul">Borrar una vista</strong></p>
+<p>Para borrar una vista</p>
+<pre><code>  DROP VIEW _nombre_vista_
+</code></pre>
+<p>Por ejemplo, para borrar la vista anterior: a borrar una vista</p>
+<pre><code>  DROP VIEW ESTADISTICA;
+</code></pre>
+<h3 class="ejercicios-header" id="ejercicios_4"><strong><img alt="✏" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/270f.svg" title=":pencil2:" /> Ejercicios</strong></h3>
+<p>En <strong>factura_local</strong>:</p>
+<p><strong>Ex_16</strong> - Crear la vista <strong>RESUM_FACTURA</strong> , que nos dé el total del dinero
+de la factura, el total después del descuento de artículos, y el total después
+del descuento de la factura, tal y como teníamos en la consulta <strong>Ex_56</strong>. En
+partir de ese momento podremos utilizar la vista para sacar éstos
+resultados</p>
+<p><strong>Ex 17</strong> - Crear la vista <strong>RESUM_VENEDOR</strong>, donde aparezca información del nombre del vendedor, del número total de artículos vendidos y del importe total facturado.</p>
+<p><strong>Ex 18</strong> - Crear la vista <strong>RESUM_CATEGORIAS</strong>, donde aparezca información del nombre de la categoría, del número total de artículos vendidos y del importe total facturado.</p>
+<h2 id="27-creacion-de-otros-objetos-secuencias-dominios-y-tipos">2.7. Creación de otros objetos: secuencias, dominios y tipos.</h2>
+<p>Una de las características de PostgreSQL es su gran versatilidad.</p>
+<p>En concreto, se pueden crear muchos objetos. Aparte de los habituales, vistas,
+secuencias,... se pueden crear más tipos de objetos. En este curso daremos
+una ojeada en los dominios y la definición de nuevos tipos de datos.</p>
+<p>Debemos tener en consideración que todos nos conectaremos como el propio usuario para
+a realizar pruebas. Por tanto los objetos que creamos pueden fastidiar a otros
+compañeros si utilizamos todos los mismos nombres.</p>
+<p>En otros SGBD (como por ejemplo Oracle) existe la posibilidad de crear los
+objetos poniendo <strong>CREATE OR REPLACE ...</strong>, que si no existe lo crea, y si
+existe lo sustituye. Lamentablemente en PostgreSQL depende de la versión: en
+las más modernas sí se puede, pero en versiones anteriores no podremos, salvo en las vistas y las
+funciones.</p>
+<h3 id="271-secuencias"><strong>2.7.1 Secuencias</strong></h3>
+<p><strong class="azul">Creación de una secuencia</strong></p>
+<p>También se pueden crear secuencias (<strong>SEQUENCE</strong>), que son objetos que cogen
+valores numéricos que van incrementándose (como el autonumérico).</p>
+<p><strong><u>Sintaxi</u></strong></p>
+<pre><code>  CREATE SEQUENCE _nombre_secuencia_  
+    [START WITH _valor_inicial_]  
+    [INCREMENTO BY _valor_increment_] ... ;
+</code></pre>
+<p>La sentencia es más larga, por considerar más casos. Para nosotros está
+así.</p>
+<p>Por defecto, el valor inicial es 1 y el incremento también 1.</p>
+<p>Es un objeto independiente de las tablas. Se utiliza de la siguiente manera:</p>
+<blockquote>
+<p><strong>CURRVAL('<em>nombre_secuencia</em>')</strong> devuelve el valor actual (debe estar
+inicializado)</p>
+<p><strong>NEXTVAL('<em>nombre_secuencia</em>')</strong> incrementa la secuencia y devuelve el nuevo
+valor (excepto la primera vez que lo inicia con el valor inicial)</p>
+</blockquote>
+<p>La forma habitual de utilizarlo será para obtener un valor que se añadirá a un
+campo de una mesa (normalmente la clave principal).</p>
+<p>Supongamos que tenemos una tabla llamada <strong>FACTURA</strong> con la estructura que viene a
+continuación, y queremos que la clave principal sea un autonumérico. Lo podemos
+probar sobre la Base de Datos y usuario <strong>pruebas</strong>.</p>
+<pre><code>  CREATE TABLE FACTURA  
+    ( num_f NUMERIC(7) CONSTRAINT cp_fact PRIMARY KEY,  
+    fecha DATE,  
+    cliente VARCHAR(10));
+</code></pre>
+<p>Primero nos crearemos la secuencia:</p>
+<pre><code>  CREATE SEQUENCE s_num_fac START WITH 2016001;
+</code></pre>
+<p>Luego lo utilizamos:</p>
+<pre><code>  INSERT INTO FACTURA VALUES (NEXTVAL('s_num_fac'), '15-01-2016','cli001');
+</code></pre>
+<p>Si ahora miramos el contenido de la tabla <strong>FACTURA</strong> obtendremos:</p>
+<p><img alt="" src="../T6_III_2_8_1_1.png" /></p>
+<p>O incluso en el momento de declarar la tabla, le ponemos un valor por defecto
+en el campo, que será el siguiente de la secuencia. No deberemos introducir ahora nada en
+la columna <strong>num_f</strong> , que toma el valor de la secuencia</p>
+<pre><code>  CREATE TABLE FACTURA2  
+    ( num_f NUMERIC(7) CONSTRAINT cp_fact2 PRIMARY KEY DEFAULT
+    NEXTVAL('s_num_fac'),  
+    fecha DATE,  
+    cliente VARCHAR(10));
+
+  INSERT INTO FACTURA2(fecha,cliente) VALUES ('15-01-2016','cli001');
+</code></pre>
+<p>Observe también que en la tabla FACTURA2, el valor comienza por <strong>2016002</strong> , ya
+que el primer valor lo habíamos utilizado en FACTURA. Por tanto el contenido de la
+tabla <strong>FACTURA2</strong> será:</p>
+<blockquote>
+<blockquote>
+<p><img alt="" src="../T6_III_2_8_1_2.png" /></p>
+</blockquote>
+</blockquote>
+<p>También podríamos haberlo hecho declarando la clave de tipo <strong>SERIAL</strong> , que lo que
+hace es implementar una secuencia, y dar valores sucesivos para el campo donde está
+definida. Pero de esta manera la secuencia comienza siempre por</p>
+<pre><code>  CREATE TABLE FACTURA3  
+    ( num_f SERIAL CONSTRAINT cp_fact3 PRIMARY KEY,  
+    fecha DATE,  
+    cliente VARCHAR(10));
+</code></pre>
+<p>Y después realizar la inserción de esta manera:</p>
+<pre><code>  INSERT INTO FACTURA3(fecha,cliente) VALUES ('15-01-2016','cli001')
+</code></pre>
+<p>Como comentábamos, el valor introducido por la secuencia será <strong>1</strong> :</p>
+<p><img alt="" src="../T6_III_2_8_1_3.png" /></p>
+<p>Volveremos a ver este ejemplo en las consultas de actualización, concretamente
+el <strong>INSERT</strong>.</p>
+<p><strong class="azul">Borrar una secuencia</strong></p>
+<p>Para borrar una secuencia utilizaremos la sentencia <strong>DROP SEQUENCE</strong> :</p>
+<pre><code>  DROP SEQUENCE s_num_fac
+</code></pre>
+<p>De momento esta sentencia nos daría error, puesto que la tabla <strong>FACTURA2</strong>
+utiliza esta secuencia. Borraremos primero las 3 tablas, y después la
+secuencia para no interferir con los compañeros/as.</p>
+<pre><code>  DROP TABLE FACTURA, FACTURA2, FACTURA3;
+
+  DROP SEQUENCE s_num_fac;
+</code></pre>
+<h3 id="272-dominios"><strong>2.7.2 Dominios</strong></h3>
+<p>Los dominios son los conjuntos de valores que puede tomar un determinado campo.
+Habitualmente se pone sencillamente un tipo de datos. Pero el modelo relacional
+teórico es más restrictivo, y los dominios aún podrían ser subconjuntos
+de estos tipos de datos.</p>
+<p><strong class="azul">Creación de un dominio</strong></p>
+<p>Normalmente estos subconjuntos se realizan por medio de los <strong><em>check</em></strong> , que
+permiten una regla de validación (una condición) para dar los datos como
+buenas (por ejemplo, un sueldo siempre es positivo, por tanto, aparte de hacer que
+sea numérico podríamos obligar a que fuera positivo).</p>
+<p><strong><u>Sintaxi</u></strong></p>
+<pre><code>  CREATE DOMAIN nombre AS data_tipo  
+        [CHECK(expresión)| NOTE NULL | NULL ];
+</code></pre>
+<p>PostgreSQL permite definir dominios, que serán de un determinado tipo base, de una
+tamaño determinado (opcional), con un valor por defecto (opcional) e fines
+todo con una cláusula <strong><em>check</em></strong>. A partir de ese momento, uno o más de un campo
+los podremos definir de este dominio (con la ventaja de que cambiando el dominio
+cambiamos el tipo de todos los campos que lo poseen).</p>
+<p>Vamos a ver algunos ejemplos que se pueden realizar sobre el usuario <strong>pruebas</strong>.</p>
+<pre><code>  CREATE DOMAIN sueldo AS numérico(7,2)  
+    CHECK (VALUE &gt; 0);
+</code></pre>
+<p>Si le da error porque ya existía el dominio, sencillamente borre el dominio
+anterior y vuelva a intentarlo</p>
+<p>Ahora podríamos definir la tabla:</p>
+<pre><code>  CREATE TABLE EMPLEADO5  
+    ( cod_e varchar(5) primary key,  
+    nombre_e varchar(50),  
+    salario sueldo);
+</code></pre>
+<p>Si intentamos introducir el dato del sueldo mal (por ejemplo poniéndolo negativo)
+veremos que da error.</p>
+<p><img alt="" src="../T6_3_2_8_2_1.png" /></p>
+<p>Otro ejemplo, que haremos sobre la Base de Datos <strong>pruebas</strong> , aunque es
+un ejemplo basado en las tablas que teníamos en <strong>geo</strong>.</p>
+<p>En la tabla de <strong>POBLACIONES</strong> tenemos las coordenadas (<strong>latitud</strong> y
+<strong>longitud</strong>). Podríamos intentar realizar unos dominios para marcar el <strong>hemisferio</strong>
+(NS para latitud, y E W para longitud), los <strong>grados de latitud</strong> (-90º a
+90º), <strong>grados de longitud</strong> (-180º a 180º) en longitud, para los <strong>minutos</strong> (0'
+a 59') , <strong>según</strong> (0” a 59”). Centrémonos en la latitud:</p>
+<pre><code>  CREATE DOMAIN hemi_lat AS char(1)  
+    CHECK (VALUE IN ('N','S'));
+
+
+  CREATE DOMAIN grados_lato AS numerico(2)  
+    CHECK (VALUE BETWEEN 0 AND 90);
+
+
+  CREATE DOMAIN min_seg AS numérico(2)  
+    CHECK (VALUE BETWEEN 0 AND 59);
+</code></pre>
+<p>Ahora podríamos definir una alternativa en la tabla de POBLACIONES:</p>
+<pre><code>  CREATE TABLE POBLACIONES2  
+    ( nombre VARCHAR(50) CONSTRAINT cp_pob2 PRIMARY KEY,  
+    lat_h hemi_lato,  
+    lat_g grados_lato,  
+    lat_m min_seg,  
+    lat_s min_seg);
+</code></pre>
+<p>y comprobaríamos que las latitudes deben introducirse correctamente. Si ponemos por
+ejemplo los minutos mal, da error</p>
+<pre><code>  INSERT INTO POBLACIONES2  
+    VALUES('Islas Columbretes','N',39,73,57);
+</code></pre>
+<p><img alt="" src="../T6_3_2_8_2_2.png" /></p>
+<p>Pero no hay problema si los datos son correctos.</p>
+<pre><code>  INSERT INTO POBLACIONES2  
+    VALUES('Islas Columbretes','N',39,53,57);
+</code></pre>
+<p><img alt="" src="../T6_3_2_8_2_3.png" /></p>
+<p><strong class="azul">Borrar un dominio</strong></p>
+<p>Para borrar un dominio, utilizaremos DROP DOMAIN.</p>
+<p><strong><u>Sintaxi</u></strong></p>
+<pre><code>  DROP DOMAIN [IF EXISTS] nombre [CASCADE | RESTRICTO]
+</code></pre>
+<blockquote>
+<blockquote>
+<ul>
+<li>RESTRICT rechaza eliminar el dominio si hay objetos que dependen de él. Éste es el valor predeterminado.</li>
+</ul>
+</blockquote>
+</blockquote>
+<p><strong><u>Ejemplo</u></strong></p>
+<pre><code>  DROP DOMAIN sueldo;
+</code></pre>
+<p>Si algún campo está definido con el dominio que borramos, dará error. Si
+borramos con la opción CASCADE, se borrarían los campos de las tablas con
+ese dominio. Para dejar que los compañeros/as puedan trabajar también,
+borramos todo lo que hemos creado:</p>
+<pre><code>  DROP TABLE EMPLEADO5;
+
+  DROP DOMAIN sueldo;
+</code></pre>
+<p>Aún no borramos los dominios <strong>hemi_lat</strong> , <strong>grados_lat</strong> y <strong>min_seg</strong> ,
+porque los utilizaremos en la siguiente pregunta.</p>
+<h3 id="273-tipos-de-datos"><strong>2.7.3 Tipos de datos</strong></h3>
+<p>Ya habíamos comentado que PosgreSQL es muy versátil, y permite al usuario crear
+tipos de datos personales.</p>
+<p>Tres son las formas de crear un tipo de datos: compuesto, enumerado y externo.</p>
+<ul>
+<li><strong>Compost</strong> es como un registro, donde se especifican los campos y los tipos.</li>
+<li><strong>Enumbrado</strong> : pondremos los posibles valores entre paréntesis.</li>
+<li><strong>Extern</strong> es mucho más completo y complejo que permite crear un nuevo tipo base, con una estructura interna y con funciones, normalmente creadas en C, de entrada (para introducir el dato) y salida (para representarlo), de análisis,... Este tipo se escapa de los objetivos de este curso</li>
+</ul>
+<p><strong class="azul">Creación de tipos de fecha Compuesto</strong></p>
+<p><strong><u>Sintaxi</u></strong></p>
+<p>Pondremos entre paréntesis el nombre de los campos y el tipo que formarán parte
+de este tipo compuesto.</p>
+<pre><code>  CREATE TYPE nombre AS ([nombre_campo tipo_campo] [,..])
+</code></pre>
+<p><strong><u>Ejemplo</u></strong></p>
+<p>Por ejemplo, sobre la Base de Datos <strong>pruebas</strong> :</p>
+<pre><code>  CREATE TYPE num_complex AS (a float4, b float4);
+</code></pre>
+<p>que nos serviría para representar números complejos. Si le da error porque
+ya existe el tipo (porque lo ha creado un compañero/a), sencillamente borrad-
+lo antes y vuelva a intentarlo</p>
+<blockquote>
+<p>Otro ejemplo (no hace falta hacerlo, es ilustrativo sólo):</p>
+</blockquote>
+<pre><code>  CREATE TYPE lat AS (  
+    h char(1),  
+    g numérico(2,0),  
+    m numérico(2,0),  
+    Uso numérico(2,0));
+</code></pre>
+<p>para representar la latitud, aunque podríamos aprovechar los dominios creados
+en el punto anterior, y nos saldrá mejor (éste sí que puede hacerlo):</p>
+<pre><code>  CREATE TYPE lat AS (  
+    h hemi_lat,  
+    g grados_lato,  
+    m min_seg,  
+    s min_seg);
+</code></pre>
+<p>y el tipo lat deberá respetar las restricciones de cada dominio de los cuatro
+campos.</p>
+<p>Ahora podríamos definir una tabla</p>
+<pre><code>  CREATE TABLE POBLACIONES3 (  
+    nombre VARCHAR(50) CONSTRAINT cp_pob3 PRIMARY KEY,  
+    latitud lat,  
+    comarca varchar(50));
+</code></pre>
+<p>De esta forma queda muy compacto.</p>
+<p>Por ejemplo, esta introducción de datos dará un error, ya que el hemisferio
+no es correcto:</p>
+<pre><code>  INSERT INTO POBLACIONES3  
+    VALUES ('Castellón','(K,39,59,10)','Plana Alta');
+</code></pre>
+<p>En cambio ésta funcionará perfectamente:</p>
+<pre><code>  INSERT INTO POBLACIONES3  
+    VALUES ('Castellón','(N,39,59,10)','Plana Alta');
+</code></pre>
+<p>Para acceder a los campos de los tipos compuestos, bien ya definidos, bien definidos por
+nosotros, deberemos poner el nombre de la columna seguida de un punto y seguido del
+nombre del campo. Pero en las sentencias SQL se nos presenta un problema: que
+esta sintaxis sirve para poner también el nombre de la tabla seguido del nombre de
+la columna. </p>
+<p>Así por ejemplo nos dará <strong class="rojo">error</strong> la siguiente sentencia, en la que
+queremos sacar el nombre de la población, la latitud y si está en el hemisferio norte o
+sur:</p>
+<pre><code>  SELECT nombre, latitud, latitud.h FROM POBLACIONS3;
+</code></pre>
+<p>El error lo da porque en latitud.h espera que latitud sea una mesa y h una
+columna. La forma de esquivar este error es poner entre paréntesis la
+columna:</p>
+<pre><code>  SELECT nombre, latitud, (latitud).h FROM POBLACIONS3;
+</code></pre>
+<p>En el siguiente tema, el de programación en PL/pgSQL veremos que allí no será necesario
+poner los paréntesis, porque no habrá la confusión de mesa.</p>
+<p><strong class="azul">Creación de tipos de fecha Enumerado</strong></p>
+<p>El tipo enumerado es un conjunto de datos estáticos definidos en el momento de
+la creación del tipo, con un orden predefinido también. Está disponible desde la
+versión <strong>8.3</strong> de PostgreSQL.</p>
+<p><strong><u>Sintaxi</u></strong></p>
+<pre><code>  CREATE TYPE nombre AS ENUM
+        ('elemento' [,...])
+</code></pre>
+<p><strong><u>Ejemplo</u></strong></p>
+<pre><code>  CREATE TYPE d_set AS ENUM
+    ('lunes','martes','miércoles','jueves','viernes','sábado','domingo');
+</code></pre>
+<p>Posteriormente lo podremos utilizar, por ejemplo, en la definición de una tabla:</p>
+<pre><code>  CREATE TABLE HORARIO (  
+    cod_pr NUMERIC(5) PRIMARY KEY,  
+    de tud de siete,  
+    h_tut NUMERIC(4,2));
+</code></pre>
+<p>Ahora podemos utilizarlo. Deberemos tener en cuenta que los valores son únicamente
+los definidos. Y debe respetarse mayúsculas y minúsculas.</p>
+<pre><code>  INSERT INTO HORARIO VALUES (1,'martes',10);
+</code></pre>
+<p>En cambio, ésta daría error:</p>
+<pre><code>  INSERT INTO HORARIO VALUES (2,'Miércoles',12);
+</code></pre>
+<p>ya que el nombre de la semana comienza en mayúscula.</p>
+<p>Introducimos algunos datos más</p>
+<pre><code>  INSERT INTO HORARIO VALUES (2, 'miércoles',12) , (3,'lunes',9) ,
+  (4,'viernes',11);
+</code></pre>
+<p>Podemos comprobar cómo el orden predefiniendo es el del momento de la creación del
+tipos:</p>
+<pre><code>  SELECT * FROM HORARIO ORDER BY d_tut;
+</code></pre>
+<p>Y como también se puede comprobar en esta sentencia:</p>
+<pre><code>  SELECT * FROM HORARIO WHERE d_tut &gt; 'martes';
+</code></pre>
+<p>donde sólo saldrán las filas correspondientes al miércoles y al viernes (filas 2 y
+4).</p>
+<p><strong class="azul">Borrar tipos de datos</strong></p>
+<p>Por último, vamos a borrar los objetos que hemos creado, para no interferir con
+los compañeros:</p>
+<pre><code>  DROP TABLE POBLACIONES2, POBLACIONS3, HORARIO;
+
+  DROP TYPE num_complex, lat, d_set;
+
+  DROP DOMAIN hemi_lato, grados_lato, min_seg;
+</code></pre>
+<h3 class="ejercicios-header" id="ejercicios_5"><strong><img alt="✏" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/270f.svg" title=":pencil2:" /> Ejercicios</strong></h3>
+<p>En <strong>factura_local</strong>:</p>
+<p><strong>Ex 19</strong> - Tenemos creada la mesa VENDEDOR y se desea que la clave principal sea una secuencia autonumérica personalizada. 
+Observa la información actual en la tabla VENDEDOR de la BD factura y analiza qué secuencia se ha utilizado.</p>
+<p><img alt="" src="../Ex_18.png" /></p>
+<ul>
+<li>A continuación realiza la inserción de un registro en esta tabla teniendo en cuenta la secuencia creada, para comprobar que funciona.</li>
+<li>Finalmente elimina los objetos creados. </li>
+<li>Escribe las sentencias en el orden adecuado</li>
+</ul>
+<p><strong>Ex 20</strong> - Queremos crear una nueva tabla CLIENTE2 y se quiere que la clave principal sea una secuencia personalizada autonumerica. 
+Observa la información actual en la tabla CLIENTE de la BD factura y analiza qué secuencia debería utilizarse.</p>
+<p><img alt="" src="../Ex_20.png" /></p>
+<ul>
+<li>Debes tener en cuenta que al crear la tabla CLIENTE2 para que el campo cod_cli, por defecto siempre tome el siguiente valor de la secuencia definida anteriormente. </li>
+<li>A continuación realiza la inserción de un registro en esta tabla teniendo en cuenta los cambios realizados en la base de datos. </li>
+<li>Finalmente elimina los objetos creados. 
+Escribe las sentencias en el orden adecuado.</li>
+</ul>
+<p><strong>Ex 21</strong> - En la tabla FACTURA2 se quiere que la clave principal sea una secuencia autonumérica en serie.</p>
+<ul>
+<li>Crea la tabla FACTURA2 para que el campo num_f utilice una secuencia en serie.</li>
+<li>Además debes tener en cuenta que el iva de la factura solo puede ser el 10 o el 21 y que el descuento la factura debe ser inferior a 50.</li>
+<li>A continuación realiza la inserción de un registro en esta tabla para comprobar que funciona.</li>
+<li>Finalmente elimina los objetos creados.</li>
+<li>Escribe las sentencias en el orden adecuado.</li>
+</ul>
+<p><strong>Ex 22</strong> - Crea la tabla ARTÍCULO2 teniendo en cuenta lo siguiente;</p>
+<ul>
+<li>Comprobar que el precio, stock y stock_min no es negativo</li>
+<li>Crear un tipo de datos para el estado de un artículo, que puede tomar los valores "Disponible", "Agotado" o "En espera".</li>
+<li>
+<p>Crea un tipo de dato para registrar el código de barras EAN-13 de un artículo. Teniendo en cuenta que el código de barras EAN-13 se observan 3 partes:</p>
+<ul>
+<li>País de procedencia: son los dos o tres primeros dígitos y, en el caso de España, este prefijo es el 84.</li>
+<li>Código del producto: siguientes 9 o 10 dígitos.</li>
+<li>Dígito de control: es un solo número, el último, y sirve para corroborar que el código es correcto.</li>
+</ul>
+</li>
+<li>
+<p>Comprobar que stock no puede ser inferior a stock _min (TIENES QUE DEFINIR UNA CONSTRAINTO)</p>
+</li>
+<li>A continuación realiza la inserción de un registro en esta tabla para comprobar que funciona.</li>
+<li>Finalmente elimina los objetos creados.</li>
+<li>Escribe las sentencias en el orden adecuado.</li>
+</ul>
+<p>Licenciado bajo la <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Licencia Creative Commons Reconocimiento NoComercial
+CompartirIgual 3.0</a></p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../1_introducci/" class="md-footer__link md-footer__link--prev" aria-label="Previous: 1. Introducción">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                1. Introducción
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../exercicis_de_tot_el_tema/" class="md-footer__link md-footer__link--next" aria-label="Next: Ejercicios de todo el tema">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Ejercicios de todo el tema
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.footer", "navigation.path", "search.suggest", "search.highlight", "content.code.copy", "toc.integrate"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,2133 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../22_combinacions_de_taules/">
+      
+      
+        <link rel="next" href="../24_consultes_doperacions_de_conjunts/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>3. Subconsultas - BD - Bases de Datos</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../css/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#3-subconsultas" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="BD - Bases de Datos" class="md-header__button md-logo" aria-label="BD - Bases de Datos" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            BD - Bases de Datos
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              3. Subconsultas
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Cambiar a modo oscuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo oscuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Cambiar a modo claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../RA_CE/" class="md-tabs__link">
+          
+  
+  
+  SQL - POSTGRES
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../BD_PostgreSQL_DQL/0_presentacion/" class="md-tabs__link">
+          
+  
+  
+  DQL - Consultas (parte I)
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../20_presentacion/" class="md-tabs__link">
+          
+  
+  
+  DQL - Consultas avanzadas (parte II)
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../BD_PostgreSQL_DDL/1_introducci/" class="md-tabs__link">
+          
+  
+  
+  DDL - Creación de Tablas
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../BD_PostgreSQL_DML/1_introducci/" class="md-tabs__link">
+          
+  
+  
+  DML - Manipulación de Datos
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="BD - Bases de Datos" class="md-nav__button md-logo" aria-label="BD - Bases de Datos" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    BD - Bases de Datos
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SQL - POSTGRES
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SQL - POSTGRES
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../RA_CE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Resultados de Aprendizaje y Criterios de Evalucación
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DQL/objectius_i_coneixements_previs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Objetivos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DQL/1_introducci/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Introducción
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DQL/2_client_dbeaver_installaci_i_confiuraci/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. DBeaver
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DQL/3_dades_dels_exemples_i_els_exercicis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3 Datos de los ejemplos y los ejercicios
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_1_6" id="__nav_1_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Operadores y Funciones de Postgres
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    4. Operadores y Funciones de Postgres
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DQL/6_operadors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.1. Operadores
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DQL/7_funcions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.2. Funciones
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DQL - Consultas (parte I)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    DQL - Consultas (parte I)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DQL/0_presentacion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Presentación Tema 4 (Parte 1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DQL/1_la_consulta_select/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. La consulta SELECT
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DQL/2_consulta_bsica/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Consulta básica
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DQL/3_lies_en_les_columnes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Alias en las columnas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DQL/4_la_clusula_where/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. La cláusula WHERE
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DQL/5_funcions_dagregat/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. Funciones de agregado
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DQL/6_la_clusula_group_by/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. La cláusula GROUP BY
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DQL/7_la_clusula_having/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7. La cláusula HAVING
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DQL/8_la_clusula_order_by/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8. La cláusula ORDER BY
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DQL/9_el_predicat_distinct/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    9. El predicado DISTINCT
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DQL/10_la_clusula_limit__offset/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10. La cláusula LIMIT .. OFFSET
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DQL/11_consulta_de_creaci_de_taules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11. Consulta de creación de tablas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DQL/12_ordre_amb_qu_sexecuta_una_sentncia_sql/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    12. Orden en el que se ejecuta una sentencia SQL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DQL/exercicis_de_tot_el_tema_amb_els_resultats/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ejercicios con los resultados (parte I)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DQL/ejemplos_bd/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ejemplos de BDs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DQL - Consultas avanzadas (parte II)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    DQL - Consultas avanzadas (parte II)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../20_presentacion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Presentación Tema 4 (Parte 2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../21_introducci/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Introducción
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../22_combinacions_de_taules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Combinaciones de tablas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Subconsultas
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Subconsultas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#31-sintaxis-en-el-from" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 Sintaxis en el FROM
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#32-sintaxis-en-el-where-o-el-having" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 Sintaxis en el WHERE o el HAVING
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#33-sintaxis-en-el-select" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 Sintaxis en el SELECT
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ejercicios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ejercicios
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../24_consultes_doperacions_de_conjunts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Consultas de operaciones de conjuntos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../exercicis_de_tot_el_tema_amb_els_resultats/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ejercicios con los resultados (parte II)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DDL - Creación de Tablas
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    DDL - Creación de Tablas
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DDL/1_introducci/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Introducción
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DDL/2_ddl/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. DDL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DDL/exercicis_de_tot_el_tema/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ejercicios de todo el tema
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DML - Manipulación de Datos
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    DML - Manipulación de Datos
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DML/1_introducci/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Introducción
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DML/2_consultes_dactualitzaci/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Consultas de actualización (DML)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DML/exercicis_de_tot_el_tema/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ejercicios de todo el tema
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="3-subconsultas">3. Subconsultas</h1>
+<p>Una subconsulta es una consulta dentro de otra consulta. Esta subconsulta
+puede tener todos los elementos que hemos visto hasta ahora.</p>
+<p>El lugar donde poner una subconsulta dentro de la consulta principal puede estar en la
+cláusual WHERE o en la cláusula HAVING (formando parte de una condición) o en el
+FROM, y debe ir entre paréntesis. Incluso se puede poner en lo mismo
+SELECT, es decir, en las columnas que van después del SELECT.</p>
+<ul>
+<li>
+<p>Si va en el <strong>FROM</strong> , la subconsulta será el origen de los datos, y por tanto se ejecutará antes y proporcionará los datos para la consulta principal.</p>
+</li>
+<li>
+<p>Si va en el <strong>WHERE</strong> o el <strong>HAVING</strong> formará parte de una condición, y así podremos comparar en la consulta principal un campo con el que devuelva la subconsulta, por ejemplo. Aparte de las comparaciones normales que ya hemos visto en el WHERE o el HAVING, podremos poner algunos operadores y predicados especiales, como veremos más adelante.</p>
+</li>
+<li>
+<p>Si va en el mismo <strong>SELECT</strong> normalmente será para sacar un resultado global que no afecta al resto de la consulta</p>
+</li>
+</ul>
+<h2 id="31-sintaxis-en-el-from">3.1 Sintaxis en el FROM</h2>
+<pre><code>SELECT ...  
+  FROM ( _Subconsulta_) AS _Nombre_Subconsulta_
+</code></pre>
+<p>Vamos a poner un ejemplo para entenderlo. Queremos sacar la media de pueblos por
+comarca. Lo podemos hacer de la siguiente manera: primero contamos cuántos pueblos hay
+en cada comarca, y una vez calculado esto sacamos la media.</p>
+<pre><code>SELECT AVG(cuántos)  
+  FROM (SELECT COUNT(*) AS cuántos  
+        FROM POBLACIONES  
+        GROUP BY nombre_c) AS S ;
+</code></pre>
+<p>Observe que es necesario ponerle un alias en la columna de la subconsulta
+(cuántos) para poder hacer referencia a ella en la consulta principal. Y por una
+por otro lado, en PostgreSQL las subconsultas que van al FROM deben tener
+obligatoriamente un sobrenombre. Si no pusimos <strong>AS S</strong> (o cualquier otro nombre)
+nos daría error.</p>
+<p>Como ven, ya tiene un nivel de complejidad más que aceptable. Siempre se ejecuta
+primero la subconsulta y con los datos que proporciona, se ejecuta la consulta
+principal. Por el grado de complejidad es muy recomendable ir de dentro hacia
+fuera, es decir, pensar bien la subconsulta, incluso ejecutarla para ver si
+saca lo que necesitamos (en el ejemplo ver si saca el número de poblaciones de
+cada una de las 34 comarcas), y cuando estemos seguros de que funciona bien crear
+la consulta principal.</p>
+<h2 id="32-sintaxis-en-el-where-o-el-having">3.2 Sintaxis en el WHERE o el HAVING</h2>
+<pre><code>SELECT ...  
+  FROM Tabla  
+  WHERE campo operador ( _Subconsulta_)
+</code></pre>
+<p>Podemos observar que lo que haremos será comparar algún campo de la mesa (o una
+expresión con alguna función) con el resultado que viene de la subconsulta.</p>
+<p>Antes de ver qué podemos poner como operador o como campo o incluso ver
+unos predicados que podremos utilizar, pondremos un ejemplo, para clarificar las
+cosas. Intentaremos sacar las comarcas con una altura superior a la media.
+Calcular la media de las alturas es fácil, siendo la subconsulta. Lo que
+haremos será comparar la altura de cada población con esta media.</p>
+<pre><code>SELECT *  
+  FROM POBLACIONES  
+  WHERE altura &gt; (SELECT AVG(altura)  
+                  FROM POBLACIONES)
+</code></pre>
+<p>Si ejecuta la consulta, verá que la altura de todos los pueblos es superior a
+300,44 que es la altura media (aproximadamente, porque lo calcula con mucha
+precisión)</p>
+<p>No hay ningún problema en poner dos veces la misma mesa. Los campos se
+refieren a la mesa más cercana. Y funciona perfectamente para que la
+subconsulta nos devuelve un único valor, la media de alturas, y en la consulta
+principal se compara cada altura con ese valor. Posteriormente veremos cómo
+solucionar el problema de que la subconsulta devuelva más de un valor.</p>
+<p><strong class="azul">Operadores de comparación y predicados AÑO, AJO, SOME</strong></p>
+<p>Es como el ejemplo de arriba, pero con cualquier operador de comparación. Se compara el campo (o expresión) con el resultado de la subconsulta. Si la subconsulta sólo devuelve un valor, no hay más problema, pero si devuelve más de un valor (más de una fila) de momento sería incorrecto (no se puede comparar un campo con varios valores). Pongamos otro ejemplo que ilustrar. Sacar a la población más alta podría hacerse de esta manera.</p>
+<pre><code>SELECT *  
+  FROM POBLACIONES  
+  WHERE altura = (SELECT MAX(altura)  
+                  FROM POBLACIONES)
+</code></pre>
+<blockquote>
+<p>No hay problema porque la subconsulta devuelve un valor. Pero vamos a
+complicarla vamos a ver a las poblaciones más altas de cada comarca. Podríamos
+intentarlo de esta manera:</p>
+</blockquote>
+<pre><code>SELECT *  
+  FROM POBLACIONES  
+  WHERE altura = (SELECT MAX(altura)  
+                  FROM POBLACIONES
+                  GROUP BY nombre_c)
+</code></pre>
+<blockquote>
+<p>Pero nos daría el siguiente error:</p>
+<p><img alt="" src="../T6_II_3_1.png" /></p>
+<p>Y es que la subconsulta devuelve 34 valores (uno por cada comarca), y de ésta
+modo no se puede comparar el valor de la izquierda del igual con los 34 valores
+de la derecha. Para solucionar el problema de cuándo vuelve más de un valor podemos
+utilizar los predicados <strong>ALL</strong>, <strong>AÑO</strong>, <strong>SOME</strong>.</p>
+<ul>
+<li>Si utilizamos <strong>ALL</strong>, el resultado será cierto si la comparación es cierta con
+<strong>TODOS</strong> los valores que devuelve la subconsulta.</li>
+<li>Si utilizamos <strong>AÑO</strong> o <strong>SOME</strong> (que son sinónimos) el resultado será cierto
+si la comparación es cierta con <strong>ALGUN</strong> valor de la subconsulta.
+</li>
+</ul>
+<p>En nuestro ejemplo, seguramente nos convendría <strong>AÑO</strong>.</p>
+</blockquote>
+<pre><code>SELECT *  
+  FROM POBLACIONES  
+  WHERE altura = AÑO (SELECT MAX(altura)  
+                      FROM POBLACIONES
+                      GROUP BY nombre_c)
+</code></pre>
+<blockquote>
+<p>Esta consulta no funcionará bien del todo, ya que seleccionará todas las
+poblaciones que coinciden con alguna de las alturas máximas, sean de la
+su comarca o no. Así por ejemplo, la altura máxima de la comarca de la
+<strong>Plana Alta</strong> es la <strong>Serratella,</strong> con 781 metros, que efectivamente
+aparece en el listado. Pero también aparece 'Castellón', que tiene una altura de
+30 metros. Y aparece porque la altura máxima de la comarca <strong>Ribera Baixa</strong>
+da la casualidad de que es 30 metros (Almussafes). Ya dependeremos de hacer bien
+esta consulta en los ejemplos posteriores, pero para comparar con
+muchos valores nos va bien.</p>
+</blockquote>
+<p><strong class="azul">El operador IN</strong></p>
+<p>No será problema que la subconsulta devuelva un valor o
+muchos. La condición será cierta si el valor del campo (o de la expresión) está
+entre la lista de valores que devuelve la subconsulta. También pueden utilizar
+NOT IN, y la condición será cierta cuando el valor del campo no está entre la
+lista. Por ejemplo, otra forma de sacar a las poblaciones que no tienen
+instituto, que la vista en las combinaciones externas. En la subconsulta sacamos
+los códigos de municipio de la mesa INSTITUTOS, y por tanto son los pueblos que
+tienen instituto, y en la consulta principal queremos los que no están en esta
+lista</p>
+<pre><code>SELECT *  
+  FROM POBLACIONES  
+  WHERE cod_m NOT IN (SELECT cod_m  
+                      FROM INSTITUTOS)
+</code></pre>
+<p><strong class="azul">El operador EXISTS</strong></p>
+<p>Es seguramente lo más incómodo. No se compara un campo (o expresión) con la subconsulta, sino únicamente se pone <strong>[NOT] EXISTS (<em>subconsulta</em>)</strong> . La condición será cierta si la subconsulta devuelve <strong>alguna fila</strong> , y no será cierta si no devuelve ninguna fila. Intentamos hacer el mismo ejemplo de antes, el de los pueblos sin instituto. Debemos conseguir que la subconsulta no tenga ninguna fila en el caso de quienes no tienen instituto. De palabra podemos decirlo así: queremos los pueblos para los que no existe ninguna fila en INSTITUTOS con el mismo código de municipio. Ahora ya se puede intuir por dónde van los tiros:</p>
+<pre><code>SELECT *  
+  FROM POBLACIONES  
+  WHERE NOT EXISTS (SELECT *  
+                    FROM INSTITUTOS  
+                    WHERE cod_m= POBLACIONES.cod_m)
+</code></pre>
+<blockquote>
+<p>mira como si en la subconsulta ponemos un campo (en el ejemplo cod_m), si el
+campo es de la tabla (o tablas) de la subconsulta, se referirá a él, por
+esto si queremos hacer referencia a un campo de la tabla o tablas de la consulta
+principal debemos poner el nombre de la mesa delante.</p>
+</blockquote>
+<h2 id="33-sintaxis-en-el-select">3.3 Sintaxis en el SELECT</h2>
+<pre><code>SELECT ... ( _Subconsulta_)  
+FROM Tabla
+</code></pre>
+<p>Vamos a poner también un ejemplo para entenderlo. Vamos a calcular la diferencia
+de la altura de cada población con la media. La media es un resultado global
+independiente del resto de la consulta, que en este caso es muy sencilla
+porque debemos tomar información simple de las poblaciones. La subconsulta también
+es muy sencilla, porque sólo debemos calcular la media de alturas).</p>
+<pre><code>SELECT nombre, altura, altura - (SELECT AVG(altura) FROM POBLACIONS)  
+  FROM POBLACIONES
+</code></pre>
+<p><strong><u>Ejemplos</u></strong></p>
+<p>1) <strong>Sacar la altura media de comarca más grande y la más pequeña.</strong></p>
+<p>Nos hace falta previamente la altura media de cada comarca, y esto será la
+subconsulta. No olvidemos poner un alias en el campo de la subconsulta, para poder
+hacer referencia en la consulta principal. Y no olvidemos tampoco que las
+subconsultas en el FROM deben tener alias.</p>
+<pre><code>SELECT MAX(media),MIN(media)  
+FROM (SELECT AVG(altura) AS media  
+      FROM POBLACIONES  
+      GROUP BY nombre_c) AS S;
+</code></pre>
+<p>2) <strong>Sacar toda la información de las poblaciones que tienen más de 5 institutos.</strong></p>
+<p>Podemos pensar en una subconsulta donde estén los códigos de municipio de
+poblaciones que tienen más de 5 institutos (se consulta en la teja INSTITUTOS
+agrupando por código_m y contando el número de filas para que sea mayor que 5).</p>
+<pre><code>SELECT *  
+  FROM POBLACIONES  
+  WHERE cod_m IN (SELECT cod_m  
+                  FROM INSTITUTOS  
+                  GROUP BY cod_m  
+                  HAVING count(*) &gt; 5)
+</code></pre>
+<p>3) <strong>Sacar toda la información de la población más alta y de la más baja.</strong></p>
+<p>Nos planteamos 2 subconsultas, la que saca la altura máxima y la que saca
+la altura mínima (en una única subconsulta nos devolvería valores en 2 columnas, y
+estaría más complicado). Sencillamente será sacar toda la información de las
+poblaciones que tienen una altura igual a lo que devuelve una subconsulta oa lo que
+devuelve la otra.</p>
+<pre><code>SELECT *  
+  FROM POBLACIONES  
+  WHERE altura = (SELECT MAX(altura)  
+                  FROM POBLACIONES)  
+        ORO altura = (SELECT MIN(altura)  
+                    FROM POBLACIONES);
+</code></pre>
+<p>4) <strong>Sacar a la población más alta de cada comarca.</strong></p>
+<p>La dificultad está en que debe ser la máxima de las alturas de su
+comarca. Por tanto, en la subconsulta debemos hacer referencia a la comarca en
+cuestión. Como siempre estamos tratando la mesa POBLACIONES, tanto en la consulta
+como en la subconsulta, deberemos poner un nombre a la de la consulta principal,
+para poder hacer referencia a ella desde la subconsulta.</p>
+<pre><code>SELECT *  
+  FROM POBLACIONES T1  
+  WHERE altura = (SELECT MAX(altura)  
+                  FROM POBLACIONES  
+                  WHERE nombre_c= T1.nombre_c);
+</code></pre>
+<p>En el resultado obtenemos 35 poblaciones, cuando sólo existen 34 comarcas. La razón es
+que en L'Alcoià, hay 2 poblaciones con la altura máxima (816 metros), por tanto
+el resultado es correcto</p>
+<p>5) <strong>Obtener el nombre de la comarca y la provincia de las comarcas que tienen una altura media más alta que la media de todas las poblaciones.</strong></p>
+<p>La subconsulta será bastante sencilla: la media de alturas de las poblaciones. En
+la consulta principal deberemos agrupar por cada comarca y calcular la media
+de alturas de las poblaciones, y compararla con la media que nos viene de la
+subconsulta. Como pide también la provincia, nos hace falta también la mesa
+COMARCAS, y por tanto tendremos que reunirlo con POBLACIONES; en esta ocasión lo
+hemos hecho poniendo la condición en el WHERE.</p>
+<pre><code>SELECT COMARCAS.nombre_c, provincia, AVG(altura)  
+  FROM COMARCAS, POBLACIONES  
+  WHERE COMARCAS.nombre_c=POBLACIONES.nombre_c  
+  GROUP BY COMARQUES.nombre_c, provincia  
+  HAVING AVG(altura) &gt; (SELECT AVG(altura)  
+                        FROM POBLACIONES)
+</code></pre>
+<p>6) <strong>Sacar el nombre de la comarca con la provincia, número de pueblos de cada una y el porcentaje que supone respecto al total de pueblos.</strong></p>
+<p>Toda la información la podemos sacar de una reunión entre las tablas COMARCAS y
+POBLACIONES (para contar cuántos pueblos hay en cada comarca), pero para
+poder calcular el porcentaje necesitamos el número total de poblaciones, que el
+podemos calcularlo con una sencilla subconsulta. El sitio más cómodo está en el
+SELECT. La reunión la hemos realizado en esta ocasión con el USING.</p>
+<pre><code>SELECT COMARCAS.nombre_c, provincia, COUNT(cod_m), COUNT (cod_m)*100.0/(SELECT
+COUNTO(*) FROM POBLACIONES)  
+  FROM COMARCAS INNER JOIN POBLACIONES USING(nombre_c)  
+  GROUP BY 1,2;
+</code></pre>
+<h2 class="ejercicios-header" id="ejercicios"><img alt="✏" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/270f.svg" title=":pencil2:" /> Ejercicios</h2>
+<p><strong>Ex_64</strong> Sacar el número máximo de facturas hechas a un cliente</p>
+<p><strong>Ex_65</strong> Sacar el importe que supone la factura más cara y el importe que
+supone la más barata (sin considerar ni descuentos ni IVA)</p>
+<p><strong>Ex_66</strong> Sacar el número de facturas más alto que se ha vendido por vendedor en
+cada trimestre (no quitaremos quién es el vendedor, que sería aún más complicado).
+Para poder agrupar por trimestre, nos hará falta la función
+<strong>TO_CHAR</strong><strong>(fecha,'Q')</strong> , que saca el número de trimestre. El paso previo es
+calcular el número de facturas de cada vendedor y en cada trimestre. Después,
+con la información anterior, querremos calcular el máximo de cada trimestre.</p>
+<p><strong>Ex_67</strong> Sacar los artículos más caros que la media. Sáquelos ordenados por
+la categoría, y después por código de artículo.</p>
+<p><strong>Ex_68</strong> Modificar lo anterior para sacar los artículos más caros que la
+promedio de su categoría. Sáquelos ordenados por la categoría</p>
+<p><strong>Ex_69</strong> Sacar los pueblos donde tenemos clientes pero no tenemos vendedores. Debe ser
+mediante subconsultas (en plural). Ordene por código del pueblo.</p>
+<p><strong>Ex_70</strong> Sacar los pueblos donde tenemos más vendedores que clientes. Sacar el código
+del pueblo, nombre y número de vendedores. Ordena por nombre del pueblo.</p>
+<p><strong>Ex_71</strong> Sacar el importe de la factura más cara de cada trimestre. La
+información previa es la factura con la fecha y el importe. A partir de ahí tendremos
+de calcular el máximo del importe para cada trimestre (no será necesario sacar cuál
+factura es).</p>
+<p><strong>Ex_72</strong> Sacar el nombre del vendedor, el número de facturas que ha vendido y el
+porcentaje que supone sobre el total. Puede que en el momento de calcular
+el porcentaje, el número resultante deba convertirse a numérico para que
+da bien el resultado, ya que al realizar una operación con enteros, el resultado será
+entero. Entonces deberíamos obligar a que el número tenga decimales
+(<strong>::NUMERIC</strong>). Y la función de redondear es <strong>ROUND</strong>. Ordene por el nombre.</p>
+<p><strong>Ex_73</strong> Sacar toda la información (con el importe) de la factura más cara.
+Debe ser por medio de subconsultas. Vea que seguramente habrá 2
+subconsultas. En la más interna calculamos el importe de las facturas. En la otra
+calculamos el máximo. Y en la consulta principal, buscamos la factura que
+coincide con ese máximo.</p>
+<p><strong>Ex_74</strong> (voluntario) Obtener el vendedor que ha vendido más unidades de cada
+categoría, sin considerar en la categoría el valor nulo. Esta consulta la
+podríamos considerar ya como muy avanzada.</p>
+<p>Licenciado bajo la <a href="http://creativecommons.org/licenses/by-nc-nd/2.5/">Licencia Creative Commons Reconocimiento NoComercial
+SinObraDerivada 2.5</a></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../22_combinacions_de_taules/" class="md-footer__link md-footer__link--prev" aria-label="Previous: 2. Combinaciones de tablas">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                2. Combinaciones de tablas
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../24_consultes_doperacions_de_conjunts/" class="md-footer__link md-footer__link--next" aria-label="Next: 4. Consultas de operaciones de conjuntos">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                4. Consultas de operaciones de conjuntos
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.footer", "navigation.path", "search.suggest", "search.highlight", "content.code.copy", "toc.integrate"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

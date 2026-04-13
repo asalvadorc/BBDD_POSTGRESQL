@@ -1,0 +1,2286 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../21_introducci/">
+      
+      
+        <link rel="next" href="../23_subconsultes/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>2. Combinaciones de tablas - BD - Bases de Datos</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../css/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#2-combinaciones-de-tablas" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="BD - Bases de Datos" class="md-header__button md-logo" aria-label="BD - Bases de Datos" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            BD - Bases de Datos
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              2. Combinaciones de tablas
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Cambiar a modo oscuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo oscuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Cambiar a modo claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../RA_CE/" class="md-tabs__link">
+          
+  
+  
+  SQL - POSTGRES
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../BD_PostgreSQL_DQL/0_presentacion/" class="md-tabs__link">
+          
+  
+  
+  DQL - Consultas (parte I)
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../20_presentacion/" class="md-tabs__link">
+          
+  
+  
+  DQL - Consultas avanzadas (parte II)
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../BD_PostgreSQL_DDL/1_introducci/" class="md-tabs__link">
+          
+  
+  
+  DDL - Creación de Tablas
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../BD_PostgreSQL_DML/1_introducci/" class="md-tabs__link">
+          
+  
+  
+  DML - Manipulación de Datos
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="BD - Bases de Datos" class="md-nav__button md-logo" aria-label="BD - Bases de Datos" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    BD - Bases de Datos
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SQL - POSTGRES
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SQL - POSTGRES
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../RA_CE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Resultados de Aprendizaje y Criterios de Evalucación
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DQL/objectius_i_coneixements_previs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Objetivos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DQL/1_introducci/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Introducción
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DQL/2_client_dbeaver_installaci_i_confiuraci/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. DBeaver
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DQL/3_dades_dels_exemples_i_els_exercicis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3 Datos de los ejemplos y los ejercicios
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_1_6" id="__nav_1_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Operadores y Funciones de Postgres
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    4. Operadores y Funciones de Postgres
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DQL/6_operadors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.1. Operadores
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DQL/7_funcions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.2. Funciones
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DQL - Consultas (parte I)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    DQL - Consultas (parte I)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DQL/0_presentacion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Presentación Tema 4 (Parte 1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DQL/1_la_consulta_select/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. La consulta SELECT
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DQL/2_consulta_bsica/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Consulta básica
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DQL/3_lies_en_les_columnes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Alias en las columnas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DQL/4_la_clusula_where/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. La cláusula WHERE
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DQL/5_funcions_dagregat/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. Funciones de agregado
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DQL/6_la_clusula_group_by/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. La cláusula GROUP BY
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DQL/7_la_clusula_having/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7. La cláusula HAVING
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DQL/8_la_clusula_order_by/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8. La cláusula ORDER BY
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DQL/9_el_predicat_distinct/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    9. El predicado DISTINCT
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DQL/10_la_clusula_limit__offset/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10. La cláusula LIMIT .. OFFSET
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DQL/11_consulta_de_creaci_de_taules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11. Consulta de creación de tablas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DQL/12_ordre_amb_qu_sexecuta_una_sentncia_sql/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    12. Orden en el que se ejecuta una sentencia SQL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DQL/exercicis_de_tot_el_tema_amb_els_resultats/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ejercicios con los resultados (parte I)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DQL/ejemplos_bd/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ejemplos de BDs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DQL - Consultas avanzadas (parte II)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    DQL - Consultas avanzadas (parte II)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../20_presentacion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Presentación Tema 4 (Parte 2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../21_introducci/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Introducción
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Combinaciones de tablas
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Combinaciones de tablas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#21-producto-cartesiano" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Producto cartesiano
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#22-combinacion-interna" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 Combinación interna
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.2 Combinación interna">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ejercicios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ejercicios
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#23-combinacion-externa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 Combinación externa
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.3 Combinación externa">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ejercicios_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ejercicios
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../23_subconsultes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Subconsultas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../24_consultes_doperacions_de_conjunts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Consultas de operaciones de conjuntos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../exercicis_de_tot_el_tema_amb_els_resultats/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ejercicios con los resultados (parte II)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DDL - Creación de Tablas
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    DDL - Creación de Tablas
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DDL/1_introducci/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Introducción
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DDL/2_ddl/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. DDL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DDL/exercicis_de_tot_el_tema/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ejercicios de todo el tema
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DML - Manipulación de Datos
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    DML - Manipulación de Datos
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DML/1_introducci/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Introducción
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DML/2_consultes_dactualitzaci/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Consultas de actualización (DML)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DML/exercicis_de_tot_el_tema/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ejercicios de todo el tema
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="2-combinaciones-de-tablas">2. Combinaciones de tablas</h1>
+<p>Vimos en la sentencia básica que en la cláusula FROM poníamos la tabla <strong>o
+tablas</strong> de dónde se tomarían los datos, pero en todos los ejemplos posteriores
+sólo entraba en juego una única mesa.</p>
+<p>Es el momento de estudiar las diferentes posibilidades que tendremos cuando pongamos más
+de una mesa.</p>
+<ul>
+<li>
+<p>La primera es el <strong>producto cartesiano</strong> , que nunca utilizaremos, pero debemos saber en qué consiste para poder evitarlo.</p>
+</li>
+<li>
+<p>La segunda será la más utilizada, la <strong>combinación</strong> (que a veces llamaremos <strong>reunión</strong>).</p>
+</li>
+<li>
+<p>La tercera es una variante de la anterior, la <strong>combinación externa</strong> , muy útil en algunos casos.</p>
+</li>
+</ul>
+<h2 id="21-producto-cartesiano">2.1 Producto cartesiano</h2>
+<p>La manera más sencilla es poner las tablas separadas por comas, pero
+seguramente el resultado no es lo que esperábamos.</p>
+<p>Por ejemplo podemos hacer la siguiente sentencia:</p>
+<pre><code>SELECT COMARCAS.nombre_c, nombre  
+  FROM COMARCAS, POBLACIONES;
+</code></pre>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Observe que hemos puesto el nombre de la tabla delante del campo <b>nombre_c</b> , porque
+las dos tablas tienen un campo con ese nombre. Esta operación se llama
+<b>calificación</b>. Si no calificamos con el nombre de la tabla delante, allí
+habría ambigüedad, no sabría a qué campo se refiere, si el de una mesa o el
+por otro. Cuando los nombres de los campos son diferentes y por tanto no
+coinciden en las dos tablas, no es necesario calificar el campo (como por ejemplo
+con el campo <b>nombre</b>)</p>
+</div>
+<p>Si ejecutamos la sentencia, veremos que tendremos un número de filas inesperadamente
+alt, <strong>18.428 filas !!!</strong> Y si analizamos las filas veremos el porqué: se ha
+combinado cada comarca con todos los pueblos (sean de la comarca o no).</p>
+<p><img alt="" src="../T6_II_2_1_1.png" /></p>
+<p>Esta operación se llama <strong>PRODUCTO CARTESIANO</strong> (<em><strong>cross join</strong></em>), y se
+caracteriza en que cada una de las filas de una tabla se combina con todas
+las filas de la otra mesa. El número de filas resultante será, pues, el
+resultado de multiplicar el número de filas de una tabla por el número de filas de
+otra tabla (en nuestro caso 34 x 542 = 18428).</p>
+<p>Raramente querremos realizar un producto cartesiano. Lo normal será combinar una
+poquito mejor las tablas. En nuestro ejemplo seguramente nos interesará
+mucho más combinar <em>cada comarca con sus poblaciones</em>.</p>
+<h2 id="22-combinacion-interna">2.2 Combinación interna</h2>
+<p><strong class="azul">Combinación de dos tablas: Sintaxis</strong></p>
+<p>Normalmente el producto cartesiano no nos va a interesar. Más bien querremos combinar
+las tablas de forma que dos campos, un campo de cada mesa, coincidan. Y el
+más habitual, si tenemos la Base de Datos bien diseñada, será que los campos
+coincidentes sean una clave externa con la clave principal a la que apunta.
+Así, en el ejemplo que utilizábamos en el punto anterior, lo que sí que nos será
+útil es combinar cada comarca con sus poblaciones. Y justamente tenemos un
+campo en la tabla POBLACIONES, <strong>nombre_c</strong> , que es clave externa y apunta a la
+clave principal de <strong>COMARCAS</strong>.</p>
+<p>Esta operación la llamaremos <strong>COMBINACIÓN INTERNA</strong> o sencillamente
+<strong>COMBINACIÓN</strong> , ya veces también se llama <strong>REUNIÓN</strong>. Su sintaxis es la
+siguiente:</p>
+<pre><code>SELECT ...  
+  FROM mesa1 INNER JOIN mesa2 DONDE _condición_
+</code></pre>
+<p>La condición de la reunión consistirá en comparar un campo de cada mesa.
+Ambos campos tendrán que ser del mismo tipo, pero no será necesario que tengan el
+mismo nombre. Las filas que saldrán al resultado serán las que cumplan la
+condición.</p>
+<p>Aunque los operadores que se pueden utilizar son todos los de comparación, en
+la práctica SIEMPRE utilizaremos el de igualar. Por tanto podemos refinar mejor la
+combinación de 2 tablas</p>
+<pre><code>SELECT ...  
+  FROM mesa1 INNER JOIN mesa2 DONDE mesa1.campo1 = mesa2.campo2
+</code></pre>
+<p>El ejemplo de las comarcas y sus poblaciones quedará así</p>
+<pre><code>SELECT COMARCAS.nombre_c, POBLACIONES.nombre  
+  FROM COMARCAS INNER JOIN POBLACIONES DONDE COMARCAS.nombre_c = POBLACIONES.nombre_c
+</code></pre>
+<p>Y éste sería el resultado</p>
+<p><img alt="" src="../T6_II_2_2_1.png" /></p>
+<p>que como vemos vuelve 542 filas (tantas como pueblos)</p>
+<p>Alternativamente, podríamos poner la misma reunión de otra forma:</p>
+<pre><code>SELECT COMARCAS.nombre_c, POBLACIONES.nombre  
+  FROM COMARCAS, POBLACIONES  
+  WHERE COMARCAS.nombre_c = POBLACIONES.nombre_c
+</code></pre>
+<p>donde estrictamente lo que estamos haciendo es, del producto cartesiano de las 2 tablas,
+seleccionar únicamente cuando coincide el <strong>nombre_c</strong> (es decir la comarca con
+sus poblaciones), y por tanto el resultado sería el mismo. Quizá fuera más
+eficiente utilizar el primer modo, pero a veces la comodidad nos hará
+utilizar la segunda (sobre todo cuando se vayan a combinar muchas tablas).</p>
+<p>Las dos formas de poner la conbinación de dos tablas son las más habituales,
+y que funcionan en cualquier Sistema Gestor de Bases de Datos.</p>
+<p>Sin embargo en PostgreSQL (y en otros SGBD como Oracle) hay más formas de hacer
+una combinación. No las veremos tan a fondo porque las anteriores nos bastan y
+sobran:</p>
+<ul>
+<li>
+<p><strong>INNER JOIN con USING</strong> : En caso de que los campos a reunir de las dos tablas se digan exactamente igual, podemos sustituir la condición puesta en <strong>ON</strong> por la expresión <strong>USING</strong> , con el campo de la reunión entre paréntesis</p>
+<p>SELECT COMARCAS.nombre_c, POBLACIONES.nombre<br />
+  FROM COMARCAS INNER JOIN POBLACIONES USING (nombre_c)</p>
+</li>
+<li>
+<p><strong>NATURAL JOIN</strong> : También para el caso anterior, en el que el campo en las dos tablas se llama igual, podemos hacerlo de forma aún más abreviada. Hará una reunión, igualando todos los campos que se llamen igual de las dos tablas. Debemos tener cuidado, por si hay algún otro campo en las dos tablas que se diga igual.</p>
+<p>SELECT COMARCAS.nombre_c, POBLACIONES.nombre<br />
+  FROM COMARCAS NATURAL JOIN POBLACIONES</p>
+</li>
+</ul>
+<p><strong><u>Ejemplos</u></strong></p>
+<p>1) <strong>Sacar los nombres de las Poblaciones y los nombres de los Institutos que hay en ellas.</strong></p>
+<p>Deberemos combinar las tablas por la clave externa de INSTITUTOS a POBLACIONES (es
+a decir la que apunta de cod_m en INSTITUTOS hasta la clave principal de
+COMARCAS, que es justamente cod_m).</p>
+<pre><code>SELECT POBLACIONES.nombre,INSTITUTOS.nombre  
+  FROM POBLACIONES INNER JOIN INSTITUTOS DONDE POBLACIONES.cod_m=INSTITUTS.cod_m;
+</code></pre>
+<p>Utilizando la otra sintaxis, que ponemos la condición en el <strong>WHERE</strong> , nos
+quedaría:</p>
+<pre><code>SELECT POBLACIONES.nombre,INSTITUTOS.nombre  
+  FROM POBLACIONES, INSTITUTOS  
+  WHERE POBLACIONS.cod_m=INSTITUTOS.cod_m;
+</code></pre>
+<p>Como en este caso el campo que debemos igualar tiene el mismo nombre en las dos
+tablas, utilizando la sintaxis del <strong>USING</strong> nos quedará más fácil:</p>
+<pre><code>SELECT POBLACIONES.nombre,INSTITUTOS.nombre  
+  FROM POBLACIONES INNER JOIN INSTITUTOS USING(cod_m);
+</code></pre>
+<p>En cambio, debemos ir con mucho cuidado con la sintaxis del <strong>NATURAL JOIN</strong> ,
+porque intentará igualar todos los campos que se llaman igual, y en este caso
+tenemos dos campos coincidentes: cod_m y nombre. cod_m es lo que queremos, pero nombre nos
+fastidiará, y evidentemente no coincide nunca el nombre del Instituto y el de la
+población, y por tanto no volverá ninguna fila.</p>
+<pre><code>  SELECT POBLACIONES.nombre,INSTITUTOS.nombre  
+    FROM POBLACIONES NATURAL JOIN INSTITUTOS;
+</code></pre>
+<p>2) <strong>Sacar los nombres de las comarcas y la provincia, con el número de poblaciones que tiene cada comarca.</strong></p>
+<p><strong>Ex_69</strong> Sacar los pueblos donde tenemos clientes pero no tenemos vendedores. Debe ser
+mediante subconsultas (en plural). Ordene por código del pueblo.</p>
+<pre><code>SELECT COMARCAS.nombre_c, provincia, COUNT(cod_m) AS Quants  
+  FROM COMARCAS INNER JOIN POBLACIONES DONDE COMARCAS.nombre_c=POBLACIONES.nombre_c  
+  GROUP BY COMARQUES.nombre_c, provincia;
+</code></pre>
+<p><strong class="azul">Tres o más tablas</strong></p>
+<p>Si tenemos más de 2 tablas, deberemos proceder de la misma manera, ya que si
+dejamos de combinar alguna mesa, tendremos el producto cartesiano. Como en la
+inmensa mayoría de casos, la reunión la haremos por las claves externas que tenemos
+definidas. Únicamente deberemos cuidar los paréntesis, para marcar primero una
+condición de combinación y después la otra. En un ejemplo lo veremos perfectamente
+ilustrado.</p>
+<p>Intentamos sacar el nombre de una comarca y la provincia, el nombre de sus pueblos y
+el nombre de los institutos de esos pueblos. Nos hacen falta las tablas COMARCAS
+(para poder sacar el nombre de la comarca y provincia), POBLACIONES (para sacar
+el nombre de la población) e INSTITUTOS (para el nombre de éstos). Ordenaremos por nombre
+de comarca, y dentro de éste por población, para una mejor lectura del
+resultado</p>
+<pre><code>SELECT COMARCAS.nombre_c, provincia, POBLACIONES.nombre, INSTITUTOS.nombre  
+  FROM (COMARCAS INNER JOIN POBLACIONES DONDE COMARCAS.nombre_c=POBLACIONES.nombre_c)  
+  INNER JOIN INSTITUTOS DONDE POBLACIONES.cod_m=INSTITUTOS.cod_m  
+  ORDER BY 1,3;
+</code></pre>
+<p>Podríamos poner la consulta de la forma alternativa, en la que las condiciones de
+reunión van en el WHERE. Obviamente estas condiciones deben ir unidas por
+el operador AND.</p>
+<pre><code>SELECT COMARCAS.nombre_c, provincia, POBLACIONES.nombre, INSTITUTOS.nombre  
+  FROM COMARCAS, POBLACIONES, INSTITUTOS  
+  WHERE COMARCAS.nombre_c=POBLACIONES.nombre_c AND POBLACIONES.cod_m=INSTITUTOS.cod_m  
+  ORDER BY 1,3;
+</code></pre>
+<p>Vamos a plantear otro ejemplo. Se trata de sacar el nombre y la provincia
+de las comarcas, con el número de Institutos que existen en ellas. En principio
+podríamos pensar que las únicas tablas que nos hacen falta son COMARCAS (para
+sacar el nombre y provincia de la comarca) e INSTITUTOS (para poder contar los
+INSTITUTOS). Si intentamos hacer esta consulta, <strong>NO</strong> obtendremos el resultado
+deseado.</p>
+<div class="admonition warning">
+<p><strong class="rojo">SELECT nombre_c, provincia, COUNT(código)</strong><br />
+<strong class="rojo">FROM COMARQUES , INSTITUTOS</strong><br />
+<strong class="rojo">GROUP BY nombre_c, provincia</strong>  </p>
+</div>
+<p>Evidentemente habrá un producto cartesiano, ya que no hemos combinado las tablas,
+y nos saldrá para cada comarca 375 institutos, que es el número total
+de institutos, puesto que se ha combinado cada comarca con todos los institutos.</p>
+<p>Pero entonces, ¿por qué campo combinamos? Si intentamos unir las claves principales,
+<strong>nombre_c</strong> con <strong>código</strong> (el código de Instituto) no pueden combinar bien por razones
+evidentes. Debemos fijarnos en el diseño de la Base de Datos. Observaremos que
+el problema es que no existe una clave externa entre INSTITUTOS y COMARCAS. Pero
+también nos da la solución: <strong>deberemos poner también la mesa POBLACIONES</strong>
+aunque no queramos visualizar ningún campo de esta tabla, ya que si están
+relacionadas las tablas INSTITUTOS y COMARCAS es a través de esta tabla. Por
+tanto la consulta correcta será:</p>
+<pre><code>SELECT COMARCAS.nombre_c, provincia, COUNT(código)  
+  FROM (COMARCAS INNER JOIN POBLACIONES DONDE COMARCAS.nombre_c=POBLACIONES.nombre_c)  
+  INNER JOIN INSTITUTOS DONDE POBLACIONES.cod_m=INSTITUTOS.cod_m  
+  GROUP BY COMARQUES.nombre_c, provincia
+</code></pre>
+<p>La forma alternativa parece más corta. Está claro que si son 3 tablas, habrán
+de haber 2 condiciones de combinación unidas por AND.</p>
+<pre><code>SELECT COMARCAS.nombre_c, provincia, COUNT(código)  
+  FROM COMARCAS, POBLACIONES, INSTITUTOS  
+  WHERE COMARCAS.nombre_c=POBLACIONES.nombre_c AND POBLACIONES.cod_m=INSTITUTOS.cod_m  
+  GROUP BY COMARQUES.nombre_c, provincia;
+</code></pre>
+<p>De forma general, si tenemos <em><strong>n</strong></em> tablas en una consulta, nos harán falta
+<em><strong>n-1</strong></em> condiciones de combinación unidas por AND. Por ejemplo, si en una
+consulta entran 5 mesas, para no tener ningún producto cartesiano nos harán falta
+4 condiciones unidas por AND.</p>
+<p><strong class="azul">Una mesa más de una vez</strong></p>
+<p>Vamos a plantear otro ejemplo interesante: sacar el nombre de las
+poblaciones, con el nombre de la capital comarcal. Lamentablemente con los datos
+que tenemos en la Base de Datos de ejemplo no podremos probarlo, así que vamos a
+hacer una suposición, una Base de Datos ligeramente modificada para ilustrar
+este ejemplo.</p>
+<p>Supongamos que nuestra mesa de POBLACIONES fuera ligeramente diferente, y que
+incorporará un nuevo campo con el código del municipio que es capital de comarca de
+la población:</p>
+<pre><code>POBLACIONES  
+(  
+cod_m numerico(5,0) CONSTRAINT cp_pobl PRIMARY KEY,  
+nombre character varying(50) NOT NULL,  
+población numérica(6,0),  
+extensión numérica(6,2),  
+altura numérico(4,0),  
+longitud character varying(50),  
+latitud character varying(50),  
+lengua character(1),  
+nombre_c character varying(50),  
+***cod_capital numerico(5,0) CONSTRAINT ce_capital REFERENCIAS POBLACIONES(cod_m)  
+)
+</code></pre>
+<p>Para poder sacar al mismo tiempo el nombre de las poblaciones y el nombre de la
+su capital de comarca no tenemos suficiente con poner la mesa POBLACIONES una
+vez: sólo sacaríamos el nombre de la población y nos quedaríamos con el código de
+municipio de la capital. La solución será reunirla con la mesa POBLACIONES,
+poniéndola una segunda vez para tener dos instancias de la mesa, una
+instancia para la población normal y otra para la capital. Pero cómo
+¿distinguiremos entre las dos instancias? Pues poniendo un nombre en cada una. En
+general podemos poner un nombre en la sentencia en cualquier mesa que aparezca,
+poniendo este nombre a continuación de la mesa (opcionalmente podríamos poner AS
+en medio):</p>
+<pre><code>SELECT ...  
+  FROM mesa T
+</code></pre>
+<p>En el resto de la consulta deberemos utilizar este nombre. El ejemplo quedará de
+la siguiente manera:</p>
+<pre><code>SELECT P1.nombre AS "Nombre población" , P2.nombre as "Nombre capital"  
+  FROM POBLACIONES P1 INNER JOIN POBLACIONES P2 DONDE P1.cod_capital=P2.cod_m
+</code></pre>
+<p>o de la forma alternativa:</p>
+<pre><code>SELECT P1.nombre AS "Nombre población" , P2.nombre as "Nombre capital"  
+  FROM POBLACIONES P1, POBLACIONES P2  
+  WHERE P1.cod_capital=P2.cod_m
+</code></pre>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Recuerde que estas instrucciones no las podemos probar, porque no tenemos el
+campo <b>cod_capital</b>.</p>
+</div>
+<p><strong class="azul">Clave externa formada por más de un campo</strong></p>
+<p>Por último vamos a considerar el caso de que la clave externa esté formada por más
+de un campo. Lo basaremos en el ejemplo de los <strong>Bancos</strong> , donde la mesa CUENTA CORRIENTE
+depende en identificación de SUCURSAL. Cómo la clave principal de SUCURSAL está
+formada por 2 campos, la clave externa de CUENTA CORRIENTE, que apunta a la
+primera también estará formada por 2 campos. Si queremos sacar el número de cuenta
+corriente, el nombre de la sucursal de dónde está la cuenta, y el saldo, nos harán falta
+ambas tablas. Ésta sería la manera de combinarlas:</p>
+<pre><code>SELECT C.n_ent , C.n_jugo , n_cc , S.nombre , C.saldo  
+  FROM SUCURSAL S INNER JOIN CUENTA_CORRENT C DONDE S.n_ent=C.n_ent AND
+  S.n_jugo=C.n_jugo
+</code></pre>
+<p>o de la forma alternativa:</p>
+<pre><code>SELECT C.n_ent , C.n_jugo , n_cc , S.nombre , C.saldo  
+  FROM SUCURSAL S, CUENTA_CORRIENTE C  
+  WHERE S.n_ent=C.n_ent AND S.n_suc=C.n_suc
+</code></pre>
+<p>En ambos casos se ha optado por poner nombre a las tablas (S y C respectivamente)
+por comodidad, para que no quedara tan larga la consulta.</p>
+<h3 class="ejercicios-header" id="ejercicios"><strong><img alt="✏" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/270f.svg" title=":pencil2:" /> Ejercicios</strong></h3>
+<p><strong>Ex_51</strong> Sacar el nombre de los clientes con el número de factura y la fecha
+(individuales, sin agrupar nada) que tiene cada cliente. Saca el resultado ordenado
+por cliente, y dentro de éste por fecha de la factura</p>
+<p><strong>Ex_52</strong> Sacar el nombre del socio, con el código y la descripción de cada
+artículo que ha pedido. Ordena por nombre del socio y código del artículo.</p>
+<p><strong>Ex_53</strong> Modificar lo anterior para que no se repitan los resultados.</p>
+<p><strong>Ex_54</strong> Sacar el nombre de los clientes con la cantidad de facturas que
+tienen, ordenadas por este número de mayor a menor</p>
+<p><strong>Ex_55</strong> Sacar el número de factura, fecha, código de cliente, total de la
+factura (con el alias IMPORTE) y total de la factura aplicando descuentos
+de artículo (con sobrenombre DESCUENTO_1), como en la consulta <strong>Ex_33</strong> , pero sin el
+límite de las 10 líneas de factura. Ordena por número de factura.</p>
+<p><strong>Ex_56</strong> Modificar lo anterior para aplicar también el descuento de la
+factura (con el sobrenombre DESCUENTO_2)</p>
+<p><strong>Ex_57</strong> Sacar el código y nombre de aquellos vendedores que supervisan a alguien
+(consten como cabeza). Sacar también el número de supervisados de cada uno
+de estos supervisores.</p>
+<p><strong>Ex_58</strong> Sacar el código y descripción de los artículos junto con el
+número de veces que se ha vendido, el total de unidades vendidas y la media
+de unidades vendidas por factura.</p>
+<p><strong>Ex_59</strong> Sacar el código y la descripción de las categorías, con la
+cantidad de artículos vendidos de cada categoría, de aquellas categorías de las
+que se han vendido más de 100 unidades. Ordenar por este número de forma
+descendiente.</p>
+<h2 id="23-combinacion-externa">2.3 Combinación externa</h2>
+<p>En ocasiones nos interesará realizar una combinación diferente. Como casi siempre nos
+basaremos en un ejemplo. Cuando en un ejemplo del punto anterior sacamos los nombre de
+las poblaciones con el nombre de los institutos, no podían salir las poblaciones que
+carecen de institutos. Ahora nos plantearemos la posibilidad de sacar todas las
+poblaciones, incluso aquellas que no tienen institutos, pero de aquellas que sí
+que tengan sacar también el nombre de los institutos. Esta operación se llama
+<strong>COMBINACIÓN EXTERNA</strong>.</p>
+<p><strong><u>Sintaxi</u></strong></p>
+<p>Tendremos dos posibilidades: sacar todas las de la izquierda o sacar todas las de la izquierda
+de la derecha.</p>
+<p>Para sacar TODAS las filas de la mesa de la izquierda, y aquellas que
+estén relacionadas de la de la derecha:</p>
+<pre><code>SELECT ...  
+FROM mesa1 LEFT [OUTER] JOIN mesa2 DONDE _condición_
+</code></pre>
+<p>Así sacaremos TODAS las filas de tabla1, y aquellas que estén relacionadas
+de mesa2.</p>
+<p>Para hacerlo al revés, es decir, todas las filas de la mesa de la derecha y
+aquellas filas que estén relacionadas de la izquierda:</p>
+<pre><code>SELECT ...  
+FROM mesa1 RIGHT [OUTER] JOIN mesa2 DONDE _condición_
+</code></pre>
+<p>De esta manera sacaremos TODAS las filas de tabla2, y aquellas que estén
+relacionadas de tabla1.</p>
+<p>En nuestro ejemplo:</p>
+<pre><code>SELECT POBLACIONES.nombre,INSTITUTOS.nombre  
+FROM POBLACIONES LEFT JOIN INSTITUTOS DONDE POBLACIONES.cod_m=INSTITUTS.cod_m  
+ORDER BY 1
+</code></pre>
+<p>donde hemos ordenado por el nombre de la población para una mejor lectura, y nos dará
+el siguiente resultado:</p>
+<p><img alt="" src="../T6_II_2_3_1.png" /></p>
+<p>Podemos observar que nos saca incluso a los pueblos que no tienen institutos, y
+que en el campo nombre del instituto tienen el valor NULL.</p>
+<p>Hagamos una variante interesante. Vamos a sacar a los pueblos con el número
+de institutos que tiene cada uno. Nos hará falta la mesa POBLACIONES para poder
+sacar el nombre de la población y la tabla INSTITUTOS para sacar el número
+de institutos, y agruparemos por el nombre de la población. Las dos tablas las debemos
+combinar (para evitar el producto cartesiano). Si hacemos una combinación normal
+(interna), <em>los que no tienen institutos no entran</em>. Pero si hacemos una
+<strong>combinación externa</strong> <em><strong>sí que entrarán</strong></em>.</p>
+<p>Sólo nos queda contar por un campo que en el caso de quienes no tienen institutos
+tenga el valor nulo, es decir, por un campo de la tabla INSTITUTOS, y el que
+mejor se nos acopla es alguno que forma parte de la clave principal, ya que cómo
+no puede tomar un valor nulo en la tabla INSTITUTOS, la única posibilidad de que
+coja el valor nulo en la combinación externa es que la población no tenga
+instituto, y entonces en el momento de contar nos dará el valor 0.</p>
+<p>Ésta será la consulta, donde hemos vuelto a ordenar por el nombre de la población</p>
+<pre><code>SELECT POBLACIONES.nombre,COUNTO(INSTITUTOS.código)  
+FROM POBLACIONES LEFT JOIN INSTITUTOS DONDE POBLACIONES.cod_m=INSTITUTS.cod_m  
+GROUP BY POBLACIONS.nombre  
+ORDER BY 1
+</code></pre>
+<p>Y éste será el resultado</p>
+<p><img alt="" src="../T6_II_2_3_2.png" /></p>
+<p>Otra variante también interesante es realizar una consulta similar para sacar
+los pueblos que carecen de instituto. Deberemos hacer una combinación externa, y en
+la condición poner justamente que uno de los campos de la mesa INSTITUTOS sea nulo
+(por ejemplo, la clave principal):</p>
+<p>Ésta será la consulta, donde hemos vuelto a ordenar por el nombre de la población:</p>
+<pre><code>SELECT POBLACIONES.nombre  
+FROM POBLACIONES LEFT JOIN INSTITUTOS DONDE POBLACIONES.cod_m=INSTITUTS.cod_m  
+WHERE INSTITUTS.codi IS NULL  
+ORDER BY 1
+</code></pre>
+<p>Y éste será el resultado:</p>
+<p><img alt="" src="../T6_II_2_3_3.png" /></p>
+<p><strong><u>Ejemplos</u></strong></p>
+<p>1) <strong>Sacar todas las comarcas con el número de pueblos que tiene cada una, incluso aquellas comarcas que no tengan ningún pueblo.</strong></p>
+<p>Este ejemplo es poco ilustrativo, porque no tenemos en principio ninguna camarca
+que no tenga pueblos. De todas formas, la forma sería haciendo un LEFT JOIN entre
+COMARCAS y POBLACIONES, para después agrupar por comarca y contar las
+poblaciones. Observe como también podemos utilizar la sintaxis del <strong>USING</strong> en el
+LEFT JOIN.</p>
+<pre><code>SELECT COMARCAS.nombre_c, COUNT(cod_m)  
+FROM COMARCAS LEFT JOIN POBLACIONES USING(nombre_c)  
+GROUP BY COMARCAS.nombre_c  
+ORDER BY 1;
+</code></pre>
+<h3 class="ejercicios-header" id="ejercicios_1"><strong><img alt="✏" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/270f.svg" title=":pencil2:" /> Ejercicios</strong></h3>
+<p><strong>Ex_60</strong> Sacar el código y el nombre de los clientes que no tienen ninguna factura.</p>
+<p><strong>Ex_61</strong> Sacar el código, descripción y total de unidades vendidas de todos
+los artículos, incluso de aquellos que no se han vendido nada.</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Para dejarlo más bonito, puesto que la suma de valores nulos no es 0 sino nulo,
+para que nos aparezca el valor 0 podemos utilizar la función COALESCE(<em>valor</em>
+,0), que si el valor es nulo devuelve un 0.</p>
+</div>
+<p><strong>Ex_62</strong> Sacar el nombre de todos los pueblos y el número de clientes en
+caso de que lo tengan. Ordena por número de clientes de forma descendente.</p>
+<p><strong>Ex_63</strong> Sacar el código y la descripción de las categorías, con el
+número de artículos de cada categoría y el número total de unidades vendidas de
+cada categoría, de aquellas categorías de las que tenemos más de 15 artículos, y
+ordenado por número de artículos de forma descendente. Esta sentencia ya es
+bastante complicada. Concretamente tendrá que tener en cuenta que:</p>
+<ul>
+<li>Querremos sacar el número de artículos de cada categoría, pero quizás algunos artículos no se han vendido, y por tanto no aparecerán en la tabla LINIA_FAC.</li>
+<li>Y también tenemos el problema de que, como nos hace falta la tabla LINIA_FAC, un artículo vendido en más de una factura aparecerá más de una vez. Si contamos de forma normal, lo contaríamos más de una vez cada artículo. Por tanto queremos contar los diferentes artículos de cada categoría.</li>
+</ul>
+<p>Licenciado bajo la <a href="http://creativecommons.org/licenses/by-nc-nd/2.5/">Licencia Creative Commons Reconocimiento NoComercial
+SinObraDerivada 2.5</a></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../21_introducci/" class="md-footer__link md-footer__link--prev" aria-label="Previous: 1. Introducción">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                1. Introducción
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../23_subconsultes/" class="md-footer__link md-footer__link--next" aria-label="Next: 3. Subconsultas">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                3. Subconsultas
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.footer", "navigation.path", "search.suggest", "search.highlight", "content.code.copy", "toc.integrate"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

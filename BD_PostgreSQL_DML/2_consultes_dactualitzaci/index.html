@@ -1,0 +1,2348 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../1_introducci/">
+      
+      
+        <link rel="next" href="../exercicis_de_tot_el_tema/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Bases de Datos - BD - Bases de Datos</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../css/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#21-insert" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="BD - Bases de Datos" class="md-header__button md-logo" aria-label="BD - Bases de Datos" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            BD - Bases de Datos
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Bases de Datos
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Cambiar a modo oscuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo oscuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Cambiar a modo claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../RA_CE/" class="md-tabs__link">
+          
+  
+  
+  SQL - POSTGRES
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../BD_PostgreSQL_DQL/0_presentacion/" class="md-tabs__link">
+          
+  
+  
+  DQL - Consultas (parte I)
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../BD_PostgreSQL_DQL_Avancat/20_presentacion/" class="md-tabs__link">
+          
+  
+  
+  DQL - Consultas avanzadas (parte II)
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../BD_PostgreSQL_DDL/1_introducci/" class="md-tabs__link">
+          
+  
+  
+  DDL - Creación de Tablas
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../1_introducci/" class="md-tabs__link">
+          
+  
+  
+  DML - Manipulación de Datos
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="BD - Bases de Datos" class="md-nav__button md-logo" aria-label="BD - Bases de Datos" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    BD - Bases de Datos
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SQL - POSTGRES
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SQL - POSTGRES
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../RA_CE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Resultados de Aprendizaje y Criterios de Evalucación
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DQL/objectius_i_coneixements_previs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Objetivos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DQL/1_introducci/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Introducción
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DQL/2_client_dbeaver_installaci_i_confiuraci/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. DBeaver
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DQL/3_dades_dels_exemples_i_els_exercicis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3 Datos de los ejemplos y los ejercicios
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_1_6" id="__nav_1_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Operadores y Funciones de Postgres
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    4. Operadores y Funciones de Postgres
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DQL/6_operadors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.1. Operadores
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DQL/7_funcions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.2. Funciones
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DQL - Consultas (parte I)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    DQL - Consultas (parte I)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DQL/0_presentacion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Presentación Tema 4 (Parte 1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DQL/1_la_consulta_select/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. La consulta SELECT
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DQL/2_consulta_bsica/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Consulta básica
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DQL/3_lies_en_les_columnes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Alias en las columnas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DQL/4_la_clusula_where/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. La cláusula WHERE
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DQL/5_funcions_dagregat/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. Funciones de agregado
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DQL/6_la_clusula_group_by/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. La cláusula GROUP BY
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DQL/7_la_clusula_having/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7. La cláusula HAVING
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DQL/8_la_clusula_order_by/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8. La cláusula ORDER BY
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DQL/9_el_predicat_distinct/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    9. El predicado DISTINCT
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DQL/10_la_clusula_limit__offset/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10. La cláusula LIMIT .. OFFSET
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DQL/11_consulta_de_creaci_de_taules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11. Consulta de creación de tablas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DQL/12_ordre_amb_qu_sexecuta_una_sentncia_sql/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    12. Orden en el que se ejecuta una sentencia SQL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DQL/exercicis_de_tot_el_tema_amb_els_resultats/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ejercicios con los resultados (parte I)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DQL/ejemplos_bd/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ejemplos de BDs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DQL - Consultas avanzadas (parte II)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    DQL - Consultas avanzadas (parte II)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DQL_Avancat/20_presentacion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Presentación Tema 4 (Parte 2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DQL_Avancat/21_introducci/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Introducción
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DQL_Avancat/22_combinacions_de_taules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Combinaciones de tablas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DQL_Avancat/23_subconsultes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Subconsultas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DQL_Avancat/24_consultes_doperacions_de_conjunts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Consultas de operaciones de conjuntos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DQL_Avancat/exercicis_de_tot_el_tema_amb_els_resultats/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ejercicios con los resultados (parte II)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DDL - Creación de Tablas
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    DDL - Creación de Tablas
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DDL/1_introducci/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Introducción
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DDL/2_ddl/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. DDL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DDL/exercicis_de_tot_el_tema/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ejercicios de todo el tema
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DML - Manipulación de Datos
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    DML - Manipulación de Datos
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1_introducci/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Introducción
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Consultas de actualización (DML)
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Consultas de actualización (DML)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#21-insert" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 INSERT
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.1 INSERT">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ejercicios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ejercicios
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#22-delete" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 DELETE
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.2 DELETE">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ejercicios_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ejercicios
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#23-update" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 UPDATE
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.3 UPDATE">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ejercicios_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ejercicios
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../exercicis_de_tot_el_tema/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ejercicios de todo el tema
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+  <h1>2. Consultas de actualización (DML)</h1>
+
+<h2 id="21-insert">2.1 INSERT</h2>
+<p>Servirá para introducir nuevas filas en una determinada mesa. Hay dos
+variantes de esta sentencia. La primera servirá para introducir nuevas filas
+proporcionándole los datos, es decir, indicando expresamente los nuevos valores
+de los campos. La otra podría servir para introducir nuevas filas de forma más
+masiva, cogiendo los datos de las tablas ya existentes por medio de una sentencia
+SELECT.</p>
+<p><strong><u>Sintaxi</u></strong> </p>
+<p>para inserción con valores</p>
+<pre><code>  INSERT INTO tabla [ (campo1 [,campo2 [,...]]) ]  
+    VALUAS (valor1 [,valor2 [,...]]) [,(...)]
+</code></pre>
+<p>Como se puede comprobar de esta forma se introducirá una fila nueva, y se
+proporcionan los datos directamente, como constantes. Opcionalmente podemos
+introducir los valores para una segunda fila o cuántas se quieran, siempre poniendo
+los datos de cada fila entre paréntesis, y si hay más de una fila, separados
+por comas.</p>
+<p>Es opcional poner la lista de campos de la mesa. Si no se ponen, se tendrá que
+poner un valor para cada campo de la mesa, y en el mismo orden como están
+definidos en la tabla.</p>
+<p>Si ponemos expresamente los campos de la mesa, los podremos poner con el orden que
+queramos, y no será necesario ponerlos todos. Los campos no especificados quedarán con el
+valor nulo (a menos que tengan un valor predeterminado, un valor por defecto).
+Por tanto, tendremos que poner obligatoriamente todos los campos definidos como no
+nulos (incluida la clave principal).</p>
+<p>Para poner el valor nulo en un campo pondremos explícitamente <strong>NULL</strong>.</p>
+<p>Si tenemos definido un campo autonumérico (SERIAL) y queremos continuar con el siguiente
+de la secuencia, no debemos ponerle ningún valor. Por tanto en la sentencia SQL no
+deberá constar el campo: deberemos poner la lista de campos, y en éste no
+debe estar el campo autonumérico. Veremos después un ejemplo para verlo más
+claro.</p>
+<p>Por el contrario, podemos romper la secuencia poniéndole un valor en el campo autonumérico,
+pero esto no habrá modificado la secuencia. Si queremos modificarla deberíamos
+hacerlo con la sentencia <strong>ALTER SEQUENCE</strong>.</p>
+<p><strong><u>Ejemplos</u></strong></p>
+<p>1) Introducir un departamento nuevo con los siguientes datos: Número: <strong>6</strong> ; Nombre: <strong>Personal</strong> ; Director: <strong>18922222</strong> y Fecha: <strong>01/05/99</strong>.</p>
+<pre><code>  INSERT INTO DEPARTAMENTO  
+    VALUES (6,'Personal','18922222','01/05/99');
+</code></pre>
+<p>2) Introducir dos departamentos nuevos, esta vez sin poner la fecha: Número: <strong>7</strong> ; Nombre: <strong>Ventas</strong> ; Director: <strong>18876543</strong>. I Número: <strong>8</strong> ; Nombre: <strong>Internacional</strong> ; Director: <strong>18999999</strong>. Podemos poner además el orden que queramos:</p>
+<pre><code>  INSERT INTO DEPARTAMENTO (num_d,director,nombre_d)  
+    VALUES (7,'18876543','Ventas') , (8,'18999999','Internacional');
+</code></pre>
+<blockquote>
+<p>También lo podíamos haber hecho así. Observe que ahora el orden debe ser exactamente el de la definición de la tabla.</p>
+</blockquote>
+<pre><code>  INSERT INTO DEPARTAMENTO  
+    VALUES (7,'Ventas','18876543',NULL) , (8,'Internacional','18999999',NULL);
+</code></pre>
+<p>3) Introducir 3 empleados en la tabla <strong>EMPLEAT1</strong> , con los siguientes valores (la tabla <strong>EMPLEAT1</strong> la creamos en la primera sentencia de ejemplo de la pregunta 3.2.2, CREATE TABLE):</p>
+<ul>
+<li>Dni: <strong>11111111a</strong> ; Nombre: <strong>Albert</strong></li>
+<li>Dni: <strong>22222222b</strong> ; Nombre: <strong>Berta</strong></li>
+<li>Dni: <strong>33333333c</strong> ; Nombre: <strong>Claudia</strong><pre><code>INSERT INTO EMPLEADO1  
+  VALUAS ('11111111a','Albert') , ('22222222b','Berta') ,
+  ('33333333c','Claudia')
+</code></pre>
+</li>
+</ul>
+<p>4) Introducir a 3 empleados en la tabla EMPLEAT2, con los siguientes valores (la tabla <strong>EMPLEAT2</strong> la creamos en la segunda sentencia de ejemplo de la pregunta 3.2.2, CREATE TABLE):</p>
+<ul>
+<li>Dni: <strong>44444444d</strong> ; Nombre: <strong>David</strong> ; Departamento: <strong>6</strong> ; Sueldo: <strong>1000</strong></li>
+<li>Dni: <strong>55555555e</strong> ; Nombre: <strong>Elena</strong> ; Departamento: <strong>6</strong> ; Sueldo: <strong>1500</strong></li>
+<li>Dni: <strong>66666666f</strong> ; Nombre: <strong>Ferran</strong> ; Departamento:<strong>7</strong> ; Sueldo: <strong>1750</strong><pre><code>INSERT INTO EMPLEAT2 (dny,nombre,departamento,sueldo)  
+  VALUAS ('44444444d ','David ',6,1000) , 
+  ('55555555e ','Elena',6,1500) , ('66666666f ','Ferran ',7,1750)
+</code></pre>
+</li>
+</ul>
+<p>5) Supongamos que tenemos una tabla de <strong>FACTURAS</strong> en la BD <strong>pruebas</strong> , con una clave principal que es un <strong>autonumérico</strong> (<strong>SERIAL</strong>). Como queremos practicar únicamente el autonumérico, la crearemos sencilita, con la siguiente estructura:</p>
+<pre><code>  CREATE TABLE FACTURAS  
+    ( num_f SERIAL PRIMARY KEY,  
+    descripción VARCHAR,  
+    importe NUMERIC );
+</code></pre>
+<blockquote>
+<p>La forma de ir introduciendo normalmente será sin especificar num_f, para
+que vaya cogiendo valores consecutivos.</p>
+</blockquote>
+<pre><code>  INSERT INTO FACTURAS (descripcion,importe)  
+    VALUAS ('Factura 1',54.23);
+</code></pre>
+<blockquote>
+<p>Pero si queremos romper la secuencia, sí pondremos num_f.</p>
+</blockquote>
+<pre><code>  INSERT INTO FACTURAS  
+    VALUES (2016001,'Factura 1 de 2016',23.98);
+</code></pre>
+<blockquote>
+<p>Eso sí, si introducimos otra fila sin especificar el número de factura,
+lo cogerá de la secuencia, que no se había modificado, y por tanto el valor que
+nos dará será <strong>2</strong>.</p>
+</blockquote>
+<pre><code>  INSERT INTO FACTURAS (descripcion,importe)  
+    VALUES ('Factura 2',36.27);
+</code></pre>
+<blockquote>
+<p>Para cambiar definitivamente el valor que debe ir autoincrementándose,
+deberíamos modificar la secuencia (<strong>ALTER SEQUENCE</strong>).</p>
+<p>Después de las 3 inserciones anteriores, el contenido de la tabla FACTURAS
+será éste:</p>
+<p><img alt="" src="../T6_III_3_1_1.png" /></p>
+</blockquote>
+<p><strong class="azul">Sintaxis para inserción con subconsulta</strong></p>
+<pre><code>  INSERT INTO tabla [ (campo1 [,campo2 [,...]]) ]  
+    SELECT ...
+</code></pre>
+<p>Es decir, los datos que van a insertarse los sacamos a partir de una sentencia
+SELECT. La sentencia SELECT puede ser tan complicada como haga falta, y podemos
+poner las cláusulas necesarias: WHERE, GROUP BY, ... El requisito es que habrá
+de devolver tantos campos como tenga la mesa o como estén especificados en la
+sentencia INSERT, y que los datos que vuelven sean del mismo tipo (o tipo
+compatibles, aunque Access puede realizar una conversión de tipo automática).
+Al igual que en el anterior formato, cuando no se especifique un campo se le asignará
+el valor nulo, o el valor predeterminado si tiene definido.</p>
+<p>Se puede especificar incluso una tabla de una base de datos externa.
+Consulte la sentencia SELECT, el apartado "Especificación de una B.D. externa".</p>
+<p><strong><u>Ejemplos</u></strong> </p>
+<p>1) Insertar todos los registros de la tabla <strong>EMPLEAT1</strong> en <strong>EMPLEAT3</strong> , suponiendo que existen estas tablas y aunque tienen una estructura diferente, ambas tienen los campos <strong>dni</strong> y <strong>nombre</strong>. Si no existe la tabla <strong>EMPLEAT3</strong> , puedes volver a crearla, utilizando la última sentencia de la pregunta 3.2.3 (Restricciones)</p>
+<pre><code>  INSERT INTO EMPLEADO3(dny,nombre)  
+    SELECT dni,nombre FROM EMPLEAT1;
+</code></pre>
+<p>2) Insertar en la tabla <strong>EMPLEAT3</strong> todos los empleados de la mesa <strong>EMPLEAT2</strong> de los departamentos 6 y 7.</p>
+<pre><code>  INSERT INTO EMPLEADO3  
+    SELECT * FROM EMPLEADO2  
+    WHERE departamento IN (6,7);
+</code></pre>
+<p>3) Insertar en la mesa EMPLEAT3 los empleados que tienen más de un familiar. Esta sentencia <strong class="rojo">no la podremos ejecutar</strong>, puesto que no tenemos la tabla <strong>FAMILIAR</strong>. Está únicamente de forma ilustrativa.</p>
+<pre><code>  INSERTAR EN EMPLEADO3  
+    SELECT * FROM EMPLEAT  
+      DONDE ENTRA EL dni (SELECCIONA dni  
+                    DE FAMILIA  
+                    GRUPO POR dni  
+                    TENIENDO CUENTA(*) &gt; 1);
+</code></pre>
+<h3 class="ejercicios-header" id="ejercicios"><strong><img alt="✏" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/270f.svg" title=":pencil2:" /> Ejercicios</strong></h3>
+<p>Como ya se ha comentado en la introducción, y por no interferir entre nosotros, cada uno se conectará a su Base de Datos <strong>factura_local</strong>.</p>
+<p>El esquema Entidad-Relación y el esquema relacional es el siguiente:</p>
+<p><img alt="" src="../factura.png" /></p>
+<p><strong>Ex_1</strong> - Insertar en la tabla <strong>CATEGORÍA</strong> las siguientes filas:</p>
+<table>
+<thead>
+<tr>
+<th><strong>cod_cas</strong></th>
+<th><strong>descripcion</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BjcOlimpia</td>
+<td>Componentes Bjc Seria Olimpia</td>
+</tr>
+<tr>
+<td>Legrand</td>
+<td>Componentes marca Legrand</td>
+</tr>
+<tr>
+<td>IntMagn</td>
+<td>Interruptor Magnetotérmico</td>
+</tr>
+<tr>
+<td>Niessen</td>
+<td>Componentes Niesen Serie Lisa</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Ex_2</strong> - Insertar los siguientes artículos.</p>
+<table>
+<thead>
+<tr>
+<th><strong>cod_art</strong></th>
+<th><strong>descrip</strong></th>
+<th><strong>precio</strong></th>
+<th><strong>stock</strong></th>
+<th><strong>stock_min</strong></th>
+<th><strong>cod_cas</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>B10028B</td>
+<td>Cruzamiento Bjc Serie Olimpia</td>
+<td>4.38</td>
+<td>2</td>
+<td>1</td>
+<td>BjcOlimpia</td>
+</tr>
+<tr>
+<td>B10200B</td>
+<td>Cruzamiento Bjc Olimpia Cono Visor</td>
+<td>0.88</td>
+<td>29</td>
+<td></td>
+<td>BjcOlimpia</td>
+</tr>
+<tr>
+<td>L16550</td>
+<td>Cartucho Fusible Legrand T2 250 A</td>
+<td>5.89</td>
+<td>1</td>
+<td>1</td>
+<td>Legrand</td>
+</tr>
+<tr>
+<td>L16555</td>
+<td>Cartucho Fusible Legrand T2 315 A</td>
+<td>5.89</td>
+<td>3</td>
+<td>3</td>
+<td>Legrand</td>
+</tr>
+<tr>
+<td>IM2P10L</td>
+<td>Interruptor Magnetotermico 2p, 4</td>
+<td>14.84</td>
+<td>2</td>
+<td>1</td>
+<td>IntMagn</td>
+</tr>
+<tr>
+<td>N8008BA</td>
+<td>Base Tt Lateral Niessen Trazo Bla</td>
+<td>4.38</td>
+<td>6</td>
+<td>6</td>
+<td>Niessen</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Ex_3</strong> - Insertar en la tabla <strong>CLIENTE</strong> tres filas con los siguientes datos</p>
+<table>
+<thead>
+<tr>
+<th><strong>cod_cli</strong></th>
+<th><strong>nombre</strong></th>
+<th><strong>dirección</strong></th>
+<th><strong>cp</strong></th>
+<th><strong>cod_pob</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>303</td>
+<td>MIRAVET SALA, MARIA MERCEDES</td>
+<td>URBANIZACION EL BALCO, 84-11</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>306</td>
+<td>SAMPEDRO SIMO, MARIA MERCEDES</td>
+<td>FINELLO, 161</td>
+<td>12217</td>
+<td></td>
+</tr>
+<tr>
+<td>387</td>
+<td>TUR MARTIN, MANUEL FRANCISCO</td>
+<td>CALLE PEDRO VIRUELA, 108-8</td>
+<td>12008</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Ex_4</strong> - Insertar la siguiente factura:</p>
+<table>
+<thead>
+<tr>
+<th><strong>num_f</strong></th>
+<th><strong>fecha</strong></th>
+<th><strong>cod_cli</strong></th>
+<th><strong>cod_ven</strong></th>
+<th><strong>iva</strong></th>
+<th><strong>dto</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>6535</td>
+<td>2015-01-01</td>
+<td>306</td>
+<td></td>
+<td>21</td>
+<td>10</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th><strong>num_f</strong></th>
+<th><strong>num_l</strong></th>
+<th><strong>cod_art</strong></th>
+<th><strong>cuánto</strong></th>
+<th><strong>precio</strong></th>
+<th><strong>dto</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>6535</td>
+<td>1</td>
+<td>L16555</td>
+<td>2</td>
+<td>5.89</td>
+<td>25</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Ex_5</strong> - Insertar la siguiente factura (esta tiene más de una línea de factura).</p>
+<table>
+<thead>
+<tr>
+<th><strong>num_f</strong></th>
+<th><strong>fecha</strong></th>
+<th><strong>cod_cli</strong></th>
+<th><strong>cod_ven</strong></th>
+<th><strong>iva</strong></th>
+<th><strong>dto</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>6559</td>
+<td>2015-02-16</td>
+<td>387</td>
+<td></td>
+<td>10</td>
+<td>10</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th><strong>num_f</strong></th>
+<th><strong>num_l</strong></th>
+<th><strong>cod_art</strong></th>
+<th><strong>cuánto</strong></th>
+<th><strong>precio</strong></th>
+<th><strong>dto</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>6559</td>
+<td>1</td>
+<td>IM2P10L</td>
+<td>3</td>
+<td>14.84</td>
+<td></td>
+</tr>
+<tr>
+<td>6559</td>
+<td>2</td>
+<td>N8008BA</td>
+<td>6</td>
+<td>4.38</td>
+<td>20</td>
+</tr>
+</tbody>
+</table>
+<h2 id="22-delete">2.2 DELETE</h2>
+<p>Esta sentencia servirá para <strong>borrar filas enteras</strong> de una determinada
+mesa.</p>
+<p>Si se quieren borrar sólo algunos campos de una o determinadas filas, no
+se debe utilizar esta sentencia, sino que se debe utilizar la sentencia
+<strong>UPDATE</strong> para poner los campos en NULL.</p>
+<p><strong><u>Sintaxi</u></strong></p>
+<pre><code>  DELETE FROM mesa  
+    [WHERE condición]
+</code></pre>
+<p>Se borrarán las filas que cumplan la condición. Si no se pone el WHERE
+se borrarán tetas las filas de la tabla (pero no la misma tabla,
+la estructura; es decir, seguirá existiendo la mesa, pero vacía).</p>
+<p>Por la peligrosidad de la sentencia, es conveniente hacer primero una sentencia
+SELECT, y cuando estemos seguros de que se seleccionen sólo las filas que queremos
+borrar, cambiarla por DELETE. También es muy conveniente realizar copias de
+seguridad de las tablas o de toda la Base de Datos.</p>
+<p><strong><u>Ejemplos</u></strong></p>
+<p>1) Borrar todas las filas de <strong>EMPLEAT2</strong></p>
+<pre><code>  DELETE FROM EMPLEADO2;
+</code></pre>
+<p>2) Borrar de <strong>EMPLEAT3</strong> los empleados del departamento 7</p>
+<pre><code>  DELETE FROM EMPLEADO3  
+    WHERE departamento=7;
+</code></pre>
+<p>3) Borrar de <strong>EMPLEAT3</strong> los empleados mayores de 47 años (en realidad no se borrará ninguna porque no tenemos introducida la fecha de nacimiento)</p>
+<pre><code>  DELETE FROM EMPLEADO3  
+    WHERE EXTRACT(year FROM AGE(CURRENT_DATE,data_nacimiento) )&gt;=47;
+</code></pre>
+<p>4) Borrar de EMPLEADO aquellos empleados que trabajen en proyectos menos de 20 horas <strong class="rojo">(no es muy conveniente confirmar la eliminación de los registros, ya que nos quedaríamos sin datos importantes)</strong></p>
+<pre><code>  DELETE FROM EMPLEADO  
+    WHERE dni IN (SELECT dni  
+                  FROM TRABAJA  
+                  GROUP BY dny  
+                  HAVING SUM(horas)&lt;20);
+</code></pre>
+<h3 class="ejercicios-header" id="ejercicios_1"><strong><img alt="✏" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/270f.svg" title=":pencil2:" /> Ejercicios</strong></h3>
+<p>En <strong>factura_local</strong>:</p>
+<p><strong>Ex_6</strong> - Borrar la factura <strong>6559</strong>. Comprobar que también se han borrado las
+sus líneas de factura</p>
+<p><strong>Ex_7</strong> - Borrar los artículos de los que <strong>no</strong> tenemos<strong>stock mínimo</strong>.</p>
+<h2 id="23-update">2.3 UPDATE</h2>
+<p>Esta sentencia servirá para modificar alguno o algunos campos de determinadas
+filas de una mesa.</p>
+<p>En concreto también servirá para "borrar" el contenido de algún campo de alguna
+fila. Lo que haremos será poner en NULL este campo.</p>
+<p><strong><u>Sintaxi</u></strong></p>
+<pre><code>  UPDATE tabla  
+    SET campo1=valor1 [ ,campo2=valor2 [,...] ]  
+    [ WHERE condición];
+</code></pre>
+<p>Pondremos por tanto, después de especificar la tabla, el campo (o campos) que queremos
+cambiar seguido del nuevo valor. En caso de querer cambiar más de un campo, irán
+separados por comas.</p>
+<p>Sólo cambiarán los valores de las filas que cumplan la condición. Si no se
+pone condición se modificarán todas las filas.</p>
+<p>Haremos la misma consideración de peligrosidad que en el DELETE: es conveniente
+hacer primero una sentencia SELECT, y cuando estemos seguros de que se seleccionan
+sólo las filas que queremos modificar, cambiarla por UPDATE con la modificación
+de los valores. También es muy conveniente realizar copias de seguridad de las tablas o
+de toda la Base de Datos.</p>
+<p><strong><u>Ejemplos</u></strong></p>
+<p>1) Borrar todas las fechas de incorporación de la tabla EMPLEAT3</p>
+<pre><code>  UPDATE EMPLEADO3  
+  SET data_incorporacio=NULL;
+</code></pre>
+<p>2) Aumentar el sueldo un 5% a los empleados del departamento 6 de la mesa EMPLEAT3.</p>
+<pre><code>  UPDATE EMPLEADO3  
+  SET sueldo = sueldo * 1.05  
+  WHERE departamento=6;
+</code></pre>
+<p>3) Cambiar la población a Ares y el departamento al 8, a todos los empleados de Castellón de la mesa EMPLEAT3</p>
+<pre><code>  UPDATE EMPLEADO3  
+  SIETE departamento=8, población='Ares'
+  WHERE población='Castellón';
+</code></pre>
+<h3 class="ejercicios-header" id="ejercicios_2"><strong><img alt="✏" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/270f.svg" title=":pencil2:" /> Ejercicios</strong></h3>
+<p>En <strong>factura_local</strong>:</p>
+<p><strong>Ex_8</strong> - Quitar todos los códigos postales de los clientes.</p>
+<p><strong>Ex_9</strong> - Subir el precio de los artículos de la categoría <strong>BjcOlimpia</strong> un <strong>5%</strong>
+(el resultado será que el único artículo de esta categoría habrá pasado de un
+precio de 4.38 a <strong>4.60€</strong>)</p>
+<p>Licenciado bajo la <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Licencia Creative Commons Reconocimiento NoComercial
+CompartirIgual 3.0</a></p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../1_introducci/" class="md-footer__link md-footer__link--prev" aria-label="Previous: 1. Introducción">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                1. Introducción
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../exercicis_de_tot_el_tema/" class="md-footer__link md-footer__link--next" aria-label="Next: Ejercicios de todo el tema">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Ejercicios de todo el tema
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.footer", "navigation.path", "search.suggest", "search.highlight", "content.code.copy", "toc.integrate"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

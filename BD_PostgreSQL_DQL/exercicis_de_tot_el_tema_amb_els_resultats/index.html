@@ -1,0 +1,1981 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../12_ordre_amb_qu_sexecuta_una_sentncia_sql/">
+      
+      
+        <link rel="next" href="../ejemplos_bd/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Ejercicios con los resultados (parte I) - BD - Bases de Datos</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../css/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#ejercicios-con-los-resultados-parte-i" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="BD - Bases de Datos" class="md-header__button md-logo" aria-label="BD - Bases de Datos" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            BD - Bases de Datos
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Ejercicios con los resultados (parte I)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Cambiar a modo oscuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo oscuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Cambiar a modo claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../RA_CE/" class="md-tabs__link">
+          
+  
+  
+  SQL - POSTGRES
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../0_presentacion/" class="md-tabs__link">
+          
+  
+  
+  DQL - Consultas (parte I)
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../BD_PostgreSQL_DQL_Avancat/20_presentacion/" class="md-tabs__link">
+          
+  
+  
+  DQL - Consultas avanzadas (parte II)
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../BD_PostgreSQL_DDL/1_introducci/" class="md-tabs__link">
+          
+  
+  
+  DDL - Creación de Tablas
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../BD_PostgreSQL_DML/1_introducci/" class="md-tabs__link">
+          
+  
+  
+  DML - Manipulación de Datos
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="BD - Bases de Datos" class="md-nav__button md-logo" aria-label="BD - Bases de Datos" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    BD - Bases de Datos
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SQL - POSTGRES
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SQL - POSTGRES
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../RA_CE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Resultados de Aprendizaje y Criterios de Evalucación
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../objectius_i_coneixements_previs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Objetivos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1_introducci/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Introducción
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2_client_dbeaver_installaci_i_confiuraci/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. DBeaver
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3_dades_dels_exemples_i_els_exercicis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3 Datos de los ejemplos y los ejercicios
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_1_6" id="__nav_1_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Operadores y Funciones de Postgres
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    4. Operadores y Funciones de Postgres
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../6_operadors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.1. Operadores
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../7_funcions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.2. Funciones
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DQL - Consultas (parte I)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    DQL - Consultas (parte I)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../0_presentacion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Presentación Tema 4 (Parte 1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1_la_consulta_select/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. La consulta SELECT
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2_consulta_bsica/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Consulta básica
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3_lies_en_les_columnes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Alias en las columnas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4_la_clusula_where/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. La cláusula WHERE
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../5_funcions_dagregat/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. Funciones de agregado
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../6_la_clusula_group_by/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. La cláusula GROUP BY
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../7_la_clusula_having/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7. La cláusula HAVING
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../8_la_clusula_order_by/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8. La cláusula ORDER BY
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../9_el_predicat_distinct/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    9. El predicado DISTINCT
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10_la_clusula_limit__offset/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10. La cláusula LIMIT .. OFFSET
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11_consulta_de_creaci_de_taules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11. Consulta de creación de tablas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12_ordre_amb_qu_sexecuta_una_sentncia_sql/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    12. Orden en el que se ejecuta una sentencia SQL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ejercicios con los resultados (parte I)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ejemplos_bd/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ejemplos de BDs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DQL - Consultas avanzadas (parte II)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    DQL - Consultas avanzadas (parte II)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DQL_Avancat/20_presentacion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Presentación Tema 4 (Parte 2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DQL_Avancat/21_introducci/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Introducción
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DQL_Avancat/22_combinacions_de_taules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Combinaciones de tablas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DQL_Avancat/23_subconsultes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Subconsultas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DQL_Avancat/24_consultes_doperacions_de_conjunts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Consultas de operaciones de conjuntos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DQL_Avancat/exercicis_de_tot_el_tema_amb_els_resultats/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ejercicios con los resultados (parte II)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DDL - Creación de Tablas
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    DDL - Creación de Tablas
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DDL/1_introducci/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Introducción
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DDL/2_ddl/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. DDL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DDL/exercicis_de_tot_el_tema/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ejercicios de todo el tema
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DML - Manipulación de Datos
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    DML - Manipulación de Datos
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DML/1_introducci/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Introducción
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DML/2_consultes_dactualitzaci/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Consultas de actualización (DML)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BD_PostgreSQL_DML/exercicis_de_tot_el_tema/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ejercicios de todo el tema
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 class="ejercicios-header" id="ejercicios-con-los-resultados-parte-i">Ejercicios con los resultados (parte I)</h1>
+<p>En la BD <strong>factura</strong>, conectando como usuario <strong>factura_alu</strong>:</p>
+<p><strong>Ex_1</strong> Sacar toda la información de los pueblos.</p>
+<p><img alt="" src="../Ex_6_1.png" /></p>
+<p>Un total de <strong>1663 filas</strong></p>
+<p><strong>Ex_2</strong> Sacar el código postal, el nombre y la dirección, por este orden, de todos
+los vendedores..</p>
+<p><img alt="" src="../Ex_6_2.png" /></p>
+<p><strong>Ex_3</strong> Sacar el código de artículo, la descripción, precio y precio incrementado en un
+5% de todos los artículos.</p>
+<p><img alt="" src="../Ex_6_3.png" /></p>
+<p>Un total de <strong>812 filas</strong></p>
+<p><strong>Ex_4</strong> Sacar la información de los clientes con el siguiente formato (debe ir todo
+en una columna):</p>
+<p><strong>Damborenea Corbato, Alicia. CALLE MADRID, 83 (12425)</strong></p>
+<p>Fíjese que está todo en una columna, y por tanto tendrá que concatenar de la
+forma adecuada. Fíjese también que en en el nombre sólo las iniciales están en
+mayúsculas</p>
+<p><img alt="" src="../Ex_6_4.png" /></p>
+<p>Un total de <strong>49 filas</strong></p>
+<p><strong>Ex_5</strong> Sacar el num_f, fecha y cod_ven de las facturas con las siguientes
+cabeceras respectivamente: <strong>Número Factura</strong> , <strong>fecha</strong> y <strong>Código Vendedor</strong>.</p>
+<p><img alt="" src="../Ex_6_5.png" /></p>
+<p>Un total de <strong>105 filas</strong></p>
+<p><strong>Ex_6</strong> Dar alias a los campos que lo necesitan de la tabla ARTÍCULO.</p>
+<p><img alt="" src="../Ex_6_6.png" /></p>
+<p>Un total de <strong>812 filas</strong></p>
+<p><strong>Ex_7</strong> Sacar los <strong>clientes</strong> de la <strong>ciudad</strong> con código <strong>12309</strong>.</p>
+<p><img alt="" src="../Ex_6_7.png" /></p>
+<p><strong>Ex_8</strong> Sacar todas las <strong>facturas</strong> del mes de <strong>marzo</strong> de <strong>2015</strong>.</p>
+<p><img alt="" src="../Ex_6_8.png" /></p>
+<p><strong>Ex_9</strong> Sacar todos los artículos de la <strong>categoría</strong> <strong>BjcOlimpia</strong> con un
+<strong>stock</strong> entre<strong>2</strong> y <strong>7</strong> unidades.</p>
+<p><img alt="" src="../Ex_6_9.png" /></p>
+<p><strong>Ex_10</strong> Sacar todos los <strong>clientes</strong> que <strong>no</strong> tienen introducido el <strong>código
+postal</strong>.<strong><br />
+</strong></p>
+<p><img alt="" src="../Ex_6_10.png" /></p>
+<p><strong>Ex_11</strong> Sacar todos los <strong>artículos</strong> con el <strong>stock</strong> introducido pero que
+<strong>no</strong> tienen introducido el <strong>stock mínimo</strong>.</p>
+<p><img alt="" src="../Ex_6_11.png" /></p>
+<p><strong>Ex_12</strong> Sacar todos los <strong>clientes</strong> , cuyo<strong>primer apellido</strong> es
+<strong>VILLALONGA</strong>.</p>
+<p><img alt="" src="../Ex_6_12.png" /></p>
+<p><strong>Ex_13.a</strong> Modificar lo anterior para sacar todos los que son <strong>VILLALONGA</strong>
+de <strong>primer</strong> o de <strong>segundo</strong> apellido.</p>
+<p><strong><img alt="" src="../Ex_6_13_a.png" /></strong></p>
+<p><strong>Ex_13.b</strong> Modificar lo anterior para sacar todos los que <strong>no</strong> son
+<strong>VILLALONGA</strong> ni de primer ni de segundo apellido.</p>
+<p><img alt="" src="../Ex_6_13_b.png" /></p>
+<p>Un total de <strong>46 filas</strong></p>
+<p><strong>Ex_14</strong> Sacar los <strong>artículos</strong> "<strong>Pulsador</strong> " (la descripción contiene esta
+palabra), cuyo <strong>precio</strong> oscila entre<strong>2 y 4 €</strong> y de los que tenemos un
+<strong>stock</strong> estrictamente <strong>mayor</strong> que el <strong>stock mínimo</strong>.<strong><br />
+</strong></p>
+<p><img alt="" src="../Ex_6_14.png" /></p>
+<p><strong>Ex_15</strong> Contar el número de <strong>clientes</strong> que tienen el <strong>código postal nulo</strong>.</p>
+<p><img alt="" src="../Ex_6_15.png" /></p>
+<p><strong>Ex_16</strong> Contar el número de veces que el artículo <strong>L76104</strong> entra en las
+líneas de factura, y el número total de unidades vendidas de este artículo. Sólo
+le hace falta la tabla LINIA_FAC.</p>
+<p><img alt="" src="../Ex_6_16.png" /></p>
+<p><strong>Ex_17</strong> Sacar la <strong>media</strong> del <strong>stock</strong> de los artículos.</p>
+<p><img alt="" src="../Ex_6_17.png" /></p>
+<p><strong>Ex_18</strong> Modificar lo anterior para<strong>tener en cuenta los valores nulos, como si
+fueron 0</strong>. Le vendrá bien la función <strong>COALESCE</strong> que convierte los nulos del
+primer parámetro al valor dado como segundo parámetro (si es distinto de nulo,
+deja igual el valor). Por tanto debe utilizarlo de esta manera:
+<strong>COALESCE(stock,0)</strong></p>
+<p><img alt="" src="../Ex_6_18.png" /></p>
+<p><strong>Ex_19</strong> Contar <strong>cuántas facturas</strong> tiene el cliente <strong>375</strong></p>
+<p><strong><img alt="" src="../Ex_6_19.png" /></strong></p>
+<p><strong>Ex_20</strong> Calcular el <strong>descuento máximo</strong> , el <strong>mínimo</strong> y el descuento
+<strong>medio</strong> de las <strong>facturas</strong>.</p>
+<p>SELECT nombre_c, provincia<br />
+      FROM COMARCAS<br />
+    INTERSECT<br />
+    SELECT nombre, provincia<br />
+      FROM COMARCAS INNER JOIN POBLACIONES USING (nombre_c)<br />
+    ORDER BY nombre_c;</p>
+<p><strong>Ex_21</strong> Contar el número de pueblos de cada provincia (es suficiente con sacar el
+código de la provincia y el número de pueblos).</p>
+<p><img alt="" src="../Ex_6_21.png" /></p>
+<p><strong>Ex_22</strong> Contar el número de clientes en cada pueblo y código postal.</p>
+<p><img alt="" src="../Ex_6_22.png" /></p>
+<p>Un total de <strong>45 filas</strong></p>
+<p><strong>Ex_23</strong> Contar el número de facturas de cada vendedor a cada cliente.</p>
+<p><img alt="" src="../Ex_6_23.png" /></p>
+<p>Un total de <strong>96 filas</strong></p>
+<p>De estas 96 filas, relativamente poco tienen un valor diferente de 1 en el
+número de facturas: la fila 29 (455, 30, 2) o la fila 34 (5, 342, 3)</p>
+<p><strong>Ex_24</strong> Contar el número de facturas de cada trimestre. Para poder sacar
+el trimestre y agrupar por él (vale el número de trimestre, que va del 1
+al 4), podemos utilizar la función <strong>TO_CHAR(fecha,'Q')</strong>.</p>
+<p><img alt="" src="../Ex_6_24.png" /></p>
+<p>No aparece ordenado, y significa que en el trimestre 2 hay 25 facturas, en el
+trimestre 4 hay 25, en el trimestre 3 hay 33 y en el trimestre 1 hay 22</p>
+<p><strong>Ex_25</strong> Calcular cuántas veces se ha vendido un artículo, la suma de unidades
+vendidas, la cantidad máxima y la cantidad mínima.</p>
+<p><img alt="" src="../Ex_6_25.png" /></p>
+<p>Un total de <strong>399 filas</strong></p>
+<p><strong>Ex_26</strong> Contar el número de artículos de cada categoría y el precio medio.</p>
+<p><img alt="" src="../Ex_6_26.png" /></p>
+<p><strong>Ex_27</strong> Calcular el total de cada factura, sin aplicar descuentos ni IVA.
+Sólo nos hará falta la mesa <strong>LINIES_FAC</strong> , y consistirá en agrupar por
+cada <strong>num_f</strong> para calcular la suma del <strong>precio</strong> multiplicado por la
+<strong>cantidad</strong>.</p>
+<p><img alt="" src="../Ex_6_27.png" /></p>
+<p>Un total de <strong>105 filas</strong></p>
+<p><strong>Ex_28</strong> Calcular la media de cantidades pedidas de aquellos artículos que
+se han pedido más de dos veces. Observe que la mesa que nos hace falta es
+LÍNEA_FAC, y que la condición (en el HAVING) es sobre el número de veces que
+entra el artículo en una línea de factura, pero el resultado que debe mostrarse
+es la media de la cantidad.</p>
+<p><img alt="" src="../Ex_6_28.png" /></p>
+<p><strong>Ex_29</strong> Sacar a los pueblos que tienen entre 3 y 7 clientes. Quitar sólo el código
+del pueblo y ese número</p>
+<p><img alt="" src="../Ex_6_29.png" /></p>
+<p><strong>Ex_30</strong> Sacar las categorías que tienen más de un artículo "caro" (de más de
+100 €). Observe que también nos saldrá la categoría NULL, es decir, aparecerá
+como categoría aquellos artículos que no están catalogados.</p>
+<p><img alt="" src="../Ex_6_30.png" /></p>
+<p><strong>Ex_31</strong> Sacar a los clientes que tienen más de una factura, con el número de
+facturas.</p>
+<p><img alt="" src="../Ex_6_31.png" /></p>
+<p>Un total de <strong>33 filas</strong></p>
+<p><strong>Ex_32</strong> Modificar lo anterior para sacar a los clientes que tienen más
+de una factura en el primer trimestre.</p>
+<p><img alt="" src="../Ex_6_32.png" /></p>
+<p><strong>Ex_33</strong> Calcular el total de cada factura de aquellas facturas que
+tienen 10 o más líneas de factura, sin aplicar descuentos ni IVA (como la
+consulta <strong>Ex_26</strong>), y también aplicando el descuento que consta en la línea de
+factura (no el descuento de toda la factura). Tendremos el problema de que el valor
+NULL es especial, y al operar con cualquier otro valor dará NULL. En este
+caso claramente debemos considerarlo como un descuento 0. Puede utilizar una
+función que sustituye a los valores nulos encontrados en el primer parámetro, por
+segundo parámetro de esta forma: <strong>COALESCE(dto,0)</strong></p>
+<p><img alt="" src="../Ex_6_33.png" /></p>
+<p><strong>Ex_34</strong> Sacar a todos los clientes ordenados por código de población, y dentro
+de éstos por código postal.</p>
+<p><img alt="" src="../Ex_6_34.png" /></p>
+<p>Un total de <strong>49 filas</strong></p>
+<p><strong>Ex_35</strong> Sacar todos los artículos ordenados por la categoría, dentro de éste por
+stock, y dentro de éste por precio (de forma descendente)</p>
+<p><img alt="" src="../Ex_6_35.png" /></p>
+<p>Un total de <strong>812 filas</strong></p>
+<p><strong>Ex_36</strong> Sacar los resultados de la consulta <strong>6.33</strong> ordenados por el total de la
+factura cuando ya se ha aplicado el descuento, de forma descendente.</p>
+<p><img alt="" src="../Ex_6_36.png" /></p>
+<p><strong>Ex_37</strong> Sacar todos los artículos ordenados por la diferencia entre el stock y
+el stock mínimo de forma descendente. Debido a que en muchas ocasiones el stock o el
+stock mínimo es nulo, debemos considerar en estos casos como 0. Por tanto debemos
+volver a utilizar la función <strong>COALESCE(stock,0)</strong> (y también para el stock
+mínimo).</p>
+<p><img alt="" src="../Ex_6_37.png" /></p>
+<p>Un total de <strong>812 filas</strong></p>
+<p><strong>Ex_38</strong> Sacar los códigos de vendedor con el número de facturas vendidas en el
+segundo semestre de 2015, ordenadas por este número de forma descendente</p>
+<p><img alt="" src="../Ex_6_38.png" /></p>
+<p><strong>Ex_39</strong> Sacar a los vendedores que han vendido algo en el mes de enero de
+2015.</p>
+<p><img alt="" src="../Ex_6_39.png" /></p>
+<p><strong>Ex_40</strong> Sacar los diferentes tipos de IVA que se han aplicado a las facturas de
+cada vendedor, también durante el mes de enero de 2015</p>
+<p><img alt="" src="../Ex_6_40.png" /></p>
+<p><strong>Ex_41</strong> Sacar los diferentes jefes de vendedores (evite que aparezca el valor
+nulo)</p>
+<p><img alt="" src="../Ex_6_41.png" /></p>
+<p><strong>Ex_42</strong> Sacar los diferentes descuentos que se han aplicado en los artículos, el
+código de los que comienza por <strong>SAT</strong>. Sacar tanto el código de artículo como el
+descuento.</p>
+<p><img alt="" src="../Ex_6_42.png" /></p>
+<p><strong>Ex_43</strong> Contar en cuántas poblaciones tenemos clientes</p>
+<p><img alt="" src="../Ex_6_43.png" /></p>
+<p><strong>Ex_44</strong> Sacar toda la información de los dos artículos más caros.</p>
+<p><img alt="" src="../Ex_6_44.png" /></p>
+<p><strong>Ex_45</strong> Sacar el código de las tres ciudades con más clientes</p>
+<p><img alt="" src="../Ex_6_45.png" /></p>
+<p><strong>Ex_46</strong> Sacar al vendedor que ha vendido menos facturas</p>
+<p><img alt="" src="../Ex_6_46.png" /></p>
+<p><strong>Ex_47</strong> Sacar las tres facturas más caras (sin contar los descuentos)</p>
+<p><img alt="" src="../Ex_6_47.png" /></p>
+<p><strong>Ex_48</strong> Modificar lo anterior para sacar todas las facturas, excepto las 3
+más caras.</p>
+<p><img alt="" src="../Ex_6_48.png" /></p>
+<p>Un total de <strong>102 filas</strong></p>
+<p><strong>Ex_49</strong> Crear una tabla llamada <strong>ARTÍCULO_999x</strong> , donde 999 deben ser las 3
+últimas cifras del DNI, y x la letra de tu NIF, que sea una copia de la
+tabla ARTÍCULO, pero sustituyendo los valores nulos de <strong>stock</strong> y <strong>stock_min</strong>
+por ceros.</p>
+<p>El resultado debe ser la creación de la mesa. Si consulta su contenido debe
+de ser el siguiente:</p>
+<p><img alt="" src="../Ex_6_49.png" /></p>
+<p>Un total de <strong>812 filas</strong></p>
+<p><strong>Ex_50</strong> Utilizar la tabla anterior para sacar el stock máximo, el mínimo y
+la media de stocks. Observa que si utilizamos la tabla ARTÍCULO, los
+resultados no serían los mismos (excepto el máximo), sobre todo la media, ya
+que los valores nulos no entrarían en los cálculos de esa media.</p>
+<p><img alt="" src="../Ex_6_50.png" /></p>
+<p>Licenciado bajo la <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Licencia Creative Commons Reconocimiento NoComercial
+CompartirIgual 3.0</a></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../12_ordre_amb_qu_sexecuta_una_sentncia_sql/" class="md-footer__link md-footer__link--prev" aria-label="Previous: 12. Orden en el que se ejecuta una sentencia SQL">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                12. Orden en el que se ejecuta una sentencia SQL
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../ejemplos_bd/" class="md-footer__link md-footer__link--next" aria-label="Next: Ejemplos de BDs">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Ejemplos de BDs
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.footer", "navigation.path", "search.suggest", "search.highlight", "content.code.copy", "toc.integrate"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
