@@ -1,19 +1,23 @@
 
 site_name: BD - Bases de Datos
-theme: 
+theme:
   name: material
   logo: assets/logo.png
   favicon: assets/favicon.png
   features:
     - navigation.tabs
+    - navigation.tabs.sticky
     #- navigation.sections
-    #-  navigation.tabs.sticky
     - navigation.top
     - navigation.footer
+    - navigation.path
     - search.suggest
     - search.highlight
     - content.code.copy
     - toc.integrate
+
+  copyright: Licenciado bajo la licencia Creative Commons by-nc-nd
+
   palette:
     - media: "(prefers-color-scheme: light)"
       scheme: default
@@ -35,12 +39,14 @@ extra_css:
 
 markdown_extensions:
   - admonition
-  - pymdownx.emoji
-  - pymdownx.extra
-  - pymdownx.superfences
   - tables    
   - attr_list
-  - toc 
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
   
 nav:
   
